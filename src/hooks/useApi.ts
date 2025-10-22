@@ -4,7 +4,7 @@ const call = async<R>(url: string, method: "GET" | "POST") => {
 
     
      try {
- const response = await fetch(`http://localhost:3000/${url}`)
+ const response = await fetch(`http://localhost:3000/${url}`, {method})
           if (response.ok){
                 const data: R = await response.json()
                 return data
