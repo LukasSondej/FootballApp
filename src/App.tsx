@@ -2,8 +2,8 @@
 
 import styled, { ThemeProvider } from 'styled-components'
 import './App.css'
-import { ListPlayers } from './ListPlayers'
-import { ListTeams } from './ListTeams'
+import { ListPlayers } from './playerFolder/ListPlayers'
+
 
 const Page = styled.div`
 min-height: 100vh;
@@ -27,7 +27,7 @@ function App() {
   return (
 <ThemeProvider theme = {light}>
 <Page>
-  <ListTeams/>
+  <ListPlayers/>
 </Page>
   
 </ThemeProvider>

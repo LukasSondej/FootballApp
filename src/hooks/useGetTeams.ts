@@ -7,7 +7,7 @@ import { useApi } from "./useApi";
 export const useGetTeams = () => {
     const {getData} = useApi()
 const {data, isLoading, error} = useQuery<Team[]>({
-    queryKey: ['players'],
+    queryKey: ['teams'],
     queryFn: async() => {
     return getData<Team[]>("teams")
     }

@@ -1,4 +1,4 @@
-import { useGetPlayers } from "./hooks/useGetPlayers"
+import { useGetPlayers } from "../hooks/useGetPlayers"
 import { SinglePlayer } from "./SinglePlayer"
 
 export const ListPlayers = () => {

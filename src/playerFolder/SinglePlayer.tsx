@@ -1,24 +1,29 @@
 import styled from "styled-components"
-import type { Player } from "./types"
+import type { Player } from "../types"
 import { useState } from "react"
+import { FormPlayer } from "./FormPlayer"
 
 type PropsPlayer =  {
     player: Player
 }
+
 const StyledPlayer = styled.p`
 background: ${props => props.theme.colors.background};
 color: ${props => props.theme.colors.textPrimary}
 `
+
+export const SinglePlayer = ({player}: PropsPlayer) => {
 const [isEdit, setIsEdit] = useState(false)
-export const handleIsEdit  =() => {
+const handleIsEdit  =() => {
 setIsEdit(prev => !prev)
 }
-export const SinglePlayer = ({player}: PropsPlayer) => {
+
+
 return (
     <StyledPlayer>
        {player.name} {player.lastName} 
-       <button onClick={handleIsEdit}>EDIT</button>
-       
+       <button type="button" onClick={handleIsEdit}>{isEdit ? "Zamknij" : "Edytuj"}</button>
+    {isEdit && <FormPlayer player={player}/>}
     </StyledPlayer>
     
 )
