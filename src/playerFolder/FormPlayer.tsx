@@ -9,7 +9,7 @@ type PropsPlayer =  {
 export const FormPlayer = ({player}: PropsPlayer) =>{
     const[name,setName] = useState(player.name)
     const[lastName,setLastName] = useState(player.lastName)
-    const [teamId, setTeamId] = useState<number | null>(player.teamId)
+    const [teamId, setTeamId] = useState<number | null>(player.teamId ?? null)
    const { data: teams = [], error, isLoading} = useGetTeams()
    
 
@@ -40,7 +40,9 @@ const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
         <input id="lastName" name="lastName" value={lastName} onChange={handleLastName}></input>
     </div>
     <div>
-        <select name="selectTeam" id="team" value={teamId ?? ""} onChange={handleTeam}>
+        <label>Team:</label>
+        <select  name="selectTeam" id="team" value={teamId ?? ""} onChange={handleTeam}>
+            <option value={""}>Brak druzyny</option>
 {teams.map(el => (<option key={el.id} value={el.id}> {el.name}</option>))}
 
         </select>
