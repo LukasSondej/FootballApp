@@ -2,9 +2,9 @@
   "players": [
     {
       "id": "1",
-      "name": "Michalek",
+      "name": "Rafal",
       "lastName": "Sondej",
-      "teamId": 2
+      "teamId": null
     },
     {
       "id": "2",
@@ -15,7 +15,7 @@
   ],
   "teams": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Real",
       "yearEstablished": 2000,
       "location": "Lezajsk"

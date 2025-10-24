@@ -1,58 +1,31 @@
-import { useState } from "react"
-import type { Player } from "../types"
+
+import type { NewPlayer } from "../types"
 import { useGetTeams } from "../hooks/useGetTeams"
-import { useEditPlayerMutation } from "../mutations/useEditPlayerMutation"
+
 
 type PropsPlayer =  {
-    player: Player
-   
+   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+handleChange: (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
+values: NewPlayer;
 }
-export const FormPlayer = ({player}: PropsPlayer) =>{
-    const[name,setName] = useState(player.name)
-    const[lastName,setLastName] = useState(player.lastName)
-    const [teamId, setTeamId] = useState<number | null>(player.teamId ?? null)
-   const { data: teams = [], error, isLoading} = useGetTeams()
-   
-const {mutate }= useEditPlayerMutation()
+export const FormPlayer = ({handleSubmit, handleChange, values}: PropsPlayer) =>{
 
-const handleTeam = (e: React.ChangeEvent<HTMLSelectElement>) => {
-const v = e.target.value
-setTeamId(v === ""? null : Number(v))
-}
-const handleName = (e: React.ChangeEvent<HTMLInputElement>) =>{
-    setName(e.target.value)
-}
-const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLastName(e.target.value)
-}
+ const { data: teams = []} = useGetTeams()
 
-
-const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
-    e.preventDefault()
-    mutate({
-        id: player.id,
-        name,
-         lastName,
-          teamId
-    })
-}
-
-   if(isLoading) return <p>Loading...</p>
-   if(error) return <p>Blond</p>
     return (
         <>
         <form onSubmit={handleSubmit}>
     <div>
         <label htmlFor="name">Name</label>
-        <input id="name" name="name" value={name} onChange={handleName}></input>
+        <input id="name" name="name" value={values.name} onChange={handleChange}></input>
     </div>
     <div>
         <label htmlFor="lastName">LastName</label>
-        <input id="lastName" name="lastName" value={lastName} onChange={handleLastName}></input>
+        <input id="lastName" name="lastName" value={values.lastName} onChange={handleChange}></input>
     </div>
     <div>
         <label>Team:</label>
-        <select  name="selectTeam" id="team" value={teamId ?? ""} onChange={handleTeam}>
+        <select  name="teamId" id="team" value={values.teamId ?? ""} onChange={handleChange}>
             <option value={""}>Brak druzyny</option>
 {teams.map(el => (<option key={el.id} value={el.id}> {el.name}</option>))}
 

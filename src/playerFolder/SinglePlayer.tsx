@@ -1,13 +1,14 @@
 import styled from "styled-components"
 import type { Player } from "../types"
 import { useState } from "react"
-import { FormPlayer } from "./FormPlayer"
+
+import { FormEditPlayer } from "./FormEditPlayer"
 
 type PropsPlayer =  {
     player: Player
 }
 
-const StyledPlayer = styled.p`
+const StyledPlayer = styled.div`
 background: ${props => props.theme.colors.background};
 color: ${props => props.theme.colors.textPrimary}
 `
@@ -23,7 +24,7 @@ return (
     <StyledPlayer>
        {player.name} {player.lastName} 
        <button type="button" onClick={handleIsEdit}>{isEdit ? "Zamknij" : "Edytuj"}</button>
-    {isEdit && <FormPlayer player={player}/>}
+    {isEdit && <FormEditPlayer player={player}/>}
     </StyledPlayer>
     
 )
