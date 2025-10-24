@@ -3,7 +3,8 @@
 import styled, { ThemeProvider } from 'styled-components'
 import './App.css'
 import { ListPlayers } from './playerFolder/ListPlayers'
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+const queryClient = new QueryClient;
 
 const Page = styled.div`
 min-height: 100vh;
@@ -25,13 +26,13 @@ const light = {
 
 function App() {
   return (
+   <QueryClientProvider client={queryClient}>
 <ThemeProvider theme = {light}>
 <Page>
   <ListPlayers/>
 </Page>
-  
 </ThemeProvider>
-
+   </QueryClientProvider>
   )
 }
 

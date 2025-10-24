@@ -1,44 +1,43 @@
 {
-    "players": [
-        {
-            "id": 1,
-            "name": "Michal",
-            "lastName": "Sondej",
-            "teamId": null
-        },
-        {
-            "id": 2,
-            "name": "Rafal",
-            "lastName": "Szyszka",
-            "teamId": 2
-        }
-    
-    ],
-    "teams": [
-        {
-            "id": 1,
-            "name": "Real",
-            "yearEstablished": 2000,
-            "location": "Lezajsk"
-        },
-        {
-            "id": 2,
-            "name": "Barca",
-            "yearEstablished": 2024,
-            "location": "Rzeszow"
-        }
-    ],
-    "games": [
-        {
-            "id": 1,
-            "date": "2020-05-02",
-            "title": "Barca vs Real",
-            "place": "National station of Warsaw",
-            "duration": "90min",
-            "team1Id": 1, 
-            "team2Id": 2,
-            "team1Score": 1, 
-            "team2Score": 3  
-        }
-    ]
+  "players": [
+    {
+      "id": "1",
+      "name": "Michalek",
+      "lastName": "Sondej",
+      "teamId": 2
+    },
+    {
+      "id": "2",
+      "name": "Tadeusz",
+      "lastName": "Szyszka",
+      "teamId": 2
+    }
+  ],
+  "teams": [
+    {
+      "id": "1",
+      "name": "Real",
+      "yearEstablished": 2000,
+      "location": "Lezajsk"
+    },
+    {
+      "id": "2",
+      "name": "Barca",
+      "yearEstablished": 2024,
+      "location": "Rzeszow"
+    }
+  ],
+  "games": [
+    {
+      "id": "1",
+      "date": "2020-05-02",
+      "title": "Barca vs Real",
+      "place": "National station of Warsaw",
+      "duration": "90min",
+      "team1Id": 1,
+      "team2Id": 2,
+      "team1Score": 1,
+      "team2Score": 3
+    }
+  ]
 }

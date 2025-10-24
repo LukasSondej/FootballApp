@@ -1,6 +1,7 @@
 import { useState } from "react"
 import type { Player } from "../types"
 import { useGetTeams } from "../hooks/useGetTeams"
+import { useEditPlayerMutation } from "../mutations/useEditPlayerMutation"
 
 type PropsPlayer =  {
     player: Player
@@ -12,7 +13,7 @@ export const FormPlayer = ({player}: PropsPlayer) =>{
     const [teamId, setTeamId] = useState<number | null>(player.teamId ?? null)
    const { data: teams = [], error, isLoading} = useGetTeams()
    
-
+const {mutate }= useEditPlayerMutation()
 
 const handleTeam = (e: React.ChangeEvent<HTMLSelectElement>) => {
 const v = e.target.value
@@ -26,11 +27,21 @@ const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
 }
 
 
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
+    e.preventDefault()
+    mutate({
+        id: player.id,
+        name,
+         lastName,
+          teamId
+    })
+}
 
    if(isLoading) return <p>Loading...</p>
    if(error) return <p>Blond</p>
     return (
         <>
+        <form onSubmit={handleSubmit}>
     <div>
         <label htmlFor="name">Name</label>
         <input id="name" name="name" value={name} onChange={handleName}></input>
@@ -47,6 +58,8 @@ const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
 
         </select>
     </div>
+    <button type="submit" name="button">Submit</button>
+    </form>
         </>
     )
 }
