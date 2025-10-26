@@ -1,5 +1,5 @@
 export type Player = {
-    id: number,
+    id: string,
     name: string,
     lastName: string,
     teamId: number | null
@@ -11,7 +11,7 @@ export type NewPlayer = {
     teamId: number | null
 }
 export type Team = {
-    id: number,
+    id: string,
     name: string,
     yearEstablished: number,
     location: string

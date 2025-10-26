@@ -1,7 +1,7 @@
 
 export const useApi = () => {
 
-const call = async<R, P={}>(url: string, method: "GET" | "POST" | "PATCH", body?: P) => {
+const call = async<R, P={}>(url: string, method: "GET" | "POST" | "PATCH" | "DELETE", body?: P) => {
 
   const origin = {
     method,
@@ -34,6 +34,10 @@ const call = async<R, P={}>(url: string, method: "GET" | "POST" | "PATCH", body?
        return await call<R, P>(url, "PATCH", body );
 
     }
-    return {getData, postData, patchData}
+  const deleteData = async<R>(url: string) => {
+       return await call<R>(url, "DELETE" );
+
+    }
+    return {getData, postData, patchData, deleteData}
 }
 

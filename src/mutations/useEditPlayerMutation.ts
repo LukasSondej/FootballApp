@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import type { NewPlayer, Player } from "../types"
 import { useApi } from "../hooks/useApi";
 
-export const useEditPlayerMutation = (playerId: number) => {
+export const useEditPlayerMutation = (playerId: string) => {
     const queryClient = useQueryClient();
     const {patchData} = useApi()
     const {mutate, isPending, error} = useMutation({

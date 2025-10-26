@@ -9,6 +9,7 @@ type PropsPlayer =  {
    
 }
 export const FormEditPlayer = ({player}: PropsPlayer) => {
+     console.log("typeof player.id:", typeof player.id)
     const [values, setValues] = useState({
         name: player.name,
         lastName: player.lastName,
@@ -37,7 +38,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
        lastName: values.lastName,
        teamId: values.teamId
     })
-    
+
 }
 
 
