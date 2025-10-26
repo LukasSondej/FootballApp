@@ -4,11 +4,12 @@ import styled, { ThemeProvider } from 'styled-components'
 import './App.css'
 import { ListPlayers } from './playerFolder/ListPlayers'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { AddPlayer } from './playerFolder/addPlayer';
 const queryClient = new QueryClient;
 
 const Page = styled.div`
 min-height: 100vh;
-min-width: 100%;
+min-width: 100vh;
 background: ${props => props.theme.colors.background};
 color: ${props => props.theme.colors.textPrimary};
 padding: 16px;
@@ -30,6 +31,7 @@ function App() {
 <ThemeProvider theme = {light}>
 <Page>
   <ListPlayers/>
+  <AddPlayer/>
 </Page>
 </ThemeProvider>
    </QueryClientProvider>
