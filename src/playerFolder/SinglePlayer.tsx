@@ -3,6 +3,7 @@ import type { Player } from "../types"
 import { useState } from "react"
 
 import { FormEditPlayer } from "./FormEditPlayer"
+import { DeletePlayer } from "./DeletePlayer"
 
 type PropsPlayer =  {
     player: Player
@@ -24,6 +25,7 @@ return (
     <StyledPlayer>
        {player.name} {player.lastName} 
        <button type="button" onClick={handleIsEdit}>{isEdit ? "Zamknij" : "Edytuj"}</button>
+       <DeletePlayer id={player.id}/>
     {isEdit && <FormEditPlayer player={player}/>}
     </StyledPlayer>
     
