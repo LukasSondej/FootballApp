@@ -7,6 +7,7 @@ type PropsPlayer =  {
    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 handleChange: (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
 values: NewPlayer;
+
 }
 export const FormPlayer = ({handleSubmit, handleChange, values}: PropsPlayer) =>{
 
@@ -31,7 +32,7 @@ export const FormPlayer = ({handleSubmit, handleChange, values}: PropsPlayer) =>
 
         </select>
     </div>
-    <button type="submit" name="button">Submit</button>
+    <button type="submit" name="button" >Submit</button>
     </form>
         </>
     )

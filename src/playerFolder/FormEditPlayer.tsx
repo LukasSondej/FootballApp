@@ -5,11 +5,12 @@ import { useState } from "react"
 import { useEditPlayerMutation } from "../mutations/useEditPlayerMutation"
 
 type PropsPlayer =  {
-    player: Player
+    player: Player;
+    onClose: () => void;
    
 }
-export const FormEditPlayer = ({player}: PropsPlayer) => {
-     console.log("typeof player.id:", typeof player.id)
+export const FormEditPlayer = ({player, onClose}: PropsPlayer) => {
+    
     const [values, setValues] = useState({
         name: player.name,
         lastName: player.lastName,
@@ -38,6 +39,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
        lastName: values.lastName,
        teamId: values.teamId
     })
+    onClose()
 
 }
 
@@ -45,7 +47,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
   
 return (
     
-    <FormPlayer handleChange={handleChange} handleSubmit={handleSubmit} values={values} />
+    <FormPlayer handleChange={handleChange} handleSubmit={handleSubmit} values={values}/>
     
     
   

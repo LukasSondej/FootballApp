@@ -4,7 +4,7 @@ import { FormPlayer } from "./FormPlayer"
 
 export const AddPlayer = () => {
  const {mutate, error, isPending} = useAddPlayerMutation();
- const [isAddForm, setIsAddForm] = useState<boolean>(false)
+ const [isAddForm, setIsAddForm] = useState(false)
 
  const [values, setValues] = useState({
 
@@ -27,11 +27,12 @@ mutate({
     teamId: values.teamId
 }
 )
+
 setValues({
     name: "",
     lastName: "",
     teamId: null})
-
+      setIsAddForm(false)
  }
 const handleVisible = () => {
     setIsAddForm(prev => !prev)
