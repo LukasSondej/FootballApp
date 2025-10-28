@@ -25,7 +25,7 @@ return (
     <StyledPlayer>
        {player.name} {player.lastName} 
        <button type="button" onClick={handleIsEdit}>{isEdit ? "Zamknij" : "Edytuj"}</button>
-       <DeletePlayer id={player.id}/>
+       <DeletePlayer teamId={player.teamId} id={player.id}/>
     {isEdit && <FormEditPlayer player={player}/>}
     </StyledPlayer>
     

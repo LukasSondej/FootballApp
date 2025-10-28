@@ -1,15 +1,25 @@
+import { useState } from "react";
 import { useDeletePlayerMutation } from "../mutations/useDeletePlayerMutation"
+import { Notification } from "../Notification";
 type PropsDel = {
     id: string;
+    teamId: number | null
 }
-export const DeletePlayer = ({id}: PropsDel) => {
-const {mutate} = useDeletePlayerMutation(
-)
-const handleDeleteClick = (playerId: string) => {
-    if (confirm("Na pewno usunąć?")) {
+export const DeletePlayer = ({id, teamId}: PropsDel) => {
+    const [isNotification, setIsNotification] = useState(false);
+const {mutate} = useDeletePlayerMutation()
+const handleDeleteClick = (playerId: string, teamId: number | null) => {
+    if(teamId != null){
+        setIsNotification(true)
+    }
+    else if (confirm("Na pewno usunąć?")) {
         mutate(playerId); 
     }}
 return (
-    <button onClick={()=>handleDeleteClick(id)}>Delete</button>
+    <>
+     <button onClick={()=>handleDeleteClick(id, teamId)}>Delete</button>
+    {isNotification && <Notification message="Zawodnik ma druzyne" onClose={() => setIsNotification(false)}/>}
+    </>
+   
 )
 }
