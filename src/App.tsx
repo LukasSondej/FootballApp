@@ -2,9 +2,10 @@
 
 import styled, { ThemeProvider } from 'styled-components'
 import './App.css'
-import { ListPlayers } from './playerFolder/ListPlayers'
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { AddPlayer } from './playerFolder/addPlayer';
+import { ParentTeamsComp } from './ParentTeamsComp';
+
 const queryClient = new QueryClient;
 
 const Page = styled.div`
@@ -30,8 +31,7 @@ function App() {
    <QueryClientProvider client={queryClient}>
 <ThemeProvider theme = {light}>
 <Page>
-  <ListPlayers/>
-  <AddPlayer/>
+  <ParentTeamsComp/>
 </Page>
 </ThemeProvider>
    </QueryClientProvider>
