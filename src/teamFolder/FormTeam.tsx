@@ -1,4 +1,4 @@
-
+import Select, { type MultiValue } from "react-select";
 import { useGetPlayers } from "../hooks/useGetPlayers";
 import type { NewTeam } from "../types";
 
@@ -6,12 +6,19 @@ type PropsPlayer =  {
    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 handleChange: (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
 values: NewTeam;
-handleCheckbox: (playerId: string, checked: boolean) => void
+handleCheckboxChange: (playersIDs: string[]) => void
 
 }
-export const FormTeam = ({handleSubmit, handleChange, values, handleCheckbox}: PropsPlayer) =>{
+type PlayerOption = {
+    value: string,
+    label: string
+}
+export const FormTeam = ({handleSubmit, handleChange, values, handleCheckboxChange}: PropsPlayer) =>{
 
- const { data: players = [], error, isLoading} = useGetPlayers()
+
+ const { data: players = [], error, isLoading} = useGetPlayers();
+ const options: PlayerOption[] = players.filter(el => el.teamId == null).map(player => ({value: player.id,
+     label: `${player.name} ${player.lastName}`}));
 
  if(error) return( <p style={{color: "red"}}>Błąd</p>)
 if(isLoading) return(<p> Loading...</p>)
@@ -33,14 +40,28 @@ if(isLoading) return(<p> Loading...</p>)
         <label htmlFor="location">location</label>
         <input id="location" name="location" value={values.location} onChange={handleChange}></input>
     </div>
-<div>
-{
-    players.filter(el => el.teamId == null)
-    .map(player=> <label key={player.id}><input type="checkbox" checked={values.playersId.includes(player.id)} onChange={(e) => handleCheckbox(player.id, e.target.checked)}/>{player.name} {player.lastName}</label>)
-}
+    <div>
+<Select
+isMulti
+options={options}
+hideSelectedOptions={true}
+closeMenuOnSelect={false}
+defaultValue={options}
+onChange={(selected)=> {
+  const selectedIds = selected.map(el => el.value);
+  handleCheckboxChange(selectedIds);
+}}
+value={options.filter(option => values.playersId.includes(option.value)
+)}
 
+/>
+    </div>
+    
+    
+    
+    
+   
 
-</div>
     <button type="submit" name="button" >Submit</button>
     </form>
         </>

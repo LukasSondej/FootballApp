@@ -28,16 +28,16 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       playersId: values.playersId 
     })
 }
-const handleCheckbox = (playerId: string, checked: boolean) => {
+const handleCheckboxChange = (playersIDs: string[]) => {
     setValues(prev => ({
         ...prev,
-        playersId: checked ? [...prev.playersId, playerId] : prev.playersId.filter(id => id != playerId)
+        playersId: playersIDs
 
     }))
 }
 
 return(
-<FormTeam handleChange={handleChange} handleSubmit={handleSubmit} values={values} handleCheckbox={handleCheckbox}/>
+<FormTeam handleChange={handleChange} handleSubmit={handleSubmit} values={values} handleCheckboxChange={handleCheckboxChange}/>
 )
 
 }
