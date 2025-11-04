@@ -48,6 +48,17 @@
       "yearEstablished": 0,
       "location": "",
       "playersId": []
+    },
+    {
+      "id": "f73b",
+      "name": "",
+      "yearEstablished": 0,
+      "location": "",
+      "playersId": [
+        "1",
+        "2",
+        "3"
+      ]
     }
   ],
   "games": [
