@@ -4,13 +4,13 @@
       "id": "1",
       "name": "Rafal",
       "lastName": "Sondej",
-      "teamId": null
+      "teamId": "15c2"
     },
     {
       "id": "2",
       "name": "Tadeusz",
       "lastName": "Szyszunia",
-      "teamId": null
+      "teamId": "15c2"
     },
     {
       "id": "3",
@@ -43,21 +43,13 @@
       "location": "Rzeszow"
     },
     {
-      "id": "abe5",
-      "name": "",
-      "yearEstablished": 0,
-      "location": "",
-      "playersId": []
-    },
-    {
-      "id": "f73b",
-      "name": "",
-      "yearEstablished": 0,
-      "location": "",
+      "id": "15c2",
+      "name": "debah",
+      "yearEstablished": 2345,
+      "location": "lancut",
       "playersId": [
-        "1",
         "2",
-        "3"
+        "1"
       ]
     }
   ],
