@@ -4,19 +4,19 @@
       "id": "1",
       "name": "Rafal",
       "lastName": "Sondej",
-      "teamId": null
+      "teamId": "2"
     },
     {
       "id": "2",
       "name": "Tadeusz",
       "lastName": "Szyszunia",
-      "teamId": "f4f1"
+      "teamId": "1"
     },
     {
       "id": "3",
       "name": "dfg",
       "lastName": "dfgh",
-      "teamId": "f4f1"
+      "teamId": null
     },
     {
       "id": "4",
@@ -31,7 +31,9 @@
       "name": "Real",
       "yearEstablished": 2000,
       "location": "Lezajsk",
-      "playersId": []
+      "playersId": [
+        "2"
+      ]
     },
     {
       "id": "2",
@@ -41,14 +43,11 @@
       "playersId": []
     },
     {
-      "id": "f4f1",
+      "id": "3",
       "name": "Polska",
       "yearEstablished": 2015,
       "location": "Warszawa",
-      "playersId": [
-        "2",
-        "3"
-      ]
+      "playersId": []
     }
   ],
   "games": [

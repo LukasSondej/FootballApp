@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useApi } from "../hooks/useApi";
-import type { NewTeam, Team } from "../types";
+import { type NewTeam, type Player, type Team } from "../types";
 
 export const useEditTeamMutation= (teamId: string) => {
     const {patchData} = useApi();
@@ -11,8 +11,17 @@ export const useEditTeamMutation= (teamId: string) => {
          return patchData<Team, NewTeam>(`teams/${teamId}`, editedTeam)
         
         },
-        onSuccess: () => {
-            queryClient.invalidateQueries({queryKey: ["teams"]})
+        onSuccess: async(addedTeam, variables) => {
+            const playersIdsToUpdate = variables.playersId;
+            const newTeamId = addedTeam.id;
+            if(playersIdsToUpdate && newTeamId){
+                const updatePromises = playersIdsToUpdate.map(playerId => {
+                    return patchData<Player, {teamId: string}>(`players/${playerId}`, {teamId: newTeamId})
+                })
+           await Promise.all(updatePromises)
+            }
+              await queryClient.invalidateQueries({ queryKey: ["teams"] });
+    await queryClient.invalidateQueries({ queryKey: ["players"] });
         }
         
     })
