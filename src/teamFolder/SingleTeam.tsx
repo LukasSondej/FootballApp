@@ -11,6 +11,7 @@ color: ${props => props.theme.colors.textPrimary}
 
 export const SingleTeam = ({team}: PropsTeam) => {
 return (
+    
     <StyledTeam>
        {team.name} 
     
