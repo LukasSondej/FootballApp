@@ -4,13 +4,13 @@
       "id": "1",
       "name": "Rafal",
       "lastName": "Sondej",
-      "teamId": "2"
+      "teamId": null
     },
     {
       "id": "2",
       "name": "Tadeusz",
       "lastName": "Szyszunia",
-      "teamId": "1"
+      "teamId": "2"
     },
     {
       "id": "3",
@@ -31,16 +31,16 @@
       "name": "Real",
       "yearEstablished": 2000,
       "location": "Lezajsk",
-      "playersId": [
-        "2"
-      ]
+      "playersId": []
     },
     {
       "id": "2",
       "name": "Barca",
       "yearEstablished": 2024,
       "location": "Rzeszow",
-      "playersId": []
+      "playersId": [
+        "2"
+      ]
     },
     {
       "id": "3",

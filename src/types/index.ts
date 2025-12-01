@@ -2,7 +2,7 @@ export type Player = {
     id: string,
     name: string,
     lastName: string,
-    teamId: number | null
+    teamId: string | null
 }
 export type NewPlayer = {
   

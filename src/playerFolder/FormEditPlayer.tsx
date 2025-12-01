@@ -19,7 +19,7 @@ const [values, setValues] = useState({
 
     
 
- const {mutate }= useEditPlayerMutation(player.id);
+ const {mutate }= useEditPlayerMutation();
 
 const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
   const { name, value } = e.target;
@@ -34,6 +34,7 @@ const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
 const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
     e.preventDefault()
     mutate({
+       id: player.id,
        name: values.name,
        lastName: values.lastName,
        teamId: values.teamId

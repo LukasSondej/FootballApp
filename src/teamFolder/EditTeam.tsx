@@ -4,6 +4,7 @@ import { useEditTeamMutation } from "../mutations/useEditTeamMutation";
 import { FormTeam } from "./FormTeam"; 
 import type { NewTeam } from "../types";
 import { useGetPlayers } from "../hooks/useGetPlayers";
+import { useEditPlayerMutation } from "../mutations/useEditPlayerMutation";
 
 type Props = {
     teamId: string,
@@ -14,6 +15,7 @@ type Props = {
 export const EditTeam = ({setIdEditTeam,idEditTeam}: Props) => {
     const {data} = useGetSingleTeam(idEditTeam);
     const {data: allPlayers} = useGetPlayers()
+    const {mutateAsync: mutatePlayer} = useEditPlayerMutation()
     const {mutate} = useEditTeamMutation(idEditTeam)
     const [values, setValues] = useState<NewTeam>({
         name: "",
@@ -39,29 +41,45 @@ export const EditTeam = ({setIdEditTeam,idEditTeam}: Props) => {
     },[data, allPlayers])
     
 const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    
 const {name, type, value} = e.target;
 setValues(prev => ({
     ...prev, 
     [name]: name === "yearEstablished" ? Number(value) : value
 }))
 }
-const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+const playersToDelete = allPlayers?.filter(el => (el.teamId == idEditTeam && !values.playersId.includes(el.id)))
+const playersToAdd = allPlayers?.filter(el => values.playersId.includes(String(el.id)) && String(el.teamId) !== String(idEditTeam))
+try{
+    if (playersToDelete){
+        await Promise.all(playersToDelete.map(player => mutatePlayer({...player, teamId: null})));
+    }
+ if (playersToAdd) {await Promise.all(playersToAdd.map(player => mutatePlayer({...player, teamId: String(idEditTeam)})))
 
-    return mutate({
+
+ }
+
+    mutate({
         name: values.name,
         yearEstablished: values.yearEstablished,
         location: values.location,
       playersId: values.playersId 
 
     },
+
     {
         onSuccess: () => {
+     
             setIdEditTeam(null)
         }
     }
-)
+);
   
+}catch(error) {
+    console.error("Blond")
+}
 }
 const handleCheckboxChange = (playerIDs: string[]) => {
 setValues(prev => ({

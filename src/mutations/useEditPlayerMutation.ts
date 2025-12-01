@@ -2,16 +2,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import type { NewPlayer, Player } from "../types"
 import { useApi } from "../hooks/useApi";
 
-export const useEditPlayerMutation = (playerId: string) => {
+export const useEditPlayerMutation = () => {
     const queryClient = useQueryClient();
     const {patchData} = useApi()
-    const {mutate, isPending, error} = useMutation({
-        mutationKey: ["editPlayer", playerId],
-        mutationFn: async(updatedPlayer: NewPlayer) => {
+    const {mutate,mutateAsync, isPending, error} = useMutation({
+        mutationKey: ["editPlayer"],
+        mutationFn: async(updatedPlayer: Player) => {
              
-        return patchData<Player, NewPlayer>(`players/${playerId}`, updatedPlayer )
+        return patchData<Player, Player>(`players/${updatedPlayer.id}`, updatedPlayer )
         },
         onSuccess: () => queryClient.invalidateQueries({queryKey: ["players"]})
     })
-    return {mutate, isPending, error}
+    return {mutate, isPending, error, mutateAsync}
 }
