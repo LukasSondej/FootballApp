@@ -4,7 +4,7 @@
       "id": "1",
       "name": "Rafal",
       "lastName": "Sondej",
-      "teamId": null
+      "teamId": "2"
     },
     {
       "id": "2",
@@ -38,7 +38,9 @@
       "name": "Barca",
       "yearEstablished": 2024,
       "location": "Rzeszow",
-      "playersId": []
+      "playersId": [
+        "1"
+      ]
     },
     {
       "id": "3",

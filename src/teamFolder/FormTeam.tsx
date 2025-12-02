@@ -1,5 +1,5 @@
 import Select, { type MultiValue } from "react-select";
-import { useGetPlayers } from "../hooks/useGetPlayers";
+
 import type { NewTeam, Player } from "../types";
 
 type PropsPlayer =  {
@@ -9,12 +9,13 @@ values: NewTeam;
 handleCheckboxChange: (playersIDs: string[]) => void
  idEditTeam?: string;
  allPlayers?: Player[]
+handleDeleteTeam?: () => void;
 }
 type PlayerOption = {
     value: string,
     label: string
 }
-export const FormTeam = ({allPlayers= [],idEditTeam, handleSubmit, handleChange, values, handleCheckboxChange}: PropsPlayer) =>{
+export const FormTeam = ({allPlayers= [],idEditTeam, handleSubmit, handleChange, values, handleCheckboxChange,handleDeleteTeam}: PropsPlayer) =>{
 
 
 
@@ -63,6 +64,10 @@ value={options.filter(option =>
    
 
     <button type="submit" name="button" >Submit</button>
+    {
+      idEditTeam && <button type="button" name="button" onClick={handleDeleteTeam}>Delete</button>
+    }
+   
     </form>
         </>
     )
