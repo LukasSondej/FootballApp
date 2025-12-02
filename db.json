@@ -10,7 +10,7 @@
       "id": "2",
       "name": "Tadeusz",
       "lastName": "Szyszunia",
-      "teamId": "2"
+      "teamId": null
     },
     {
       "id": "3",
@@ -38,9 +38,7 @@
       "name": "Barca",
       "yearEstablished": 2024,
       "location": "Rzeszow",
-      "playersId": [
-        "2"
-      ]
+      "playersId": []
     },
     {
       "id": "3",

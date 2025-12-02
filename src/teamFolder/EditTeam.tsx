@@ -5,6 +5,7 @@ import { FormTeam } from "./FormTeam";
 import type { NewTeam } from "../types";
 import { useGetPlayers } from "../hooks/useGetPlayers";
 import { useEditPlayerMutation } from "../mutations/useEditPlayerMutation";
+import { useDeleteTeamMutation } from "../mutations/useDeleteTeamMutation";
 
 type Props = {
     teamId: string,
@@ -17,6 +18,7 @@ export const EditTeam = ({setIdEditTeam,idEditTeam}: Props) => {
     const {data: allPlayers} = useGetPlayers()
     const {mutateAsync: mutatePlayer} = useEditPlayerMutation()
     const {mutate} = useEditTeamMutation(idEditTeam)
+    const {mutate: TeamDelete} = useDeleteTeamMutation()
     const [values, setValues] = useState<NewTeam>({
         name: "",
         yearEstablished: 0,
@@ -87,6 +89,7 @@ setValues(prev => ({
     playersId: playerIDs
 }))
 }
+
 return(
 <FormTeam allPlayers={allPlayers} idEditTeam={idEditTeam} handleChange={handleChange} handleSubmit={handleSubmit} values={values} handleCheckboxChange={handleCheckboxChange}/>
 )
