@@ -8,7 +8,7 @@ import { useEditPlayerMutation } from "../mutations/useEditPlayerMutation";
 import { useDeleteTeamMutation } from "../mutations/useDeleteTeamMutation";
 
 type Props = {
-    teamId: string,
+  
       setIdEditTeam: (id: string | null) => void;
       idEditTeam: string;
   
@@ -18,7 +18,7 @@ export const EditTeam = ({setIdEditTeam,idEditTeam}: Props) => {
     const {data: allPlayers} = useGetPlayers()
     const {mutateAsync: mutatePlayer} = useEditPlayerMutation()
     const {mutate} = useEditTeamMutation(idEditTeam)
-    const {mutate: TeamDelete} = useDeleteTeamMutation()
+    const {mutate: teamDelete} = useDeleteTeamMutation()
     const [values, setValues] = useState<NewTeam>({
         name: "",
         yearEstablished: 0,
@@ -89,7 +89,17 @@ setValues(prev => ({
     playersId: playerIDs
 }))
 }
-
+const handleDeleteTeam = () => {
+       const playersDelete = allPlayers?.filter(el => (el.teamId == idEditTeam)).map(el => el.id) || []
+      teamDelete(
+        {teamId: idEditTeam, playersIds: playersDelete},
+        { 
+         onSuccess: () => {
+     
+            setIdEditTeam(null)
+        }
+    })
+}
 return(
 <FormTeam allPlayers={allPlayers} idEditTeam={idEditTeam} handleChange={handleChange} handleSubmit={handleSubmit} values={values} handleCheckboxChange={handleCheckboxChange}/>
 )
