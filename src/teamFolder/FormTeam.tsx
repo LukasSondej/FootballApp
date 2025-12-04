@@ -1,6 +1,8 @@
 import Select, { type MultiValue } from "react-select";
 
 import type { NewTeam, Player } from "../types";
+import { useState } from "react";
+import { ConfirmDeletion } from "../ConfirmDeletetion";
 
 type PropsPlayer =  {
    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -18,7 +20,7 @@ type PlayerOption = {
 export const FormTeam = ({allPlayers= [],idEditTeam, handleSubmit, handleChange, values, handleCheckboxChange,handleDeleteTeam}: PropsPlayer) =>{
 
 
-
+const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
  const options: PlayerOption[] = allPlayers.filter(el => el.teamId == null || String(el.teamId) === String(idEditTeam)).map(player => ({value: player.id,
      label: `${player.name} ${player.lastName}`}));
 
@@ -64,9 +66,17 @@ value={options.filter(option =>
    
 
     <button type="submit" name="button" >Submit</button>
+    
+        
+        {
+            idEditTeam && <button type="button" name="button" onClick={() => isConfirmedDeleleComp(true)}>Delete</button>
+           
+}
     {
-      idEditTeam && <button type="button" name="button" onClick={handleDeleteTeam}>Delete</button>
-    }
+          confirmedDeleleComp && <ConfirmDeletion message="Do you want delete this team?" handleDeleteTeam={handleDeleteTeam} onClose={() =>isConfirmedDeleleComp(false)} />
+
+            
+}
    
     </form>
         </>

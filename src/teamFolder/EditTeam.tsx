@@ -90,8 +90,8 @@ setValues(prev => ({
 }))
 }
 const handleDeleteTeam = () => {
-     
-       const playersDelete = allPlayers?.filter(el => (el.teamId == idEditTeam)).map(el => el.id) || []
+    
+             const playersDelete = allPlayers?.filter(el => (el.teamId == idEditTeam)).map(el => el.id) || []
       teamDelete(
         {teamId: idEditTeam, playersIds: playersDelete},
         { 
@@ -100,6 +100,8 @@ const handleDeleteTeam = () => {
             setIdEditTeam(null)
         }
     })
+     
+  
 }
 return(
 <FormTeam handleDeleteTeam={handleDeleteTeam} allPlayers={allPlayers} idEditTeam={idEditTeam} handleChange={handleChange} handleSubmit={handleSubmit} values={values} handleCheckboxChange={handleCheckboxChange}/>

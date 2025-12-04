@@ -10,7 +10,7 @@
       "id": "2",
       "name": "Tadeusz",
       "lastName": "Szyszunia",
-      "teamId": null
+      "teamId": "3"
     },
     {
       "id": "3",
@@ -47,7 +47,9 @@
       "name": "Polska",
       "yearEstablished": 2015,
       "location": "Warszawa",
-      "playersId": []
+      "playersId": [
+        "2"
+      ]
     }
   ],
   "games": [
