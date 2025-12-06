@@ -5,6 +5,7 @@ import './App.css'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ParentTeamsComp } from './ParentTeamsComp';
+import { ParentMatchesComp } from './matchesFolder/ParentMatchesComp';
 
 const queryClient = new QueryClient;
 
@@ -31,7 +32,7 @@ function App() {
    <QueryClientProvider client={queryClient}>
 <ThemeProvider theme = {light}>
 <Page>
-  <ParentTeamsComp/>
+  <ParentMatchesComp/>
 </Page>
 </ThemeProvider>
    </QueryClientProvider>

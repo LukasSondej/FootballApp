@@ -3,12 +3,12 @@ import { useDeletePlayerMutation } from "../mutations/useDeletePlayerMutation"
 import { Notification } from "../Notification";
 type PropsDel = {
     id: string;
-    teamId: number | null
+    teamId: string | null
 }
 export const DeletePlayer = ({id, teamId}: PropsDel) => {
     const [isNotification, setIsNotification] = useState(false);
 const {mutate} = useDeletePlayerMutation()
-const handleDeleteClick = (playerId: string, teamId: number | null) => {
+const handleDeleteClick = (playerId: string, teamId: string | null) => {
     if(teamId != null){
         setIsNotification(true)
     }

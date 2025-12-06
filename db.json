@@ -52,17 +52,16 @@
       ]
     }
   ],
-  "games": [
+  "matches": [
     {
       "id": "1",
       "date": "2020-05-02",
-      "title": "Barca vs Real",
       "place": "National station of Warsaw",
-      "duration": "90min",
-      "team1Id": 1,
-      "team2Id": 2,
-      "team1Score": 1,
-      "team2Score": 3
+      "duration": 90,
+      "team1Id": "1",
+      "team2Id": "2",
+      "team1Score": "1",
+      "team2Score": "3"
     }
   ]
 }
