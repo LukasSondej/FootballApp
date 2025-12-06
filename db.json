@@ -62,6 +62,16 @@
       "team2Id": "2",
       "team1Score": "1",
       "team2Score": "3"
+    },
+    {
+      "id": "2",
+      "date": "2020-04-01",
+      "place": "National station of Cracow",
+      "duration": 90,
+      "team1Id": "1",
+      "team2Id": "3",
+      "team1Score": "2",
+      "team2Score": "5"
     }
   ]
 }

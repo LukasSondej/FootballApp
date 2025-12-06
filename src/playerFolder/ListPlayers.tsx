@@ -11,7 +11,12 @@ if(error) return <p>Wystąpił Błąd</p>
     <>
    
        <ul>
-        {data.map(el => <SinglePlayer  key={el.id} player={el}/>)}
+        {data.map(el =>
+        <li key={el.id}>
+
+<SinglePlayer   player={el}/>
+        </li>
+           )}
        </ul>
    
    

@@ -1,11 +1,24 @@
 import { useGetMatches } from "../hooks/useGetMatches"
+import { useGetTeams } from "../hooks/useGetTeams";
 import { SingleMatch } from "./SingleMatch";
-
+    
 export const ListMatches = () => {
-    const {data, isLoading, error} = useGetMatches();
+const {data, isLoading, error} = useGetMatches();
+const{data: teams} = useGetTeams();
+    if(!data || !teams) {
+        return <p>Loading...</p>
+    }
     return(
-        <ul>
-            {data?.map(el => <SingleMatch key={el.id} matchData={el}/>)}
+        <>
+         <ul>
+            {data.map(el => 
+            <li key={el.id}>
+                 <SingleMatch  matchData={el} allTeams= {teams}/>
+            </li>
+           )}
+
         </ul>
+        </>
+       
     )
 }
