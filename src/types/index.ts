@@ -35,3 +35,14 @@ export type Match = {
     team2Score: string
 
 }
+export type NewMatch = {
+   
+    date: string,
+    place: string,
+    duration: number,
+    team1Id: string,
+    team2Id: string,
+    team1Score: string,
+    team2Score: string
+
+}
