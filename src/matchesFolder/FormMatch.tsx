@@ -1,14 +1,26 @@
 import { useState } from "react"
+import type { Match, NewMatch } from "../types"
 
-export const FormMatch = () => {
-    const [data, setData] = useState({
-        data: "",
-        place: "",
-      duration: 0,
-      team1Id: "",
-      team2Id: "",
-      team1Score: "",
-      team2Score: ""
-    })
-    
+type PropsMatch = {
+  values: NewMatch;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
+  onSubmit: (e: React.FormEvent<HTMLFormElement>)=> void
+
+}
+export const FormMatch = ({values, onChange, onSubmit}: PropsMatch) => {
+return (
+<form onSubmit={onSubmit}>
+
+<div>
+
+
+
+  
+</div>
+
+
+</form>
+
+)
+
 }
