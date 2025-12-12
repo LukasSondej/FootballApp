@@ -9,7 +9,13 @@ type PropsMatch ={
 const MatchDiv = styled.div`
 
 `
-
+const StyledDiv = styled.div`
+  background-color: grey; 
+  padding: 12px;
+  color: white;
+  border-radius: 8px; 
+  margin-bottom: 10px; 
+`
 export const SingleMatch = ({matchData, allTeams}: PropsMatch) => {
     
     const team1 = allTeams.find(el => el.id === matchData.team1Id);
@@ -18,8 +24,10 @@ export const SingleMatch = ({matchData, allTeams}: PropsMatch) => {
         return <p>Loading...</p>
      }
 return(
-<div>
+<StyledDiv>
     <h1>{team1.name} - {team2.name}</h1>
-</div>
+    <h2>{matchData.team1Score} - {matchData.team2Score}</h2>
+    <p>{matchData.place}, {matchData.date}</p>
+</StyledDiv>
 )
 }
