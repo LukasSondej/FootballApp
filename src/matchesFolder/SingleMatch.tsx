@@ -27,6 +27,7 @@ return(
 <StyledDiv>
     <h1>{team1.name} - {team2.name}</h1>
     <h2>{matchData.team1Score} - {matchData.team2Score}</h2>
+    <h3>Duration: {matchData.duration}</h3>
     <p>{matchData.place}, {matchData.date}</p>
 </StyledDiv>
 )

@@ -3,9 +3,11 @@ import type { NewMatch } from "../types";
 import { useApi } from "../hooks/useApi";
 import { useAddMatchMutation } from "../mutations/useAddMatchMutation";
 import { FormMatch } from "./FormMatch";
+import { useGetTeams } from "../hooks/useGetTeams";
 
 export const AddMatch = () => {
 const {mutate, isPending, error} = useAddMatchMutation()
+const {data: teams, isLoading, error: errorTeams} = useGetTeams()
 const [values, setValues] = useState<NewMatch>({
       date: "",
     place: "",
@@ -17,7 +19,7 @@ const [values, setValues] = useState<NewMatch>({
 }
   
 )
- const onChange =(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+ const handleChange =(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const {name, value} = e.target;
     setValues({
         ...values,
@@ -32,12 +34,15 @@ const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     duration: values.duration,
     team1Id: values.team1Id,
     team2Id: values.team2Id,
-    team1Score: values.team1Id,
-    team2Score: values.team2Id
+    team1Score: values.team1Score,
+    team2Score: values.team2Score
    })
 
 }
+if(!teams){
+    return <p>Loading Teams...</p>
+}
 return (
-    <FormMatch values={values} onChange={onChange} onSubmit={onSubmit}></FormMatch>
+    <FormMatch teams={teams} values={values} handleChange={handleChange} onSubmit={onSubmit}></FormMatch>
 )
 }
