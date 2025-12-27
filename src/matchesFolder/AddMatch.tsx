@@ -14,8 +14,8 @@ const [values, setValues] = useState<NewMatch>({
     duration: 0,
     team1Id: "",
     team2Id: "",
-    team1Score: "",
-    team2Score: ""
+    team1Score: 0,
+    team2Score: 0
 }
   
 )
@@ -34,11 +34,12 @@ const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     duration: values.duration,
     team1Id: values.team1Id,
     team2Id: values.team2Id,
-    team1Score: values.team1Score,
-    team2Score: values.team2Score
+    team1Score: Number(values.team1Score),
+    team2Score: Number(values.team2Score)
    })
 
 }
+console.log(teams)
 if(!teams){
     return <p>Loading Teams...</p>
 }

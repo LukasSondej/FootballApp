@@ -60,8 +60,8 @@
       "duration": 90,
       "team1Id": "1",
       "team2Id": "2",
-      "team1Score": "1",
-      "team2Score": "3"
+      "team1Score": 1,
+      "team2Score": 3
     },
     {
       "id": "2",
@@ -70,8 +70,18 @@
       "duration": 90,
       "team1Id": "1",
       "team2Id": "3",
-      "team1Score": "2",
-      "team2Score": "5"
+      "team1Score": 2,
+      "team2Score": 5
+    },
+    {
+      "id": "9ee3",
+      "date": "2025-12-10",
+      "place": "dupa",
+      "duration": 100,
+      "team1Id": "1",
+      "team2Id": "2",
+      "team1Score": 14,
+      "team2Score": 45
     }
   ]
 }

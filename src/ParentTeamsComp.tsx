@@ -5,6 +5,7 @@ import { EditTeam } from "./teamFolder/EditTeam"
 
 export const ParentTeamsComp = () => {
   const [idEditTeam, setIdEditTeam] = useState<string | null>(null)
+  
 if (idEditTeam) {
       return <EditTeam  idEditTeam={idEditTeam} setIdEditTeam = {setIdEditTeam} teamId={idEditTeam} />
   }

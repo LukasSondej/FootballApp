@@ -31,8 +31,8 @@ export type Match = {
     duration: number,
     team1Id: string,
     team2Id: string,
-    team1Score: string,
-    team2Score: string
+    team1Score: number,
+    team2Score: number
 
 }
 export type NewMatch = {
@@ -42,7 +42,7 @@ export type NewMatch = {
     duration: number,
     team1Id: string,
     team2Id: string,
-    team1Score: string,
-    team2Score: string
+    team1Score: number,
+    team2Score: number
 
 }
