@@ -6,9 +6,7 @@ type PropsMatch ={
     matchData: Match;
     allTeams: Team[];
 }
-const MatchDiv = styled.div`
 
-`
 const StyledDiv = styled.div`
   background-color: grey; 
   padding: 12px;
@@ -27,7 +25,7 @@ return(
 <StyledDiv>
     <h1>{team1.name} - {team2.name}</h1>
     <h2>{matchData.team1Score} - {matchData.team2Score}</h2>
-    <h3>Duration: {matchData.duration}</h3>
+    <h3>Duration: {matchData.duration} min</h3>
     <p>{matchData.place}, {matchData.date}</p>
 </StyledDiv>
 )

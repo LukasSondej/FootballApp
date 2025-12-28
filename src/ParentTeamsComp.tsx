@@ -7,9 +7,8 @@ export const ParentTeamsComp = () => {
   const [idEditTeam, setIdEditTeam] = useState<string | null>(null)
   
 if (idEditTeam) {
-      return <EditTeam  idEditTeam={idEditTeam} setIdEditTeam = {setIdEditTeam} teamId={idEditTeam} />
+      return <EditTeam  idEditTeam={idEditTeam} setIdEditTeam = {setIdEditTeam} />
   }
-
   return (
       <ListTeams setIdEditTeam={setIdEditTeam}/>
   )

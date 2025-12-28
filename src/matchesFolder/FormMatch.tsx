@@ -6,8 +6,9 @@ type PropsMatch = {
   handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
   onSubmit: (e: React.FormEvent<HTMLFormElement>)=> void
 teams: Team[]
+ handleVisible: () => void
 }
-export const FormMatch = ({values, handleChange, onSubmit, teams}: PropsMatch) => {
+export const FormMatch = ({values, handleChange, onSubmit, teams, handleVisible}: PropsMatch) => {
 return (
 <form onSubmit={onSubmit}>
 <div>
@@ -51,6 +52,7 @@ return (
 </div>
 
 <button type="submit">Add</button>
+<button type="button" onClick={handleVisible}>Cancel</button>
 </form>
 
 )

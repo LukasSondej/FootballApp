@@ -4,8 +4,10 @@ import { useApi } from "../hooks/useApi";
 import { useAddMatchMutation } from "../mutations/useAddMatchMutation";
 import { FormMatch } from "./FormMatch";
 import { useGetTeams } from "../hooks/useGetTeams";
-
-export const AddMatch = () => {
+type Props = {
+    handleVisible: () => void
+}
+export const AddMatch = ({handleVisible}: Props) => {
 const {mutate, isPending, error} = useAddMatchMutation()
 const {data: teams, isLoading, error: errorTeams} = useGetTeams()
 const [values, setValues] = useState<NewMatch>({
@@ -44,6 +46,6 @@ if(!teams){
     return <p>Loading Teams...</p>
 }
 return (
-    <FormMatch teams={teams} values={values} handleChange={handleChange} onSubmit={onSubmit}></FormMatch>
+    <FormMatch handleVisible={handleVisible} teams={teams} values={values} handleChange={handleChange} onSubmit={onSubmit}></FormMatch>
 )
 }
