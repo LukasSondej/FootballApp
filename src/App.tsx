@@ -8,7 +8,7 @@ import { ParentTeamsComp } from './ParentTeamsComp';
 import { ParentMatchesComp } from './matchesFolder/ParentMatchesComp';
 import { ParentPlayerComp } from './ParentPlayerComp';
 
-const queryClient = new QueryClient;
+const queryClient = new QueryClient();
 
 const Page = styled.div`
 min-height: 100vh;
