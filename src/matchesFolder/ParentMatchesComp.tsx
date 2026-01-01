@@ -10,6 +10,7 @@ const StyledDiv = styled.div`
     align-items: flex-start;
 `
     const [isAdding, setIsAdding] = useState(false)
+    
     const handleVisible = () => {
 setIsAdding(prev => !prev);
     }

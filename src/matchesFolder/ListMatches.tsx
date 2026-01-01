@@ -14,6 +14,7 @@ const{data: teams} = useGetTeams();
             {data.map(el => 
             <li key={el.id} style={{listStyleType: "none"}}>
                  <SingleMatch  matchData={el} allTeams= {teams}/>
+                 
             </li>
            )}
 

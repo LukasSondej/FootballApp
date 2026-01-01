@@ -56,12 +56,12 @@
     {
       "id": "1",
       "date": "2020-05-02",
-      "place": "National station of Warsaw",
-      "duration": 90,
+      "place": "National station of China",
+      "duration": 95,
       "team1Id": "1",
       "team2Id": "2",
-      "team1Score": 1,
-      "team2Score": 3
+      "team1Score": 2,
+      "team2Score": 4
     },
     {
       "id": "2",
