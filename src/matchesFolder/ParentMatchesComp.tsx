@@ -2,6 +2,7 @@ import { useState } from "react"
 import { AddMatch } from "./AddMatch"
 import { ListMatches } from "./ListMatches"
 import styled from "styled-components"
+import { StatsMatches } from "./StatsMatches"
 
 export const ParentMatchesComp = () => {
 const StyledDiv = styled.div`
@@ -21,6 +22,7 @@ setIsAdding(prev => !prev);
              <ListMatches/> 
        {!isAdding && <button type="button" onClick={handleVisible}>{"Add Match" }</button>}
 {isAdding && <AddMatch handleVisible={handleVisible}/>}
+<StatsMatches></StatsMatches>
         </StyledDiv>
   
      
