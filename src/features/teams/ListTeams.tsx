@@ -1,14 +1,13 @@
-import { useGetTeams } from "../../hooks/useGetTeams"
+
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { SingleTeam } from "./SingleTeam"
+import { teamsQueryOptions } from "../../hooks/useGetTeams";
 type Props = {
   setIdEditTeam: (teamId: string) => void;
   
 }
 export const ListTeams = ({setIdEditTeam}: Props) => {
-const {data, isLoading, error} = useGetTeams()
-if(isLoading) return <p>Loading...</p>
-if(!data) return <p>Loading...</p>
-if(error) return <p>Wystąpił Błąd</p>
+const {data} = useSuspenseQuery(teamsQueryOptions)
   return (
 
     <>

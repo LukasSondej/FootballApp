@@ -3,13 +3,14 @@ import type { NewMatch } from "../../types";
 import { useApi } from "../../hooks/useApi";
 import { useAddMatchMutation } from "../../mutations/useAddMatchMutation";
 import { FormMatch } from "./FormMatch";
-import { useGetTeams } from "../../hooks/useGetTeams";
+import { teamsQueryOptions} from "../../hooks/useGetTeams";
+import { useSuspenseQuery } from "@tanstack/react-query";
 type Props = {
     handleVisible: () => void
 }
 export const AddMatch = ({handleVisible}: Props) => {
 const {mutate, isPending, error} = useAddMatchMutation()
-const {data: teams, isLoading, error: errorTeams} = useGetTeams()
+const {data: teams} = useSuspenseQuery(teamsQueryOptions)
 const [values, setValues] = useState<NewMatch>({
       date: "",
     place: "",

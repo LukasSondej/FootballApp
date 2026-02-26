@@ -3,7 +3,8 @@ import { useGetMatches } from "../../hooks/useGetMatches"
 
 import { useEditMatchMutation } from "../../mutations/useEditMatchMutation"
 import { FormMatch } from "./FormMatch"
-import { useGetTeams } from "../../hooks/useGetTeams"
+import { teamsQueryOptions} from "../../hooks/useGetTeams"
+import { useSuspenseQuery } from "@tanstack/react-query"
 
 
 type Props = {
@@ -24,7 +25,7 @@ export const EditMatch = ({matchId, handleVisible}: Props) => {
 
     const {mutate, isPending, error} = useEditMatchMutation()
     const {data: allMatches} = useGetMatches()
-    const {data: teams=[]} = useGetTeams()
+    const {data: teams=[]} = useSuspenseQuery(teamsQueryOptions)
     const matchEdit = allMatches?.find(e=> e.id == matchId);
    
             useEffect(()=>{

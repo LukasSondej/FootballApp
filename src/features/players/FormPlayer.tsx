@@ -1,6 +1,7 @@
 
 import type { NewPlayer } from "../../types"
-import { useGetTeams } from "../../hooks/useGetTeams"
+import { teamsQueryOptions} from "../../hooks/useGetTeams"
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 
 type PropsPlayer =  {
@@ -11,7 +12,7 @@ values: NewPlayer;
 }
 export const FormPlayer = ({handleSubmit, handleChange, values}: PropsPlayer) =>{
 
- const { data: teams = []} = useGetTeams()
+ const { data: teams = []} = useSuspenseQuery(teamsQueryOptions)
 
     return (
         <>

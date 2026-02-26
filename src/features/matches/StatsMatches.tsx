@@ -1,11 +1,13 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useGetMatches } from "../../hooks/useGetMatches"
-import { useGetTeams } from "../../hooks/useGetTeams";
+
 import { SingleMatch } from "./SingleMatch";
+import { teamsQueryOptions } from "../../hooks/useGetTeams";
 
 export const StatsMatches = () => {
 const {data: matches}= useGetMatches();
-const {data: teams} = useGetTeams()
-if (!matches || !teams) {
+const {data: teams} = useSuspenseQuery(teamsQueryOptions)
+if (!matches) {
         return <p>Loading...</p>
     }
 const copyMatches = [...matches];
