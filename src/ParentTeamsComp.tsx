@@ -1,7 +1,7 @@
 import { useState } from "react"
 
-import { ListTeams } from "./teamFolder/ListTeams"
-import { EditTeam } from "./teamFolder/EditTeam"
+import { ListTeams } from "./features/teams/ListTeams"
+import { EditTeam } from "./features/teams/EditTeam"
 
 export const ParentTeamsComp = () => {
   const [idEditTeam, setIdEditTeam] = useState<string | null>(null)

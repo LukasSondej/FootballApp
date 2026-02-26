@@ -5,7 +5,7 @@ import './App.css'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ParentTeamsComp } from './ParentTeamsComp';
-import { ParentMatchesComp } from './matchesFolder/ParentMatchesComp';
+import { ParentMatchesComp } from './features/matches/ParentMatchesComp';
 import { ParentPlayerComp } from './ParentPlayerComp';
 
 const queryClient = new QueryClient();

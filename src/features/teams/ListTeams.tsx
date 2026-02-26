@@ -1,4 +1,4 @@
-import { useGetTeams } from "../hooks/useGetTeams"
+import { useGetTeams } from "../../hooks/useGetTeams"
 import { SingleTeam } from "./SingleTeam"
 type Props = {
   setIdEditTeam: (teamId: string) => void;

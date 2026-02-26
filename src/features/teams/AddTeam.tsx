@@ -1,8 +1,8 @@
 import React, { useState, type ChangeEvent } from "react";
-import { useAddTeamMutation } from "../mutations/useAddTeamMutation"
+import { useAddTeamMutation } from "../../mutations/useAddTeamMutation"
 import { FormTeam } from "./FormTeam";
-import type { NewTeam } from "../types";
-import { useEditPlayerMutation } from "../mutations/useEditPlayerMutation";
+import type { NewTeam } from "../../types";
+import { useEditPlayerMutation } from "../../mutations/useEditPlayerMutation";
 
 export const AddTeam = () => {
 const {mutate, error, isPending} = useAddTeamMutation();

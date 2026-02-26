@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useDeletePlayerMutation } from "../mutations/useDeletePlayerMutation"
-import { Notification } from "../Notification";
+import { useDeletePlayerMutation } from "../../mutations/useDeletePlayerMutation"
+import { Notification } from "../../components/Notification";
 type PropsDel = {
     id: string;
     teamId: string | null

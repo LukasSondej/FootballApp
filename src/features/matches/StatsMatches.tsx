@@ -1,5 +1,5 @@
-import { useGetMatches } from "../hooks/useGetMatches"
-import { useGetTeams } from "../hooks/useGetTeams";
+import { useGetMatches } from "../../hooks/useGetMatches"
+import { useGetTeams } from "../../hooks/useGetTeams";
 import { SingleMatch } from "./SingleMatch";
 
 export const StatsMatches = () => {

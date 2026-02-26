@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import type { Team } from "../types"
+import type { Team } from "../../types"
 
 type PropsTeam =  {
     team: Team

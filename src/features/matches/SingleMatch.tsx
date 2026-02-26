@@ -1,6 +1,6 @@
 
 import styled from "styled-components";
-import type { Match, Team } from "../types"
+import type { Match, Team } from "../../types"
 import { useState } from "react";
 import { EditMatch } from "./EditMatch";
 

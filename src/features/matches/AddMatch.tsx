@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import type { NewMatch } from "../types";
-import { useApi } from "../hooks/useApi";
-import { useAddMatchMutation } from "../mutations/useAddMatchMutation";
+import type { NewMatch } from "../../types";
+import { useApi } from "../../hooks/useApi";
+import { useAddMatchMutation } from "../../mutations/useAddMatchMutation";
 import { FormMatch } from "./FormMatch";
-import { useGetTeams } from "../hooks/useGetTeams";
+import { useGetTeams } from "../../hooks/useGetTeams";
 type Props = {
     handleVisible: () => void
 }

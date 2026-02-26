@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import type { Player } from "../types"
+import type { Player } from "../../types"
 import { useState } from "react"
 
 import { FormEditPlayer } from "./FormEditPlayer"

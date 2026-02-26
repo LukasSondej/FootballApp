@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useGetSingleTeam } from "../hooks/useGetSingleTeam"
-import { useEditTeamMutation } from "../mutations/useEditTeamMutation";
+import { useGetSingleTeam } from "../../hooks/useGetSingleTeam"
+import { useEditTeamMutation } from "../../mutations/useEditTeamMutation";
 import { FormTeam } from "./FormTeam"; 
-import type { NewTeam } from "../types";
-import { useGetPlayers } from "../hooks/useGetPlayers";
-import { useEditPlayerMutation } from "../mutations/useEditPlayerMutation";
-import { useDeleteTeamMutation } from "../mutations/useDeleteTeamMutation";
+import type { NewTeam } from "../../types";
+import { useGetPlayers } from "../../hooks/useGetPlayers";
+import { useEditPlayerMutation } from "../../mutations/useEditPlayerMutation";
+import { useDeleteTeamMutation } from "../../mutations/useDeleteTeamMutation";
 
 type Props = {
   

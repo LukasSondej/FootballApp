@@ -1,6 +1,6 @@
 
-import type { NewPlayer } from "../types"
-import { useGetTeams } from "../hooks/useGetTeams"
+import type { NewPlayer } from "../../types"
+import { useGetTeams } from "../../hooks/useGetTeams"
 
 
 type PropsPlayer =  {

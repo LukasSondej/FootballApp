@@ -1,5 +1,5 @@
 import { useState } from "react"
-import type { Match, NewMatch, Team } from "../types"
+import type { Match, NewMatch, Team } from "../../types"
 
 type PropsMatch = {
   values: NewMatch;

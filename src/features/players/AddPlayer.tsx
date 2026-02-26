@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useAddPlayerMutation } from "../mutations/useAddPlayerMutation"
+import { useAddPlayerMutation } from "../../mutations/useAddPlayerMutation"
 import { FormPlayer } from "./FormPlayer"
 
 export const AddPlayer = () => {

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { useGetMatches } from "../hooks/useGetMatches"
+import { useGetMatches } from "../../hooks/useGetMatches"
 
-import { useEditMatchMutation } from "../mutations/useEditMatchMutation"
+import { useEditMatchMutation } from "../../mutations/useEditMatchMutation"
 import { FormMatch } from "./FormMatch"
-import { useGetTeams } from "../hooks/useGetTeams"
+import { useGetTeams } from "../../hooks/useGetTeams"
 
 
 type Props = {

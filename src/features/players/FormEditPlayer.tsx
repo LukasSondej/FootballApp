@@ -1,8 +1,8 @@
 import { FormPlayer } from "./FormPlayer"
-import type { Player} from "../types"
+import type { Player} from "../../types"
 import { useState } from "react"
 
-import { useEditPlayerMutation } from "../mutations/useEditPlayerMutation"
+import { useEditPlayerMutation } from "../../mutations/useEditPlayerMutation"
 
 type PropsPlayer =  {
     player: Player;

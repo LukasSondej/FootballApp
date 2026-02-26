@@ -1,8 +1,8 @@
 import Select, { type MultiValue } from "react-select";
 
-import type { NewTeam, Player } from "../types";
+import type { NewTeam, Player } from "../../types";
 import { useState } from "react";
-import { ConfirmDeletion } from "../ConfirmDeletetion";
+import { ConfirmDeletion } from "../../components/ConfirmDeletion";
 
 type PropsPlayer =  {
    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
