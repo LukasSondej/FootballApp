@@ -1,16 +1,11 @@
-import { useQuery } from "@tanstack/react-query"
 import type { Player } from "../types";
-import { useApi } from "./useApi";
 
-
-
-export const useGetPlayers = () => {
-    const {getData} = useApi()
-const {data, isLoading, error} = useQuery<Player[]>({
+export const playersQueryOptions = {
     queryKey: ['players'],
     queryFn: async() => {
-    return getData<Player[]>("players")
+    const response = await fetch(`http://localhost:3000/players`)
+    return response.json() as Promise<Player[]>
     }
-})
-return {data, isLoading, error}
+
+
 }

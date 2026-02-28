@@ -1,14 +1,11 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query"
-import { useApi } from "./useApi"
+
 import type { Match } from "../types"
 
-export const useGetMatches = () => {
-    const {getData} = useApi()
-    const {data, isLoading, error}= useQuery<Match[]>({
+export const matchesQueryOptions = {
      queryKey: ["matches"],
      queryFn: async()=>{
-        return getData<Match[]>(`matches`);
+const response = await fetch(`http://localhost:3000/matches`)
+return response.json() as Promise<Match[]>
      }
-    })
-    return{data, isLoading, error}
+  
 }

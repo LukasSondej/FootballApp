@@ -3,6 +3,7 @@ import type { Player} from "../../types"
 import { useState } from "react"
 
 import { useEditPlayerMutation } from "../../mutations/useEditPlayerMutation"
+import type { OrderDataPlayer } from "./playerSchema"
 
 type PropsPlayer =  {
     player: Player;
@@ -10,46 +11,19 @@ type PropsPlayer =  {
    
 }
 export const FormEditPlayer = ({player, onClose}: PropsPlayer) => {
-    
-const [values, setValues] = useState({
-  name: player.name,
-  lastName: player.lastName,
-  teamId: player.teamId !== null ? String(player.teamId) : null
-})
-
-    
-
  const {mutate }= useEditPlayerMutation();
-
-const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-  const { name, value } = e.target;
-  setValues(prev => ({
-    ...prev,
-    [name]: name === "teamId" ? value === "" ? null : value : value
-  }));
-}
-
-
-
-const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=> {
-    e.preventDefault()
+const onSubmit = (data: OrderDataPlayer)=> {
     mutate({
        id: player.id,
-       name: values.name,
-       lastName: values.lastName,
-       teamId: values.teamId
+       name: data.name,
+       lastName: data.lastName,
+       teamId: data.teamId 
     })
     onClose()
 
 }
-
-
-  
 return (
+    <FormPlayer  onSubmit={onSubmit} defaultValues={{name: player.name, lastName: player.lastName, teamId: player.teamId}}/>
     
-    <FormPlayer handleChange={handleChange} handleSubmit={handleSubmit} values={values}/>
-    
-    
-  
 )
 }

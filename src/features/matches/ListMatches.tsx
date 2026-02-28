@@ -1,10 +1,10 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useGetMatches } from "../../hooks/useGetMatches"
+import { matchesQueryOptions} from "../../hooks/useGetMatches"
 import { teamsQueryOptions} from "../../hooks/useGetTeams";
 import { SingleMatch } from "./SingleMatch";
     
 export const ListMatches = () => {
-const {data, isLoading, error} = useGetMatches();
+const {data} = useSuspenseQuery(matchesQueryOptions)
 const{data: teams} = useSuspenseQuery(teamsQueryOptions);
     if(!data || !teams) {
         return <p>Loading...</p>

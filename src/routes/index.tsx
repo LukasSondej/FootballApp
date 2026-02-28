@@ -1,8 +1,14 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { ParentMatchesComp } from '../features/matches/ParentMatchesComp'
+import { createFileRoute } from '@tanstack/react-router'
+import { matchesQueryOptions } from '../hooks/useGetMatches'
 
 export const Route = createFileRoute('/')({
-  component: ParentMatchesComp,
+  component: RouteComponent,
+  loader: async({context}) => {
+    const {queryClient} = context
+    return queryClient.ensureQueryData(matchesQueryOptions)
+  }
 })
 
-
+function RouteComponent() {
+  return <div>Hello "/"!</div>
+}

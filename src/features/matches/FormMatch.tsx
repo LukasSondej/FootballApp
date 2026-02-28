@@ -1,5 +1,6 @@
 import { useState } from "react"
 import type { Match, NewMatch, Team } from "../../types"
+import { useForm } from "react-hook-form";
 
 type PropsMatch = {
   values: NewMatch;
@@ -8,6 +9,8 @@ type PropsMatch = {
 teams: Team[]
  handleVisible: () => void
 }
+
+
 export const FormMatch = ({values, handleChange, onSubmit, teams, handleVisible}: PropsMatch) => {
 return (
 <form onSubmit={onSubmit}>

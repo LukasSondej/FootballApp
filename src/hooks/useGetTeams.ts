@@ -1,8 +1,4 @@
-import { useQuery } from "@tanstack/react-query"
 import type {Team } from "../types";
-
-
-
 
 export const teamsQueryOptions = {
     queryKey: ['teams'],

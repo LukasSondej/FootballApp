@@ -1,37 +1,21 @@
 import { useState } from "react"
 import { useAddPlayerMutation } from "../../mutations/useAddPlayerMutation"
 import { FormPlayer } from "./FormPlayer"
+import type { OrderDataPlayer } from "./playerSchema";
 
 export const AddPlayer = () => {
  const {mutate, error, isPending} = useAddPlayerMutation();
  const [isAddForm, setIsAddForm] = useState(false)
 
- const [values, setValues] = useState({
+ const onSubmit = (data: OrderDataPlayer) => {
 
-    name: "",
-    lastName: "",
-    teamId: null
- })
- const handleChange =(e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-    const {name, value} = e.target;
-    setValues(prev => ({
-    ...prev,
-    [name]: name == "teamId" ? value == "" ? null : Number(value) : value
-    }))
-}
- const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
 mutate({
-    name: values.name,
-    lastName: values.lastName,
-    teamId: values.teamId
+    name: data.name,
+    lastName: data.lastName,
+    teamId: data.teamId
 }
 )
 
-setValues({
-    name: "",
-    lastName: "",
-    teamId: null})
       setIsAddForm(false)
  }
 const handleVisible = () => {
@@ -41,7 +25,7 @@ const handleVisible = () => {
 
  
  <>
- {isAddForm && <FormPlayer handleChange={handleChange} handleSubmit={handleSubmit} values={values}/>}
+ {isAddForm && <FormPlayer  onSubmit={onSubmit}/>}
    
 <button type="button" onClick={handleVisible}>{isAddForm ? "Cancel" : "Add player" }</button>
  </>

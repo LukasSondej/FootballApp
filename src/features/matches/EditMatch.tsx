@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useGetMatches } from "../../hooks/useGetMatches"
+import { matchesQueryOptions } from "../../hooks/useGetMatches"
 
 import { useEditMatchMutation } from "../../mutations/useEditMatchMutation"
 import { FormMatch } from "./FormMatch"
@@ -24,7 +24,7 @@ export const EditMatch = ({matchId, handleVisible}: Props) => {
     team2Score: 0})
 
     const {mutate, isPending, error} = useEditMatchMutation()
-    const {data: allMatches} = useGetMatches()
+    const {data: allMatches} = useSuspenseQuery(matchesQueryOptions)
     const {data: teams=[]} = useSuspenseQuery(teamsQueryOptions)
     const matchEdit = allMatches?.find(e=> e.id == matchId);
    

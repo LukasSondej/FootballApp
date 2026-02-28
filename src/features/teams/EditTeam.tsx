@@ -3,9 +3,10 @@ import { useGetSingleTeam } from "../../hooks/useGetSingleTeam"
 import { useEditTeamMutation } from "../../mutations/useEditTeamMutation";
 import { FormTeam } from "./FormTeam"; 
 import type { NewTeam } from "../../types";
-import { useGetPlayers } from "../../hooks/useGetPlayers";
+import { playersQueryOptions} from "../../hooks/useGetPlayers";
 import { useEditPlayerMutation } from "../../mutations/useEditPlayerMutation";
 import { useDeleteTeamMutation } from "../../mutations/useDeleteTeamMutation";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 type Props = {
   
@@ -15,7 +16,7 @@ type Props = {
 }
 export const EditTeam = ({setIdEditTeam,idEditTeam}: Props) => {
     const {data} = useGetSingleTeam(idEditTeam);
-    const {data: allPlayers} = useGetPlayers()
+    const {data: allPlayers} = useSuspenseQuery(playersQueryOptions)
     const {mutateAsync: mutatePlayer} = useEditPlayerMutation()
     const {mutate} = useEditTeamMutation(idEditTeam)
     const {mutate: teamDelete} = useDeleteTeamMutation()

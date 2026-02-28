@@ -1,33 +1,37 @@
-
-import type { NewPlayer } from "../../types"
 import { teamsQueryOptions} from "../../hooks/useGetTeams"
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { orderSchema, type OrderDataPlayer } from "./playerSchema";
+import { Input } from "../../components/Input";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 
 type PropsPlayer =  {
-   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-handleChange: (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
-values: NewPlayer;
-
+   onSubmit: (data: OrderDataPlayer) => void
+   defaultValues?: OrderDataPlayer
 }
-export const FormPlayer = ({handleSubmit, handleChange, values}: PropsPlayer) =>{
 
+
+export const FormPlayer = ({onSubmit,defaultValues}: PropsPlayer) =>{
+const {register, handleSubmit, formState: {errors}} = useForm<OrderDataPlayer>({
+    resolver: yupResolver(orderSchema),
+    defaultValues: defaultValues || {
+        name: "",
+        lastName: "",
+        teamId: null
+    }
+})
  const { data: teams = []} = useSuspenseQuery(teamsQueryOptions)
 
     return (
         <>
-        <form onSubmit={handleSubmit}>
-    <div>
-        <label htmlFor="name">Name</label>
-        <input id="name" name="name" value={values.name} onChange={handleChange}></input>
-    </div>
-    <div>
-        <label htmlFor="lastName">LastName</label>
-        <input id="lastName" name="lastName" value={values.lastName} onChange={handleChange}></input>
-    </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <Input label="name" type="text" error={errors.name?.message} {...register("name")}/>
+            <Input label="lastName" type="text" error={errors.lastName?.message} {...register("lastName")}/>
+ 
     <div>
         <label>Team:</label>
-        <select  name="teamId" id="team" value={values.teamId ?? ""} onChange={handleChange}>
+        <select {...register("teamId")}>
             <option value={""}>Brak druzyny</option>
 {teams.map(el => (<option key={el.id} value={el.id}> {el.name}</option>))}
 

@@ -14,9 +14,15 @@
     },
     {
       "id": "4",
-      "name": "sdfg",
-      "lastName": "fdsfg",
-      "teamId": null
+      "name": "lubie",
+      "lastName": "placki",
+      "teamId": "1"
+    },
+    {
+      "id": "5c8b",
+      "name": "michal",
+      "lastName": "kulpa",
+      "teamId": "2"
     }
   ],
   "teams": [
@@ -76,6 +82,36 @@
       "team2Id": "2",
       "team1Score": 14,
       "team2Score": 45
+    },
+    {
+      "id": "aad6",
+      "date": "2026-02-10",
+      "place": "National station of Warsaw",
+      "duration": 34,
+      "team1Id": "1",
+      "team2Id": "1",
+      "team1Score": 45,
+      "team2Score": 23
+    },
+    {
+      "id": "0747",
+      "date": "2026-02-10",
+      "place": "National station of Warsaw",
+      "duration": 34,
+      "team1Id": "1",
+      "team2Id": "2",
+      "team1Score": 45,
+      "team2Score": 23
+    },
+    {
+      "id": "3d68",
+      "date": "",
+      "place": "345",
+      "duration": null,
+      "team1Id": "1",
+      "team2Id": "1",
+      "team1Score": 0,
+      "team2Score": 0
     }
   ]
 }

@@ -1,13 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { useApi } from "./useApi"
 import type { Team } from "../types";
+import { apiCall } from "../utils/apiCall";
 
 export const useGetSingleTeam = (teamId: string) => {
-    const {getData} = useApi();
      const {data, isLoading, error} = useQuery<Team>({
         queryKey: ["singleTeam", teamId],
         queryFn: async() => {
-            return getData<Team>(`teams/${teamId}`)
+            return apiCall<Team>(`teams/${teamId}`)
 
         }
 
