@@ -1,45 +1,23 @@
-import React, { useState, type ChangeEvent } from "react";
 import { useAddTeamMutation } from "../../mutations/useAddTeamMutation"
 import { FormTeam } from "./FormTeam";
-import type { NewTeam } from "../../types";
-import { useEditPlayerMutation } from "../../mutations/useEditPlayerMutation";
+import type { OrderDataTeams } from "./teamsSchema";
 
 export const AddTeam = () => {
 const {mutate, error, isPending} = useAddTeamMutation();
 
-const [values, setValues] = useState<NewTeam>({
-    name: "",
-    yearEstablished: 0,
 
-    location: "",
-playersId: []
-})
-const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-const {name, type, value} = e.target;
-setValues(prev => ({
-    ...prev, 
-    [name]: name === "yearEstablished" ? Number(value) : value
-}))
-}
-const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+const onSubmit = (data: OrderDataTeams) => {
     return mutate({
-        name: values.name,
-        yearEstablished: values.yearEstablished,
-        location: values.location,
-      playersId: values.playersId 
+        name: data.name,
+        yearEstablished: data.yearEstablished,
+        location: data.location,
+      playersId: data.playersId 
     })
 }
-const handleCheckboxChange = (playersIDs: string[]) => {
-    setValues(prev => ({
-        ...prev,
-        playersId: playersIDs
 
-    }))
-}
 
 return(
-<FormTeam handleChange={handleChange} handleSubmit={handleSubmit} values={values} handleCheckboxChange={handleCheckboxChange}/>
+<FormTeam onSubmit={onSubmit}/>
 )
 
 }

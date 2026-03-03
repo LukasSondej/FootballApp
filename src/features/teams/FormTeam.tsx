@@ -1,73 +1,73 @@
-import Select, { type MultiValue } from "react-select";
+import Select from "react-select";
 
-import type { NewTeam, Player } from "../../types";
+
 import { useState } from "react";
+
+import { Input } from "../../components/Input";
+import { Controller, useForm } from "react-hook-form";
+
+import { orderSchema, type OrderDataTeams } from "./teamsSchema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import type { Player } from "../../types";
 import { ConfirmDeletion } from "../../components/ConfirmDeletion";
 
+
 type PropsPlayer =  {
-   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-handleChange: (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
-values: NewTeam;
-handleCheckboxChange: (playersIDs: string[]) => void
+   onSubmit: (data: OrderDataTeams) => void;
  idEditTeam?: string;
  allPlayers?: Player[]
 handleDeleteTeam?: () => void;
+
+
 }
 type PlayerOption = {
     value: string,
     label: string
 }
-export const FormTeam = ({allPlayers= [],idEditTeam, handleSubmit, handleChange, values, handleCheckboxChange,handleDeleteTeam}: PropsPlayer) =>{
+export const FormTeam = ({allPlayers= [],idEditTeam,handleDeleteTeam, onSubmit}: PropsPlayer) =>{
 
 
 const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
  const options: PlayerOption[] = allPlayers.filter(el => el.teamId == null || String(el.teamId) === String(idEditTeam)).map(player => ({value: player.id,
      label: `${player.name} ${player.lastName}`}));
 
-
+const {register, handleSubmit, formState: {errors}, control} = useForm<OrderDataTeams>({
+    resolver: yupResolver(orderSchema),
+   
+})
     return (
        
         <>
     
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            
+  <Input label="Name" type="text" error={errors.name?.message} {...register("name")}/>
+  <Input label="yearEstablished" type="number" error={errors.yearEstablished?.message} {...register("yearEstablished")}/>
+  <Input label="location" type="text" error={errors.location?.message} {...register("location")}/>
     <div>
-        <label htmlFor="name">Name</label>
-        <input id="name" name="name" value={values.name} onChange={handleChange}></input>
-    </div>
-    <div>
-        <label htmlFor="yearEstablished">yearEstablished</label>
-        <input id="yearEstablished" name="yearEstablished" type="number" value={values.yearEstablished} onChange={handleChange}></input>
-    </div>
-    <div>
-        <label htmlFor="location">location</label>
-        <input id="location" name="location" value={values.location} onChange={handleChange}></input>
-    </div>
-    <div>
+
+<Controller
+name="playersId"
+control={control}
+render={({ field: { onChange, value, ref } }) => (
 <Select
+
 isMulti
 options={options}
 hideSelectedOptions={true}
 closeMenuOnSelect={false}
-
+value={options.filter((c) => value?.includes(c.value))}
 onChange={(selected)=> {
   const selectedIds = selected.map(el => el.value);
-  handleCheckboxChange(selectedIds);
+  onChange(selectedIds)
+ 
 }}
-value={options.filter(option => 
-   
-    values.playersId.map(String).includes(String(option.value))
-)}
-/>
-    </div>
-    
-    
-    
-    
-   
 
+/>
+ )}
+  />
+  </div>
     <button type="submit" name="button" >Submit</button>
-    
-        
         {
             idEditTeam && <button type="button" name="button" onClick={() => isConfirmedDeleleComp(true)}>Delete</button>
            
@@ -77,8 +77,7 @@ value={options.filter(option =>
 
             
 }
-   
-    </form>
+   </form>
         </>
     )
 }

@@ -9,7 +9,7 @@ type PropsTeam =  {
 }
 const StyledTeam = styled.p`
 background: ${props => props.theme.colors.background};
-color: ${props => props.theme.colors.textPrimary}
+color: ${props => props.theme.colors.textPrimary};
 `
 const StyledDiv = styled.div`
     display: flex;           

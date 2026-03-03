@@ -1,58 +1,49 @@
-import { useState } from "react"
-import type { Match, NewMatch, Team } from "../../types"
 import { useForm } from "react-hook-form";
+import type {Team } from "../../types"
+import { orderSchema, type OrderDataMatches } from "./matchesSchema";
+import { Input } from "../../components/Input";
+import { yupResolver } from "@hookform/resolvers/yup";
+
 
 type PropsMatch = {
-  values: NewMatch;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
-  onSubmit: (e: React.FormEvent<HTMLFormElement>)=> void
+ onSubmit: (data: OrderDataMatches)=> void
+handleVisible: () => void
 teams: Team[]
- handleVisible: () => void
+defaultValues?: Partial<OrderDataMatches>
 }
 
 
-export const FormMatch = ({values, handleChange, onSubmit, teams, handleVisible}: PropsMatch) => {
+export const FormMatch = ({ onSubmit, teams, handleVisible, defaultValues}: PropsMatch) => {
+
+const {register, handleSubmit, formState: {errors}} = useForm<OrderDataMatches>(
+  {resolver: yupResolver(orderSchema), defaultValues: defaultValues}
+  
+)
+
 return (
-<form onSubmit={onSubmit}>
-<div>
-<label htmlFor="date">Date</label>
-<input type="date" name="date" id="date" value={values.date} onChange={handleChange}/>
+<form onSubmit={handleSubmit(onSubmit)}>
+  <Input label="Date" type="date" error={errors.date?.message} {...register("date")}/>
+  <Input label="Place" type="text" error={errors.place?.message} {...register("place")}/>
+  <Input label="Duration" type="number" error={errors.duration?.message} {...register("duration")}/>
 
-</div>
-
-<div>
-<label htmlFor="place">Place</label>
-<input type="text" name="place" id="place" value={values.place} onChange={handleChange}/>
-
-</div>
-
-<div>
-  <label htmlFor="duration">Duration</label>
-  <input type="text" name="duration" id="duration" value={values.duration} onChange={handleChange}/>
-</div>
 <div>
   <label>Team 1:</label>
-<select required name="team1Id" id="team1Id" value={values.team1Id} onChange={handleChange}>
+<select {...register("team1Id")}>
   <option value="">Wybierz druzyne</option>
   {teams.map(el => <option key={el.id} value={el.id}>{el.name}</option>)}
 </select>
 
 </div>
-<div>
-  <label htmlFor="team1Score">team1Score:</label>
-  <input type="number" name="team1Score" id="team1Score" value={values.team1Score} onChange={handleChange}/>
-</div>
+ <Input label="team1Score" type="number" error={errors.team1Score?.message} {...register("team1Score")}/>
+
 <div>
   <label>Team 2:</label>
-<select required name="team2Id" id="team2Id" value={values.team2Id} onChange={handleChange}>
+<select required {...register("team2Id")}>
   <option value="">Wybierz druzyne</option>
   {teams.map(el => <option key={el.id} value={el.id}>{el.name}</option>)}
 </select>
 </div>
-<div>
-  <label htmlFor="team2Score">team2Score:</label>
-  <input type="number" name="team2Score" id="team2Score" value={values.team2Score} onChange={handleChange}/>
-</div>
+ <Input label="team2Score" type="number" error={errors.team2Score?.message} {...register("team2Score")}/>
 
 <button type="submit">Add</button>
 <button type="button" onClick={handleVisible}>Cancel</button>

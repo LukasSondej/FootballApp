@@ -3,13 +3,13 @@ import { AddMatch } from "./AddMatch"
 import { ListMatches } from "./ListMatches"
 import styled from "styled-components"
 import { StatsMatches } from "./StatsMatches"
-
-export const ParentMatchesComp = () => {
 const StyledDiv = styled.div`
     display: flex;
     gap: 20px; 
     align-items: flex-start;
 `
+export const ParentMatchesComp = () => {
+
     const [isAdding, setIsAdding] = useState(false)
     
     const handleVisible = () => {

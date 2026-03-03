@@ -17,7 +17,7 @@ const StyledDiv = styled.div`
   margin-bottom: 10px; 
 `
 export const SingleMatch = ({matchData, allTeams}: PropsMatch) => {
-    const [isEdit, setIsEdit] = useState(true)
+    const [isViewing, setIsViewing] = useState(true)
     
     const team1 = allTeams.find(el => el.id === matchData.team1Id);
      const team2 = allTeams.find(el => el.id === matchData.team2Id);
@@ -25,7 +25,7 @@ export const SingleMatch = ({matchData, allTeams}: PropsMatch) => {
         return <p>Loading...</p>
      }
      const handleIsEdit  =() => {
-setIsEdit(prev => !prev)
+setIsViewing(prev => !prev)
 }
 
 return(
@@ -35,8 +35,8 @@ return(
     <h2>{matchData.team1Score} - {matchData.team2Score}</h2>
     <h3>Duration: {matchData.duration} min</h3>
     <p>{matchData.place}, {matchData.date}</p>
-    {isEdit && <button onClick={handleIsEdit}>EDIT</button>}
- {!isEdit && <EditMatch  matchId={matchData.id} handleVisible={() => setIsEdit(true)}></EditMatch>}
+    {isViewing && <button onClick={handleIsEdit}>EDIT</button>}
+ {!isViewing && <EditMatch  matchId={matchData.id} handleVisible={() => setIsViewing(true)}></EditMatch>}
 </StyledDiv>
 
 
