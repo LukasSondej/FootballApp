@@ -1,4 +1,4 @@
-import type { Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 import prisma from "../db.js";
 
 export const getMatches = async(req: Request, res: Response) => {
@@ -6,9 +6,11 @@ export const getMatches = async(req: Request, res: Response) => {
     res.json(matches)
 
 }
-export const addMatch = async(req: Request, res: Response) => {
-    const match = await prisma.match.create({data: req.body})
+export const addMatch = async(req: Request, res: Response, next: NextFunction) => {
+   
+ const match = await prisma.match.create({data: req.body})
     res.json(match)
+   
 }
 export const updatedMatch = async(req: Request, res: Response) => {
    const matchId = req.params.id;

@@ -1,17 +1,18 @@
 import { useAddTeamMutation } from "../../mutations/useAddTeamMutation"
+import type { EditTeamPayload } from "../../types";
 import { FormTeam } from "./FormTeam";
-import type { OrderDataTeams } from "./teamsSchema";
+
 
 export const AddTeam = () => {
 const {mutate, error, isPending} = useAddTeamMutation();
 
 
-const onSubmit = (data: OrderDataTeams) => {
+const onSubmit = (data: EditTeamPayload) => {
     return mutate({
         name: data.name,
         yearEstablished: data.yearEstablished,
         location: data.location,
-      playersId: data.playersId 
+      playerIds: data.playerIds 
     })
 }
 

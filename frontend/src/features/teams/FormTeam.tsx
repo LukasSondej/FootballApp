@@ -6,14 +6,14 @@ import { useState } from "react";
 import { Input } from "../../components/Input";
 import { Controller, useForm } from "react-hook-form";
 
-import { orderSchema, type OrderDataTeams } from "./teamsSchema";
+import { orderSchema} from "./teamsSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import type { Player } from "../../types";
+import type { EditTeamPayload, Player } from "../../types";
 import { ConfirmDeletion } from "../../components/ConfirmDeletion";
 
 
 type PropsPlayer =  {
-   onSubmit: (data: OrderDataTeams) => void;
+   onSubmit: (data: EditTeamPayload) => void;
  idEditTeam?: string;
  allPlayers?: Player[]
 handleDeleteTeam?: () => void;
@@ -26,12 +26,11 @@ type PlayerOption = {
 }
 export const FormTeam = ({allPlayers= [],idEditTeam,handleDeleteTeam, onSubmit}: PropsPlayer) =>{
 
-
 const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
  const options: PlayerOption[] = allPlayers.filter(el => el.teamId == null || String(el.teamId) === String(idEditTeam)).map(player => ({value: player.id,
      label: `${player.name} ${player.lastName}`}));
 
-const {register, handleSubmit, formState: {errors}, control} = useForm<OrderDataTeams>({
+const {register, handleSubmit, formState: {errors}, control} = useForm<EditTeamPayload>({
     resolver: yupResolver(orderSchema),
    
 })
@@ -47,7 +46,7 @@ const {register, handleSubmit, formState: {errors}, control} = useForm<OrderData
     <div>
 
 <Controller
-name="playersId"
+name="playerIds"
 control={control}
 render={({ field: { onChange, value, ref } }) => (
 <Select

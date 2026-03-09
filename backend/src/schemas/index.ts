@@ -9,8 +9,8 @@ export const playerSchema = z.object({
 export const teamSchema = z.object({
 name: z.string().min(3, "nazwa min 3 znaki"),
 yearEstablished: z.number().int().positive("rok musi byc liczbom dodatniom"),
-location: z.string().min(1,"lokalizacja musi byc")
-
+location: z.string().min(1,"lokalizacja musi byc"),
+playerIds: z.array(z.string()).optional()
 })
 export const matchSchema = z.object({
     date: z.string(),
