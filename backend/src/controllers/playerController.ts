@@ -11,7 +11,7 @@ const newPlayer = await prisma.player.create({data: req.body});
 res.status(201).json(newPlayer)
 
 }
-export const updatePlayer = async(req: Request, res: Response) => {
+export const updatedPlayer = async(req: Request, res: Response) => {
    const playerId = req.params.id;
    if(!playerId || typeof playerId != 'string'){
     throw new Error("Nieprawidłowe ID gracza!")

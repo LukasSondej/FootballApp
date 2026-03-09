@@ -11,7 +11,7 @@ export const addTeam = async(req: Request, res: Response) => {
     res.json(team)
 }
     
-export const updateTeam = async(req: Request, res: Response) => {
+export const updatedTeam = async(req: Request, res: Response) => {
     const teamId = req.params.id
     if (!teamId || typeof teamId !== 'string') {
     throw new Error("Nieprawidłowe ID drużyny!"); 
@@ -22,7 +22,7 @@ export const updateTeam = async(req: Request, res: Response) => {
         data: updatedData})
     res.json(updatedTeam)
 }
-export const deleteTeam = async(req: Request, res: Response) => {
+export const deletedTeam = async(req: Request, res: Response) => {
     const teamId = req.params.id
     if(!teamId || typeof teamId != 'string'){
     throw new Error("Nieprawidłowe ID teamu!")
