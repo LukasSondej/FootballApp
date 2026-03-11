@@ -52,7 +52,7 @@ const handleDeleteTeam = () => {
   
 }
 return(
-<FormTeam handleDeleteTeam={handleDeleteTeam} allPlayers={allPlayers} idEditTeam={idEditTeam}  onSubmit={onSubmit}/>
+<FormTeam handleDeleteTeam={handleDeleteTeam} allPlayers={allPlayers} idEditTeam={idEditTeam}  onSubmit={onSubmit} onCancel={() => setIdEditTeam(null)}/>
 )
 
 }

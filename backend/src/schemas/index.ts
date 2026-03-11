@@ -1,23 +1,24 @@
-import z from "zod";
+import { z } from "zod";
+
+export const teamSchema = z.object({
+  name: z.string().min(3, "Name must be at least 3 characters long"),
+  yearEstablished: z.number().int().positive("Year must be a positive number"),
+  location: z.string().min(1, "Location is required"),
+  playerIds: z.array(z.string()).optional()
+});
 
 export const playerSchema = z.object({
-    name: z.string().min(3, "imie min 3 znaki"),
-    lastName: z.string().min(3,"nazwisko min 3 znaki"),
-    teamId: z.string().nullable().optional()
+  name: z.string().min(3, "Name must be at least 3 characters long"),
+  lastName: z.string().min(3, "Last name must be at least 3 characters long"),
+  teamId: z.string().nullable().optional()
+});
 
-})
-export const teamSchema = z.object({
-name: z.string().min(3, "nazwa min 3 znaki"),
-yearEstablished: z.number().int().positive("rok musi byc liczbom dodatniom"),
-location: z.string().min(1,"lokalizacja musi byc"),
-playerIds: z.array(z.string()).optional()
-})
 export const matchSchema = z.object({
-    date: z.string(),
-    place: z.string().min(1, "miejsce wymagane"),
-    duration: z.number().int().positive("czas musi byc wiekszy od 0"),
-    team1Id: z.string(),
-  team2Id: z.string(),
-  team1Score: z.number().int().nonnegative("Wynik nie może być ujemny"),
-  team2Score: z.number().int().nonnegative("Wynik nie może być ujemny"),
-})
+  date: z.string().min(1, "Date is required"),
+  place: z.string().min(1, "Place is required"),
+  duration: z.number().int().positive("Duration must be greater than 0"),
+  team1Id: z.string().min(1, "Team 1 ID is required"),
+  team2Id: z.string().min(1, "Team 2 ID is required"),
+  team1Score: z.number().int().nonnegative("Score cannot be negative"),
+  team2Score: z.number().int().nonnegative("Score cannot be negative"),
+});

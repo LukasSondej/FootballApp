@@ -24,7 +24,7 @@ setIsEdit(prev => !prev)
 return (
     <StyledPlayer>
        {player.name} {player.lastName} 
-       <button type="button" onClick={handleIsEdit}>{isEdit ? "Zamknij" : "Edytuj"}</button>
+   <button type="button" onClick={handleIsEdit}>{isEdit ? "Cancel" : "Edit"}</button>
        <DeletePlayer teamId={player.teamId} id={player.id}/>
     {isEdit && <FormEditPlayer player={player} onClose = {() => setIsEdit(false)}/>}
     </StyledPlayer>

@@ -24,7 +24,7 @@ export const updatedTeam = async(req: Request, res: Response) => {
     const {playerIds,  ...teamData} = req.body
     const teamId = req.params.id
     if (!teamId || typeof teamId !== 'string') {
-    res.status(400).json({error: "nie prawidlowe Id druzyny"})
+    res.status(400).json({ error: "Invalid team ID!" });
     return
   }
      const updatePayload: Prisma.TeamUpdateInput = {...teamData}
@@ -42,7 +42,7 @@ export const updatedTeam = async(req: Request, res: Response) => {
 export const deletedTeam = async(req: Request, res: Response) => {
     const teamId = req.params.id
     if(!teamId || typeof teamId != 'string'){
-    res.status(400).json({error: "Nieprawidłowe ID teamu!"})
+  res.status(400).json({ error: "Invalid team ID!" });
     return
 }
     const team = await prisma.team.delete({

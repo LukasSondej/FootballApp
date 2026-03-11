@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { type EditTeamPayload, type Team } from "../types";
 import { apiCall } from "../utils/apiCall";
+import toast from "react-hot-toast";
 
 export const useEditTeamMutation = (teamId: string) => {
     const queryClient = useQueryClient();
@@ -9,6 +10,7 @@ export const useEditTeamMutation = (teamId: string) => {
         mutationFn: async(editedTeam: EditTeamPayload) => 
             apiCall<Team, EditTeamPayload>(`teams/${teamId}`, {method: "PATCH", body: editedTeam}),
         onSuccess: async() => {
+              toast.success("Team edited successfully!")
             await queryClient.invalidateQueries({ queryKey: ["teams"] });
             await queryClient.invalidateQueries({ queryKey: ["players"] });
         }

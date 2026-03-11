@@ -4,7 +4,7 @@ body?: P;
 }
 
 export const apiCall = async<R, P = {}>(url: string, config?: apiConfig<P>) => {
-    const URL = `http://localhost:3000`;
+   const URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
     const response = await fetch(`${URL}/${url}`, {
         method: config?.method || 'GET',
        headers: config?.body ? { 'Content-Type': 'application/json' } : undefined,

@@ -15,7 +15,8 @@ export const addMatch = async(req: Request, res: Response, next: NextFunction) =
 export const updatedMatch = async(req: Request, res: Response) => {
    const matchId = req.params.id;
       if(!matchId || typeof matchId != 'string'){
-    throw new Error("Nieprawidłowe ID meczu!")
+    res.status(400).json({ error: "Invalid match ID!" });
+    return
    }
   const updatedData = req.body
    const updatedMatch= await prisma.match.update({
@@ -28,7 +29,8 @@ data: updatedData
 export const deleteMatch = async(req: Request, res: Response) => {
     const matchId = req.params.id
     if(!matchId || typeof matchId != 'string'){
-    throw new Error("Nieprawidłowe ID meczu!")
+   res.status(400).json({ error: "Invalid match ID!" });
+   return
    }
     const match = await prisma.match.delete({
         where: {id: matchId}
