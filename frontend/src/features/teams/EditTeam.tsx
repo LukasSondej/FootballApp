@@ -38,10 +38,8 @@ const onSubmit = (data: EditTeamPayload) => {
 
 
 const handleDeleteTeam = () => {
-    
-             const playersDelete = allPlayers?.filter(el => (el.teamId == idEditTeam)).map(el => el.id) || []
       teamDelete(
-        {teamId: idEditTeam, playersIds: playersDelete},
+        {teamId: idEditTeam},
         { 
          onSuccess: () => {
      
@@ -52,7 +50,7 @@ const handleDeleteTeam = () => {
   
 }
 return(
-<FormTeam handleDeleteTeam={handleDeleteTeam} allPlayers={allPlayers} idEditTeam={idEditTeam}  onSubmit={onSubmit} onCancel={() => setIdEditTeam(null)}/>
+<FormTeam handleDeleteTeam={handleDeleteTeam} allPlayers={allPlayers}  onSubmit={onSubmit} onCancel={() => setIdEditTeam(null)}/>
 )
 
 }

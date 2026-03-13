@@ -10,11 +10,13 @@ import { orderSchema} from "./teamsSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import type { EditTeamPayload, Player } from "../../types";
 import { ConfirmDeletion } from "../../components/ConfirmDeletion";
+import useModalStore from "../../store/useModalStore";
+import { useShallow } from "zustand/shallow";
 
 
 type PropsPlayer =  {
    onSubmit: (data: EditTeamPayload) => void;
- idEditTeam?: string;
+ 
  allPlayers?: Player[]
 handleDeleteTeam?: () => void;
 onCancel?: () => void;
@@ -24,8 +26,8 @@ type PlayerOption = {
     value: string,
     label: string
 }
-export const FormTeam = ({allPlayers= [],idEditTeam,handleDeleteTeam, onSubmit, onCancel}: PropsPlayer) =>{
-
+export const FormTeam = ({allPlayers= [],handleDeleteTeam, onSubmit, onCancel}: PropsPlayer) =>{
+const {isAdding, idEditTeam} = useModalStore(useShallow((state => ({isAdding: state.isAdding,idEditTeam: state.idEditTeam}))))
 const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
  const options: PlayerOption[] = allPlayers.filter(el => el.teamId == null || String(el.teamId) === String(idEditTeam)).map(player => ({value: player.id,
      label: `${player.name} ${player.lastName}`}));
