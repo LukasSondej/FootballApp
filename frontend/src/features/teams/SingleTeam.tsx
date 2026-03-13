@@ -1,11 +1,9 @@
 import styled from "styled-components"
 import type { Team } from "../../types"
+import useModalStore from "../../store/useModalStore";
 
 type PropsTeam =  {
     team: Team
-   
- setIdEditTeam: (id: string) => void;
-
 }
 const StyledTeam = styled.p`
 background: ${props => props.theme.colors.background};
@@ -17,9 +15,10 @@ const StyledDiv = styled.div`
     align-items: center;      
     gap: 40px;                
 `
-export const SingleTeam = ({team ,setIdEditTeam}: PropsTeam) => {
+export const SingleTeam = ({team}: PropsTeam) => {
+    const setIdEditTeam = useModalStore((state) => state.setIdEditTeam)
 return (
-    <StyledDiv>
+    <StyledDiv> 
     <StyledTeam>
        {team.name} 
     

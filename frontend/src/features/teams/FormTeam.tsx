@@ -19,7 +19,7 @@ type PropsPlayer =  {
  
  allPlayers?: Player[]
 handleDeleteTeam?: () => void;
-onCancel?: () => void;
+onCancel: () => void;
 
 }
 type PlayerOption = {
@@ -27,7 +27,8 @@ type PlayerOption = {
     label: string
 }
 export const FormTeam = ({allPlayers= [],handleDeleteTeam, onSubmit, onCancel}: PropsPlayer) =>{
-const {isAdding, idEditTeam} = useModalStore(useShallow((state => ({isAdding: state.isAdding,idEditTeam: state.idEditTeam}))))
+const {idEditTeam} = useModalStore(useShallow((state => ({setIdEditTeam: state.setIdEditTeam, idEditTeam: state.idEditTeam}))))
+
 const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
  const options: PlayerOption[] = allPlayers.filter(el => el.teamId == null || String(el.teamId) === String(idEditTeam)).map(player => ({value: player.id,
      label: `${player.name} ${player.lastName}`}));
@@ -69,7 +70,7 @@ onChange={(selected)=> {
   />
   </div>
     <button type="submit" name="button" >Submit</button>
-    {onCancel && <button type="button" onClick={onCancel}>Cancel</button>}
+    <button type="button" onClick={onCancel}>Cancel</button>
         {
             idEditTeam && <button type="button" name="button" onClick={() => isConfirmedDeleleComp(true)}>Delete</button>
            

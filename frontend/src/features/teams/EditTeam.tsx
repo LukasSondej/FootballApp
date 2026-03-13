@@ -5,14 +5,15 @@ import { playersQueryOptions} from "../../hooks/useGetPlayers";
 import { useDeleteTeamMutation } from "../../mutations/useDeleteTeamMutation";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import type { EditTeamPayload } from "../../types";
+import useModalStore from "../../store/useModalStore";
+import { useShallow } from "zustand/shallow";
 
 type Props = {
-  
-      setIdEditTeam: (id: string | null) => void;
       idEditTeam: string;
   
 }
-export const EditTeam = ({setIdEditTeam,idEditTeam}: Props) => {
+export const EditTeam = ({idEditTeam}: Props) => {
+    const {setIdEditTeam} = useModalStore(useShallow((state => ({setIdEditTeam: state.setIdEditTeam}))))
     const {data: allPlayers} = useSuspenseQuery(playersQueryOptions)
     const {mutate} = useEditTeamMutation(idEditTeam)
     const {mutate: teamDelete} = useDeleteTeamMutation()

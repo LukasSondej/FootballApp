@@ -3,12 +3,19 @@ import { useState } from "react"
 import { ListTeams } from "./features/teams/ListTeams"
 import { EditTeam } from "./features/teams/EditTeam"
 import { AddTeam } from "./features/teams/AddTeam"
+import useModalStore from "./store/useModalStore"
+import { useShallow } from "zustand/shallow"
 
 export const ParentTeamsComp = () => {
-  const [idEditTeam, setIdEditTeam] = useState<string | null>(null)
-  const [isAdding, setIsAdding] = useState(false)
+
+const { idEditTeam, isAdding, setIsAdding } = useModalStore(
+    useShallow((state) => ({
+      idEditTeam: state.idEditTeam,
+      isAdding: state.isAdding,
+      setIsAdding: state.setIsAdding
+    })))
 if (idEditTeam) {
-      return <EditTeam  idEditTeam={idEditTeam} setIdEditTeam = {setIdEditTeam} />
+      return <EditTeam  idEditTeam={idEditTeam}/>
   }
   return (
       <div>
@@ -19,7 +26,7 @@ if (idEditTeam) {
           
           <hr style={{ margin: "10px 0" }} />
           
-          <ListTeams setIdEditTeam={setIdEditTeam}/>
+          <ListTeams/>
       </div>
   )
 }
