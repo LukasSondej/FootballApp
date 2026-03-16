@@ -1,33 +1,30 @@
-import { useState } from "react"
 import { useAddPlayerMutation } from "../../mutations/useAddPlayerMutation"
+import useModalStore from "../../store/useModalStore";
 import { FormPlayer } from "./FormPlayer"
 import type { OrderDataPlayer } from "./playerSchema";
 
 export const AddPlayer = () => {
  const {mutate, error, isPending} = useAddPlayerMutation();
- const [isAddForm, setIsAddForm] = useState(false)
 
+const setIsAddingPlayer = useModalStore(state => state.setIsAddingPlayer)
  const onSubmit = (data: OrderDataPlayer) => {
 
 mutate({
     name: data.name,
     lastName: data.lastName,
     teamId: data.teamId
-}
+},
+{onSuccess: () => setIsAddingPlayer(false)}
 )
 
-      setIsAddForm(false)
+    
  }
-const handleVisible = () => {
-    setIsAddForm(prev => !prev)
-}
+
  return (
 
  
  <>
- {isAddForm && <FormPlayer  onSubmit={onSubmit}/>}
-   
-<button type="button" onClick={handleVisible}>{isAddForm ? "Cancel" : "Add player" }</button>
+ <FormPlayer onCancel={() => setIsAddingPlayer(false)} onSubmit={onSubmit}/>
  </>
  )
 

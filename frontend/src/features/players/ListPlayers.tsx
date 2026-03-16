@@ -7,9 +7,9 @@ const {data}= useSuspenseQuery(playersQueryOptions)
   return (
     <>
        <ul>
-        {data.map(el =>
-        <li key={el.id}>
-<SinglePlayer   player={el}/>
+        {data.map(player =>
+        <li key={player.id}>
+<SinglePlayer   player={player}/>
         </li>
            )}
        </ul>

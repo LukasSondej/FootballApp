@@ -9,10 +9,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 type PropsPlayer =  {
    onSubmit: (data: OrderDataPlayer) => void
    defaultValues?: OrderDataPlayer
+   onCancel: () => void
 }
 
 
-export const FormPlayer = ({onSubmit,defaultValues}: PropsPlayer) =>{
+export const FormPlayer = ({onSubmit,defaultValues, onCancel}: PropsPlayer) =>{
 const {register, handleSubmit, formState: {errors}} = useForm<OrderDataPlayer>({
     resolver: yupResolver(orderSchema),
     defaultValues: defaultValues || {
@@ -37,6 +38,7 @@ const {register, handleSubmit, formState: {errors}} = useForm<OrderDataPlayer>({
 
         </select>
     </div>
+    <button type="button" onClick={onCancel}>Cancel</button>
     <button type="submit" name="button" >Submit</button>
     </form>
         </>

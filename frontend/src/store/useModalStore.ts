@@ -13,6 +13,12 @@ idEditMatch: string | null;
   setIsAddingMatch: (value: boolean) => void;
   toggleIsAddingMatch: () => void;
 
+  idEditPlayer:  string | null;
+  setIdEditPlayer: (id: string | null) => void;
+
+  isAddingPlayer: boolean;
+setIsAddingPlayer: (value: boolean) => void
+toggleIsAddingPlayer: () => void;
 }
 const useModalStore = create<ModalState>((set) => ({
   idEditTeam: null,
@@ -20,6 +26,13 @@ const useModalStore = create<ModalState>((set) => ({
 
   idEditMatch: null,
   isAddingMatch: false,
+
+  idEditPlayer: null,
+  isAddingPlayer: false,
+  setIdEditPlayer: (id) => set({idEditPlayer: id}),
+  setIsAddingPlayer: (value) => set({ isAddingPlayer: value }),
+  toggleIsAddingPlayer: () => set((state) => ({ isAddingPlayer: !state.isAddingPlayer })),
+
   setIdEditMatch: (id) => set({idEditMatch: id}),
   setIsAddingMatch: (value) => set({isAddingMatch: value}),
   toggleIsAddingMatch: () => set((state) => ({isAddingMatch: !state.isAddingMatch})),
