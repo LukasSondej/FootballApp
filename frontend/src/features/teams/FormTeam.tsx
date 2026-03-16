@@ -15,13 +15,14 @@ type PropsPlayer =  {
  allPlayers?: Player[]
 handleDeleteTeam?: () => void;
 onCancel: () => void;
-
+defaultValues?: Partial<EditTeamPayload>;
 }
 type PlayerOption = {
     value: string,
     label: string
+  
 }
-export const FormTeam = ({allPlayers= [],handleDeleteTeam, onSubmit, onCancel}: PropsPlayer) =>{
+export const FormTeam = ({allPlayers= [],handleDeleteTeam, onSubmit, onCancel,defaultValues}: PropsPlayer) =>{
 const idEditTeam = useModalStore((state => state.idEditTeam))
 
 const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
@@ -30,7 +31,7 @@ const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
 
 const {register, handleSubmit, formState: {errors}, control} = useForm<EditTeamPayload>({
     resolver: yupResolver(orderSchema),
-   
+   defaultValues: defaultValues
 })
     return (
        
@@ -46,7 +47,7 @@ const {register, handleSubmit, formState: {errors}, control} = useForm<EditTeamP
 <Controller
 name="playerIds"
 control={control}
-render={({ field: { onChange, value, ref } }) => (
+render={({ field: { onChange, value} }) => (
 <Select
 
 isMulti

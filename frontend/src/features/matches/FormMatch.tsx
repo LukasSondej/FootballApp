@@ -48,7 +48,7 @@ return (
 </div>
  <Input label="team2Score" type="number" error={errors.team2Score?.message} {...register("team2Score")}/>
 
-<button type="submit">Add</button>
+<button type="submit">Submit</button>
 <button type="button" onClick={onCancel}>Cancel</button>
 </form>
 

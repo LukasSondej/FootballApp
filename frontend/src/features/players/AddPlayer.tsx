@@ -1,10 +1,12 @@
 import { useAddPlayerMutation } from "../../mutations/useAddPlayerMutation"
 import useModalStore from "../../store/useModalStore";
+import { useNotificationStore } from "../../store/useNotificationStore";
 import { FormPlayer } from "./FormPlayer"
 import type { OrderDataPlayer } from "./playerSchema";
 
 export const AddPlayer = () => {
  const {mutate, error, isPending} = useAddPlayerMutation();
+ const showNotification = useNotificationStore(state => state.showNotification)
 
 const setIsAddingPlayer = useModalStore(state => state.setIsAddingPlayer)
  const onSubmit = (data: OrderDataPlayer) => {
@@ -14,7 +16,11 @@ mutate({
     lastName: data.lastName,
     teamId: data.teamId
 },
-{onSuccess: () => setIsAddingPlayer(false)}
+{onSuccess: () => {
+                setIsAddingPlayer(false); 
+               
+                showNotification("Player successfully added!"); 
+            }}
 )
 
     

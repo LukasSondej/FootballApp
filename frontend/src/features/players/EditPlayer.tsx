@@ -4,12 +4,14 @@ import type { OrderDataPlayer } from "./playerSchema"
 import useModalStore from "../../store/useModalStore"
 import {useSuspenseQuery } from "@tanstack/react-query"
 import { playersQueryOptions } from "../../hooks/useGetPlayers"
+import { useNotificationStore } from "../../store/useNotificationStore"
 
 
 type PropsPlayer =  {
     id: string;
 }
 export const EditPlayer = ({id}: PropsPlayer) => {
+    const showNotification = useNotificationStore(state => state.showNotification)
     const setIdEditPlayer = useModalStore((state) => state.setIdEditPlayer)
   const {data: allPlayers} = useSuspenseQuery(playersQueryOptions);
 
@@ -26,7 +28,11 @@ const onSubmit = (data: OrderDataPlayer)=> {
        lastName: data.lastName,
        teamId: data.teamId 
     },
-{onSuccess: () => setIdEditPlayer(null)})
+{onSuccess: () => {
+                setIdEditPlayer(null);
+                
+                showNotification("Player details have been updated!"); 
+            }})
     
 
 }

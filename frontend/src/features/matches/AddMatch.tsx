@@ -4,12 +4,13 @@ import { teamsQueryOptions} from "../../hooks/useGetTeams";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import type { OrderDataMatches } from "./matchesSchema";
 import useModalStore from "../../store/useModalStore";
+import { useNotificationStore } from "../../store/useNotificationStore";
 
 export const AddMatch = () => {
 const {mutate} = useAddMatchMutation()
 const {data: teams} = useSuspenseQuery(teamsQueryOptions)
 const setIsAddingMatch = useModalStore(state => state.setIsAddingMatch)
-
+const showNotification = useNotificationStore(state => state.showNotification);
 const onSubmit = (data: OrderDataMatches) => {
    mutate({
     date: data.date,
@@ -20,7 +21,10 @@ const onSubmit = (data: OrderDataMatches) => {
     team1Score: Number(data.team1Score),
     team2Score: Number(data.team2Score)
    }, 
-   {onSuccess: () => setIsAddingMatch(false)})
+   {onSuccess: () => {
+                setIsAddingMatch(false);
+                showNotification("Match successfully added!"); 
+            }})
 
 }
 return (

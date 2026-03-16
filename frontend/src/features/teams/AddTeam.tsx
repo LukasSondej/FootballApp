@@ -1,15 +1,16 @@
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useAddTeamMutation } from "../../mutations/useAddTeamMutation"
+import useModalStore from "../../store/useModalStore";
+import { useNotificationStore } from "../../store/useNotificationStore";
 import type { EditTeamPayload } from "../../types";
 import { FormTeam } from "./FormTeam";
+import { playersQueryOptions } from "../../hooks/useGetPlayers";
 
-type Props = {
-    handleVisible: () => void;
-}
-
-export const AddTeam = ({handleVisible}: Props) => {
-const {mutate, error, isPending} = useAddTeamMutation();
-
-
+export const AddTeam = () => {
+const {mutate} = useAddTeamMutation();
+const setIsAddingTeam = useModalStore(state => state.setIsAddingTeam);
+const showNotification = useNotificationStore(state => state.showNotification);
+const { data: allPlayers } = useSuspenseQuery(playersQueryOptions);
 const onSubmit = (data: EditTeamPayload) => {
     return mutate({
         name: data.name,
@@ -17,13 +18,15 @@ const onSubmit = (data: EditTeamPayload) => {
         location: data.location,
       playerIds: data.playerIds 
     },{
-      onSuccess: () => handleVisible()
+     onSuccess: () => {
+                setIsAddingTeam(false);
+                
+                showNotification("Team successfully added!");
+            }
     })
 }
-
-
 return(
-<FormTeam onSubmit={onSubmit} onCancel={handleVisible}/>
+<FormTeam allPlayers={allPlayers} onSubmit={onSubmit} onCancel={() => setIsAddingTeam(false)}/>
 )
 
 }

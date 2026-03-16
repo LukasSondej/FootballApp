@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components'
 import type { QueryClient } from '@tanstack/react-query'
 import { Suspense } from 'react'
 import { Toaster } from 'react-hot-toast'
+import { Notification } from '../components/Notification'
 
 type MyRouterContext = {
     queryClient: QueryClient
@@ -42,6 +43,7 @@ return (
          <Outlet />
         
         </Suspense>
+        <Notification/>
          <Toaster position='top-right'/>
             
        

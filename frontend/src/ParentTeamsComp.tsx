@@ -21,7 +21,7 @@ if (idEditTeam) {
       
           
       {!isAddingTeam && <button onClick={() => setIsAddingTeam(true)}>Add Team</button>}
-      {isAddingTeam && <AddTeam handleVisible={() => setIsAddingTeam(false)} />}
+      {isAddingTeam && <AddTeam/>}
           
           <hr style={{ margin: "10px 0" }} />
         

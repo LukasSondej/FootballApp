@@ -7,6 +7,7 @@ import { teamsQueryOptions} from "../../hooks/useGetTeams"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import type { OrderDataMatches } from "./matchesSchema"
 import useModalStore from "../../store/useModalStore"
+import { useNotificationStore } from "../../store/useNotificationStore"
 
 
 
@@ -14,6 +15,7 @@ type Props = {
     matchId: string
 }
 export const EditMatch = ({matchId}: Props) => {
+    const showNotification = useNotificationStore(state => state.showNotification) // DODANE
 const setIdEditMatch = useModalStore(state => state.setIdEditMatch)
     const {mutate, isPending, error} = useEditMatchMutation(matchId)
     const {data: allMatches} = useSuspenseQuery(matchesQueryOptions)
@@ -35,7 +37,10 @@ date: data.date,
     team2Score: data.team2Score
     },
     {
-        onSuccess: () => setIdEditMatch(null)
+       onSuccess: () => {
+                setIdEditMatch(null);
+                showNotification("Match details updated successfully!"); 
+            }
     })
 
 }

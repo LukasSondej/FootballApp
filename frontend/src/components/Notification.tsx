@@ -1,4 +1,6 @@
 import styled from "styled-components"
+import { useNotificationStore } from "../store/useNotificationStore";
+import { useShallow } from "zustand/react/shallow";
 
 const BackDrop = styled.div`
 position: fixed;
@@ -27,16 +29,17 @@ color: #4f918b;
 background: #4f53b1;
 margin-left: 24px;
 `
-type PropsNoti = {
-    onClose: () => void;
-    message: string;
+
+export const Notification = () => {
+const {notificationMessage, clearNotification} = useNotificationStore(useShallow((state)=> ({notificationMessage: state.notificationMessage, clearNotification: state.clearNotification})))
+if(!notificationMessage){
+    return null
 }
-export const Notification = ({onClose, message}: PropsNoti) => {
     return (
     <BackDrop>
           <ModalContent>
-        {message}
-       <StyledOk onClick={onClose}>OK</StyledOk>
+        {notificationMessage}
+       <StyledOk onClick={clearNotification}>OK</StyledOk>
     </ModalContent>
 
     </BackDrop>
