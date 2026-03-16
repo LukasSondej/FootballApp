@@ -1,17 +1,34 @@
 import { create } from 'zustand'
 type ModalState ={
 idEditTeam: string | null;
-isAdding: boolean
+isAddingTeam: boolean;
  setIdEditTeam: (id: string | null) =>void
-setIsAdding: (value: boolean) => void
-toggleIsAdding: () => void;
+ setIsAddingTeam: (value: boolean) => void
+toggleIsAddingTeam: () => void
+
+
+idEditMatch: string | null;
+  isAddingMatch: boolean;
+  setIdEditMatch: (id: string | null) => void;
+  setIsAddingMatch: (value: boolean) => void;
+  toggleIsAddingMatch: () => void;
+
 }
 const useModalStore = create<ModalState>((set) => ({
   idEditTeam: null,
-  isAdding: false,
+  isAddingTeam: false,
+
+  idEditMatch: null,
+  isAddingMatch: false,
+  setIdEditMatch: (id) => set({idEditMatch: id}),
+  setIsAddingMatch: (value) => set({isAddingMatch: value}),
+  toggleIsAddingMatch: () => set((state) => ({isAddingMatch: !state.isAddingMatch})),
 
   setIdEditTeam: (id) => set({idEditTeam: id}),
-  setIsAdding: (value) => set({isAdding: value}),
- toggleIsAdding: () => set((state) => ({isAdding: !state.isAdding}))
+  setIsAddingTeam: (value) => set({isAddingTeam: value}),
+ toggleIsAddingTeam: () => set((state) => ({isAddingTeam: !state.isAddingTeam}))
+
+
+
 }))
 export default useModalStore

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import type { Match, Team } from "../../types"
 import { useState } from "react";
 import { EditMatch } from "./EditMatch";
+import useModalStore from "../../store/useModalStore";
 
 type PropsMatch ={
     matchData: Match;
@@ -17,16 +18,13 @@ const StyledDiv = styled.div`
   margin-bottom: 10px; 
 `
 export const SingleMatch = ({matchData, allTeams}: PropsMatch) => {
-    const [isViewing, setIsViewing] = useState(true)
-    
+const setIdEditMatch = useModalStore(state => state.setIdEditMatch)
     const team1 = allTeams.find(el => el.id === matchData.team1Id);
      const team2 = allTeams.find(el => el.id === matchData.team2Id);
      if(!team1 || !team2){
         return <p>Loading...</p>
      }
-     const handleIsEdit  =() => {
-setIsViewing(prev => !prev)
-}
+    
 
 return(
     
@@ -35,8 +33,8 @@ return(
     <h2>{matchData.team1Score} - {matchData.team2Score}</h2>
     <h3>Duration: {matchData.duration} min</h3>
     <p>{matchData.place}, {matchData.date}</p>
-    {isViewing && <button onClick={handleIsEdit}>EDIT</button>}
- {!isViewing && <EditMatch  matchId={matchData.id} handleVisible={() => setIsViewing(true)}></EditMatch>}
+    <button onClick={() => setIdEditMatch(matchData.id)}>EDIT</button>
+
 </StyledDiv>
 
 

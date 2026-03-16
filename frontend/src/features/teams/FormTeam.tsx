@@ -1,17 +1,12 @@
 import Select from "react-select";
-
-
 import { useState } from "react";
-
 import { Input } from "../../components/Input";
 import { Controller, useForm } from "react-hook-form";
-
 import { orderSchema} from "./teamsSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import type { EditTeamPayload, Player } from "../../types";
 import { ConfirmDeletion } from "../../components/ConfirmDeletion";
 import useModalStore from "../../store/useModalStore";
-import { useShallow } from "zustand/shallow";
 
 
 type PropsPlayer =  {
@@ -27,7 +22,7 @@ type PlayerOption = {
     label: string
 }
 export const FormTeam = ({allPlayers= [],handleDeleteTeam, onSubmit, onCancel}: PropsPlayer) =>{
-const {idEditTeam} = useModalStore(useShallow((state => ({setIdEditTeam: state.setIdEditTeam, idEditTeam: state.idEditTeam}))))
+const idEditTeam = useModalStore((state => state.idEditTeam))
 
 const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
  const options: PlayerOption[] = allPlayers.filter(el => el.teamId == null || String(el.teamId) === String(idEditTeam)).map(player => ({value: player.id,

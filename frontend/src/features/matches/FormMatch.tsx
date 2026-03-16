@@ -5,15 +5,18 @@ import { Input } from "../../components/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 
+
 type PropsMatch = {
  onSubmit: (data: OrderDataMatches)=> void
-handleVisible: () => void
+
 teams: Team[]
 defaultValues?: Partial<OrderDataMatches>
+onCancel: () => void
 }
 
 
-export const FormMatch = ({ onSubmit, teams, handleVisible, defaultValues}: PropsMatch) => {
+export const FormMatch = ({ onSubmit, teams,defaultValues, onCancel}: PropsMatch) => {
+ 
 
 const {register, handleSubmit, formState: {errors}} = useForm<OrderDataMatches>(
   {resolver: yupResolver(orderSchema), defaultValues: defaultValues}
@@ -46,7 +49,7 @@ return (
  <Input label="team2Score" type="number" error={errors.team2Score?.message} {...register("team2Score")}/>
 
 <button type="submit">Add</button>
-<button type="button" onClick={handleVisible}>Cancel</button>
+<button type="button" onClick={onCancel}>Cancel</button>
 </form>
 
 )

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+
 import { matchesQueryOptions } from "../../hooks/useGetMatches"
 
 import { useEditMatchMutation } from "../../mutations/useEditMatchMutation"
@@ -6,15 +6,15 @@ import { FormMatch } from "./FormMatch"
 import { teamsQueryOptions} from "../../hooks/useGetTeams"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import type { OrderDataMatches } from "./matchesSchema"
+import useModalStore from "../../store/useModalStore"
+
 
 
 type Props = {
     matchId: string
-   handleVisible: () => void
 }
-export const EditMatch = ({matchId, handleVisible}: Props) => {
-
-
+export const EditMatch = ({matchId}: Props) => {
+const setIdEditMatch = useModalStore(state => state.setIdEditMatch)
     const {mutate, isPending, error} = useEditMatchMutation(matchId)
     const {data: allMatches} = useSuspenseQuery(matchesQueryOptions)
     const {data: teams=[]} = useSuspenseQuery(teamsQueryOptions)
@@ -35,12 +35,10 @@ date: data.date,
     team2Score: data.team2Score
     },
     {
-        onSuccess: () => {
-            handleVisible()
-        }
+        onSuccess: () => setIdEditMatch(null)
     })
 
 }
-return <FormMatch handleVisible={handleVisible}  onSubmit={onSubmit} teams={teams} defaultValues={matchEdit}/>
+return <FormMatch onCancel={() => setIdEditMatch(null)}  onSubmit={onSubmit} teams={teams} defaultValues={matchEdit}/>
 
 }

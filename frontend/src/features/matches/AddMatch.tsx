@@ -3,13 +3,12 @@ import { FormMatch } from "./FormMatch";
 import { teamsQueryOptions} from "../../hooks/useGetTeams";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import type { OrderDataMatches } from "./matchesSchema";
-type Props = {
-    handleVisible: () => void
-}
-export const AddMatch = ({handleVisible}: Props) => {
+import useModalStore from "../../store/useModalStore";
+
+export const AddMatch = () => {
 const {mutate} = useAddMatchMutation()
 const {data: teams} = useSuspenseQuery(teamsQueryOptions)
-
+const setIsAddingMatch = useModalStore(state => state.setIsAddingMatch)
 
 const onSubmit = (data: OrderDataMatches) => {
    mutate({
@@ -20,10 +19,11 @@ const onSubmit = (data: OrderDataMatches) => {
     team2Id: data.team2Id,
     team1Score: Number(data.team1Score),
     team2Score: Number(data.team2Score)
-   })
+   }, 
+   {onSuccess: () => setIsAddingMatch(false)})
 
 }
 return (
-    <FormMatch handleVisible={handleVisible} teams={teams}  onSubmit={onSubmit}/>
+    <FormMatch teams={teams} onCancel={() => setIsAddingMatch(false)}  onSubmit={onSubmit}/>
 )
 }
