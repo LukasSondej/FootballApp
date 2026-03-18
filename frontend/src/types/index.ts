@@ -2,7 +2,14 @@ export type Player = {
     id: string,
     name: string,
     lastName: string,
-    teamId: string | null
+    teamId: string | null,
+    team?: {
+        id: string,
+        name: string,
+        yearEstablished: number,
+        location: string
+    }
+
 }
 
 export type NewPlayer= Omit<Player, 'id'>;

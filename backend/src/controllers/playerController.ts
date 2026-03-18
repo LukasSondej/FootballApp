@@ -1,8 +1,13 @@
 import type { Request, Response } from "express";
 import prisma from "../db.js";
+import { tr } from "zod/locales";
 
 export const getPlayers = async(req: Request, res: Response) => {
-const players = await prisma.player.findMany();
+const players = await prisma.player.findMany({
+   include: {
+      team: true
+   }
+});
 res.json(players)
 
 }
