@@ -1,6 +1,6 @@
 import Select from "react-select";
 import { useState } from "react";
-import { Input } from "../../components/Input";
+import { FormInput } from "../../components/FormInput";
 import { Controller, useForm } from "react-hook-form";
 import { orderSchema} from "./teamsSchema";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -39,9 +39,9 @@ const {register, handleSubmit, formState: {errors}, control} = useForm<EditTeamP
     
         <form onSubmit={handleSubmit(onSubmit)}>
             
-  <Input label="Name" type="text" error={errors.name?.message} {...register("name")}/>
-  <Input label="yearEstablished" type="number" error={errors.yearEstablished?.message} {...register("yearEstablished")}/>
-  <Input label="location" type="text" error={errors.location?.message} {...register("location")}/>
+  <FormInput label="Name" type="text" error={errors.name?.message} {...register("name")}/>
+  <FormInput label="yearEstablished" type="number" error={errors.yearEstablished?.message} {...register("yearEstablished")}/>
+  <FormInput label="location" type="text" error={errors.location?.message} {...register("location")}/>
     <div>
 
 <Controller

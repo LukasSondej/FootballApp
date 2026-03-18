@@ -3,7 +3,7 @@ import { EditTeam } from "./features/teams/EditTeam"
 import { AddTeam } from "./features/teams/AddTeam"
 import useModalStore from "./store/useModalStore"
 import { useShallow } from "zustand/react/shallow"
-
+import { Button } from "./components/ui/button"
 
 export const ParentTeamsComp = () => {
 
@@ -18,9 +18,9 @@ if (idEditTeam) {
   }
   return (
       <div>
-      
+
           
-      {!isAddingTeam && <button onClick={() => setIsAddingTeam(true)}>Add Team</button>}
+      {!isAddingTeam && <Button onClick={() => setIsAddingTeam(true)}>Add Team</Button>}
       {isAddingTeam && <AddTeam/>}
           
           <hr style={{ margin: "10px 0" }} />

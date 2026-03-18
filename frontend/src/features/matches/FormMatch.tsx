@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import type {Team } from "../../types"
 import { orderSchema, type OrderDataMatches } from "./matchesSchema";
-import { Input } from "../../components/Input";
+import { FormInput } from "../../components/FormInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 
@@ -25,9 +25,9 @@ const {register, handleSubmit, formState: {errors}} = useForm<OrderDataMatches>(
 
 return (
 <form onSubmit={handleSubmit(onSubmit)}>
-  <Input label="Date" type="date" error={errors.date?.message} {...register("date")}/>
-  <Input label="Place" type="text" error={errors.place?.message} {...register("place")}/>
-  <Input label="Duration" type="number" error={errors.duration?.message} {...register("duration")}/>
+  <FormInput label="Date" type="date" error={errors.date?.message} {...register("date")}/>
+  <FormInput label="Place" type="text" error={errors.place?.message} {...register("place")}/>
+  <FormInput label="Duration" type="number" error={errors.duration?.message} {...register("duration")}/>
 
 <div>
   <label>Team 1:</label>
@@ -37,7 +37,7 @@ return (
 </select>
 
 </div>
- <Input label="team1Score" type="number" error={errors.team1Score?.message} {...register("team1Score")}/>
+ <FormInput label="team1Score" type="number" error={errors.team1Score?.message} {...register("team1Score")}/>
 
 <div>
   <label>Team 2:</label>
@@ -46,7 +46,7 @@ return (
   {teams.map(el => <option key={el.id} value={el.id}>{el.name}</option>)}
 </select>
 </div>
- <Input label="team2Score" type="number" error={errors.team2Score?.message} {...register("team2Score")}/>
+ <FormInput label="team2Score" type="number" error={errors.team2Score?.message} {...register("team2Score")}/>
 
 <button type="submit">Submit</button>
 <button type="button" onClick={onCancel}>Cancel</button>

@@ -2,7 +2,7 @@ import { teamsQueryOptions} from "../../hooks/useGetTeams"
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { orderSchema, type OrderDataPlayer } from "./playerSchema";
-import { Input } from "../../components/Input";
+import { FormInput } from "../../components/FormInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 
@@ -27,8 +27,8 @@ const {register, handleSubmit, formState: {errors}} = useForm<OrderDataPlayer>({
     return (
         <>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Input label="name" type="text" error={errors.name?.message} {...register("name")}/>
-            <Input label="lastName" type="text" error={errors.lastName?.message} {...register("lastName")}/>
+            <FormInput label="name" type="text" error={errors.name?.message} {...register("name")}/>
+            <FormInput label="lastName" type="text" error={errors.lastName?.message} {...register("lastName")}/>
  
     <div>
         <label>Team:</label>
