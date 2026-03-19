@@ -1,57 +1,88 @@
 import { useForm } from "react-hook-form";
-import type {Team } from "../../types"
+import type { Team } from "../../types"
 import { orderSchema, type OrderDataMatches } from "./matchesSchema";
 import { FormInput } from "../../components/FormInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-
-
 type PropsMatch = {
- onSubmit: (data: OrderDataMatches)=> void
-
-teams: Team[]
-defaultValues?: Partial<OrderDataMatches>
-onCancel: () => void
+    onSubmit: (data: OrderDataMatches)=> void
+    teams: Team[]
+    defaultValues?: Partial<OrderDataMatches>
+    onCancel: () => void
 }
 
+export const FormMatch = ({ onSubmit, teams, defaultValues, onCancel}: PropsMatch) => {
+    const {register, handleSubmit, formState: {errors}} = useForm<OrderDataMatches>({
+        resolver: yupResolver(orderSchema), 
+        defaultValues: defaultValues
+    })
 
-export const FormMatch = ({ onSubmit, teams,defaultValues, onCancel}: PropsMatch) => {
- 
+    const handleFormSubmit = (data: OrderDataMatches) => {
+        onSubmit(data);
+    }
 
-const {register, handleSubmit, formState: {errors}} = useForm<OrderDataMatches>(
-  {resolver: yupResolver(orderSchema), defaultValues: defaultValues}
+    return (
+        <div className="max-w-lg mx-auto mt-4 p-4 border border-gray-300 bg-white rounded shadow-sm">
+            
+            <h2 className="text-xl font-bold text-center mb-4">
+                {defaultValues ? "Edit Match" : "Add New Match"}
+            </h2>
   
-)
+            <form onSubmit={handleSubmit(handleFormSubmit)} className="flex flex-col gap-4">
+                
+                <FormInput label="Date" type="date" error={errors.date?.message} {...register("date")} />
+                <FormInput label="Place" type="text" error={errors.place?.message} {...register("place")} />
+                <FormInput label="Duration (min)" type="number" error={errors.duration?.message} {...register("duration", { valueAsNumber: true })} />
 
-return (
-<form onSubmit={handleSubmit(onSubmit)}>
-  <FormInput label="Date" type="date" error={errors.date?.message} {...register("date")}/>
-  <FormInput label="Place" type="text" error={errors.place?.message} {...register("place")}/>
-  <FormInput label="Duration" type="number" error={errors.duration?.message} {...register("duration")}/>
+                <div>
+                    <label className="font-bold mb-1 block text-sm text-gray-700">Team 1</label>
+                    <select 
+                        {...register("team1Id")}
+      
+                        className="w-full border border-gray-400 rounded p-2 bg-white text-sm"
+                    >
+                        <option value="">-- Select Team --</option>
+                        {teams.map(el => <option key={el.id} value={el.id}>{el.name}</option>)}
+                    </select>
+                    <p className="text-red-500 text-sm mt-1">{errors.team1Id?.message}</p>
+                </div>
 
-<div>
-  <label>Team 1:</label>
-<select {...register("team1Id")}>
-  <option value="">Wybierz druzyne</option>
-  {teams.map(el => <option key={el.id} value={el.id}>{el.name}</option>)}
-</select>
+                <FormInput label="Team 1 Score" type="number" error={errors.team1Score?.message} {...register("team1Score", { valueAsNumber: true })} />
 
-</div>
- <FormInput label="team1Score" type="number" error={errors.team1Score?.message} {...register("team1Score")}/>
+                <div>
+                    <label className="font-bold mb-1 block text-sm text-gray-700">Team 2</label>
+                    <select 
+                        {...register("team2Id")}
+                        className="w-full border border-gray-400 rounded p-2 bg-white text-sm"
+                    >
+                        <option value="">-- Select Team --</option>
+                        {teams.map(el => <option key={el.id} value={el.id}>{el.name}</option>)}
+                    </select>
+                    <p className="text-red-500 text-sm mt-1">{errors.team2Id?.message}</p>
+                </div>
 
-<div>
-  <label>Team 2:</label>
-<select required {...register("team2Id")}>
-  <option value="">Wybierz druzyne</option>
-  {teams.map(el => <option key={el.id} value={el.id}>{el.name}</option>)}
-</select>
-</div>
- <FormInput label="team2Score" type="number" error={errors.team2Score?.message} {...register("team2Score")}/>
+                <FormInput label="Team 2 Score" type="number" error={errors.team2Score?.message} {...register("team2Score", { valueAsNumber: true })} />
 
-<button type="submit">Submit</button>
-<button type="button" onClick={onCancel}>Cancel</button>
-</form>
+                <div className="flex gap-4 mt-4">
+                    <button 
+                        type="button" 
+                        onClick={onCancel}
+                    
+                        className="w-full bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 rounded transition-colors"
+                    >
+                        Cancel
+                    </button>
 
-)
+                    <button 
+                        type="submit"
+                      
+                        className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 rounded transition-colors"
+                    >
+                        Save Match
+                    </button>
+                </div>
 
+            </form>
+        </div>
+    )
 }

@@ -1,56 +1,51 @@
 import { useSuspenseQuery } from "@tanstack/react-query"
-import { playersQueryOptions} from "../../hooks/useGetPlayers"
-import { SinglePlayer } from "./SinglePlayer"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-
+import { playersQueryOptions } from "../../hooks/useGetPlayers"
+import { Card, CardContent } from "../../components/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../components/ui/table"
+import useModalStore from "../../store/useModalStore"
+import { DeletePlayer } from "./DeletePlayer"
 
 export const ListPlayers = () => {
-const {data}= useSuspenseQuery(playersQueryOptions)
-  return (
-    <Card className="p-4 bg-white shadow-sm border-gray-200">
-<CardHeader><CardTitle className="text-xl text-gray-800">Players</CardTitle></CardHeader>
+    const { data } = useSuspenseQuery(playersQueryOptions)
+    const setIdEditPlayer = useModalStore((state) => state.setIdEditPlayer)
 
-<CardContent>
-     <Table>
+    return (
+        <div className="w-full p-4">
+            <Card className="bg-white border-gray-300 rounded shadow-sm">
+                <CardContent className="p-0">
+                    <Table>
+                        <TableHeader className="bg-gray-100">
+                            <TableRow>
+                                <TableHead className="font-bold text-black">First Name</TableHead>
+                                <TableHead className="font-bold text-black">Last Name</TableHead>
+                                <TableHead className="font-bold text-black">Team</TableHead>
+                                <TableHead className="font-bold text-black text-right">Actions</TableHead>
+                            </TableRow>
+                        </TableHeader>
 
-<TableHeader>
-
-<TableRow>
-
-<TableHead>Name</TableHead>
-<TableHead>Last Name</TableHead>
-<TableHead>Team</TableHead>
-
-
-</TableRow>
-
-</TableHeader>
-
-<TableBody>
-
-   
-        {data.map(player =>
-        <TableRow key={player.id}>
-<TableCell className="font-medium">{player.name}</TableCell>
-<TableCell>{player.lastName}</TableCell>
-<TableCell className="text-gray-500">
-                {player.team?.name || "No team"}
-                </TableCell>
-        </TableRow>
-           )}
-
-
-</TableBody>
-
- 
-
-
-
- </Table>
-</CardContent>
-
-    </Card>
- 
-  )
+                        <TableBody>
+                            {data.map(player => (
+                                <TableRow key={player.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                                    <TableCell className="font-medium">{player.name}</TableCell>
+                                    <TableCell>{player.lastName}</TableCell>
+                                    <TableCell className="text-gray-500">
+                                        {player.team?.name || "-- No team --"}
+                                    </TableCell>
+                                    <TableCell className="text-right flex justify-end gap-2">
+                                        <button
+                                            className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-1 px-3 rounded text-sm transition-colors"
+                                            onClick={() => setIdEditPlayer(player.id)}
+                                        >
+                                            Edit
+                                        </button>
+                                        <DeletePlayer id={player.id} teamId={player.teamId} />
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </CardContent>
+            </Card>
+        </div>
+    )
 }

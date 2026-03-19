@@ -5,26 +5,30 @@ type PropsDel = {
     id: string;
     teamId: string | null
 }
+
 export const DeletePlayer = ({id, teamId}: PropsDel) => {
+    const {mutate} = useDeletePlayerMutation()
+    const showNotification = useNotificationStore(state => state.showNotification);
     
-const {mutate} = useDeletePlayerMutation()
-const showNotification = useNotificationStore(state => state.showNotification);
-const handleDelete = (playerId: string, teamId: string | null) => {
-    if(teamId != null){
-      showNotification("You must first delete a player from the team to remove them from the database");
+    const handleDelete = (playerId: string, teamId: string | null) => {
+        if(teamId != null){
+          showNotification("You must first delete a player from the team to remove them from the database");
+        }
+        else if (confirm("Are you sure to delete it?")) {
+          mutate(id, {
+                    onSuccess: () => {
+                        showNotification("The player has been permanently removed!");
+                    }
+                });
+        }
     }
-    else if (confirm("Are you sure to delete it?")) {
-      mutate(id, {
-                onSuccess: () => {
-                    showNotification("The player has been permanently removed!");
-                }
-            });
-    }}
-return (
-    <>
-     <button onClick={()=>handleDelete(id, teamId)}>Delete</button>
-    
-    </>
-   
-)
+
+    return (
+        <button 
+            className="bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm transition-colors"
+            onClick={() => handleDelete(id, teamId)}
+        >
+            Delete
+        </button>
+    )
 }
