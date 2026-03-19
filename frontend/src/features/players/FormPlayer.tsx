@@ -24,8 +24,8 @@ export const FormPlayer = ({onSubmit, defaultValues, onCancel}: PropsPlayer) => 
 
     return (
         
-        <div className="max-w-lg mx-auto mt-4 p-4 bg-white border border-gray-300 rounded shadow-sm">
-            <h2 className="text-xl font-bold text-center mb-4">
+       <div className="max-w-2xl mx-auto mt-6 p-6 sm:p-8 bg-white border border-gray-300 rounded-lg shadow-sm">
+           <h2 className="text-2xl font-bold text-center mb-6">
                 {defaultValues?.name ? "Edit Player" : "Add New Player"}
             </h2>
 

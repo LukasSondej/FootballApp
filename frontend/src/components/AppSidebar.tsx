@@ -1,43 +1,72 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarHeader,
 } from "@/components/ui/sidebar"
 import { Link } from "@tanstack/react-router"
+import { Trophy, Shield, Users } from "lucide-react"
  
 export const AppSidebar = () => {
   return (
     <Sidebar>
+      <SidebarHeader className="p-4 border-b border-gray-200">
+        <h1 className="text-xl font-black text-gray-800 tracking-tight">Football App</h1>
+      </SidebarHeader>
+
       <SidebarContent>
         <SidebarGroup>
-         <SidebarMenu>
+         <SidebarMenu className="gap-2 mt-4 px-2">
 
          <SidebarMenuItem>
-           <SidebarMenuButton asChild>
-                  <Link to="/">Matches</Link>
+ 
+           <SidebarMenuButton asChild className="h-auto p-0">
+                  <Link 
+                    to="/" 
+                    activeProps={{ className: "bg-gray-200 text-gray-900 font-bold shadow-sm" }}
+                    inactiveProps={{ className: "text-gray-600 hover:bg-gray-100" }}
+                    className="flex items-center gap-3 py-4 px-4 w-full rounded-md transition-all"
+                  >
+                     <Trophy className="w-5 h-5" />
+                     <span className="text-lg">Matches</span>
+                  </Link>
            </SidebarMenuButton>
         </SidebarMenuItem>
 
          <SidebarMenuItem>
-           <SidebarMenuButton asChild>
-                  <Link to="/teams">Teams</Link>
+           <SidebarMenuButton asChild className="h-auto p-0">
+                  <Link 
+                    to="/teams" 
+                    activeProps={{ className: "bg-gray-200 text-gray-900 font-bold shadow-sm" }}
+                    inactiveProps={{ className: "text-gray-600 hover:bg-gray-100" }}
+                    className="flex items-center gap-3 py-4 px-4 w-full rounded-md transition-all"
+                  >
+                     <Shield className="w-5 h-5" />
+                     <span className="text-lg">Teams</span>
+                  </Link>
            </SidebarMenuButton>
         </SidebarMenuItem>
 
          <SidebarMenuItem>
-           <SidebarMenuButton asChild>
-                  <Link to="/players">Players</Link>
+           <SidebarMenuButton asChild className="h-auto p-0">
+                  <Link 
+                    to="/players" 
+                    activeProps={{ className: "bg-gray-200 text-gray-900 font-bold shadow-sm" }}
+                    inactiveProps={{ className: "text-gray-600 hover:bg-gray-100" }}
+                    className="flex items-center gap-3 py-4 px-4 w-full rounded-md transition-all"
+                  >
+                     <Users className="w-5 h-5" />
+                     <span className="text-lg">Players</span>
+                  </Link>
            </SidebarMenuButton>
         </SidebarMenuItem>
 
          </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter />
     </Sidebar>
   )
 }

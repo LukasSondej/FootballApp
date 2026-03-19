@@ -1,54 +1,35 @@
-import styled from "styled-components"
-
-const BackDrop = styled.div`
-position: fixed;
-left: 0;
-top: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0,0,0,0.5);
-z-index: 1000;
-display: flex;
-justify-content: center;
-align-items: center;
-backdrop-filter: blur(4px);
-`
-const ModalContent = styled.div`
-width: 400px;
-padding: 40px;
-background-color: white;
-border-radius: 12px;
-color: #666;
-font-size: 24px;
-`;
-const StyledCancel = styled.button`
-padding: 12px;
-color: #5a4d4dff;
-background: #3cbd5cff;
-margin-left: 24px;
-`
-const StyledConfirm = styled.button`
-padding: 12px;
-color: #5a4d4dff;
-background: #b92828ff;
-margin-left: 24px;
-`
+// ZMIANA: Usunięto styled-components
 type PropsNoti = {
     handleDeleteTeam?: () => void;
     onClose: () => void;
     message: string;
 }
-export const ConfirmDeletion = ({onClose, message,handleDeleteTeam}: PropsNoti) => {
+
+export const ConfirmDeletion = ({onClose, message, handleDeleteTeam}: PropsNoti) => {
     return (
-    <BackDrop>
-          <ModalContent>
-        {message}
-       <StyledConfirm onClick={handleDeleteTeam}>Confirm</StyledConfirm>
-       <StyledCancel onClick={onClose}>Cancel</StyledCancel>
-    </ModalContent>
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex justify-center items-center p-4">
 
-    </BackDrop>
-  
+            <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full flex flex-col gap-6 text-center">
+                
+                <p className="text-xl font-semibold text-gray-800">
+                    {message}
+                </p>
+
+                <div className="flex justify-center gap-4">
+                    <button 
+                        onClick={onClose}
+                        className="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-6 rounded transition-colors"
+                    >
+                        Cancel
+                    </button>
+                    <button 
+                        onClick={handleDeleteTeam}
+                        className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition-colors"
+                    >
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
     )
-
 }

@@ -1,31 +1,52 @@
-import { useState } from "react"
 import { AddMatch } from "./features/matches/AddMatch"
 import { ListMatches } from "./features/matches/ListMatches"
-import styled from "styled-components"
 import { StatsMatches } from "./features/matches/StatsMatches"
 import useModalStore from "./store/useModalStore"
 import { useShallow } from "zustand/react/shallow"
 import { EditMatch } from "./features/matches/EditMatch"
-const StyledDiv = styled.div`
-    display: flex;
-    gap: 20px; 
-    align-items: flex-start;
-`
+import { Trophy } from "lucide-react"
+
 export const ParentMatchesComp = () => {
-const {isAddingMatch,toggleIsAddingMatch, idEditMatch} = useModalStore(useShallow((state) => ({isAddingMatch: state.isAddingMatch, toggleIsAddingMatch: state.toggleIsAddingMatch, idEditMatch: state.idEditMatch})))
-if(idEditMatch) {
-    return(
-        <EditMatch matchId={idEditMatch}/>
+    const {isAddingMatch, toggleIsAddingMatch, idEditMatch} = useModalStore(
+        useShallow((state) => ({
+            isAddingMatch: state.isAddingMatch, 
+            toggleIsAddingMatch: state.toggleIsAddingMatch, 
+            idEditMatch: state.idEditMatch
+        }))
     )
-}
+
+    if(idEditMatch) {
+        return <EditMatch matchId={idEditMatch}/>
+    }
+
     return(
-        <StyledDiv>
-             <ListMatches/> 
-       {!isAddingMatch && <button type="button" onClick={toggleIsAddingMatch}>{"Add Match" }</button>}
-{isAddingMatch && <AddMatch/>}
-<StatsMatches></StatsMatches>
-        </StyledDiv>
-  
+        <div className="max-w-4xl mx-auto p-4 flex flex-col gap-6 mt-4">
+            <div className="flex justify-between items-center border-b border-gray-200 pb-4">
+                <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-3">
+                    <Trophy className="w-8 h-8 text-gray-600" />
+                    Matches
+                </h1>
+                
+                {!isAddingMatch && (
+                    <button 
+                        type="button" 
+                        onClick={toggleIsAddingMatch}
+                        className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded transition-colors shadow-sm text-sm"
+                    >
+                        + Add Match
+                    </button>
+                )}
+            </div>
+            {isAddingMatch && <AddMatch/>}
+            
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+                <div className="w-full md:w-2/3">
+                    <ListMatches/> 
+                </div>
+                <div className="w-full md:w-1/3">
+                    <StatsMatches/>
+                </div>
+            </div>
+        </div>
     )
-  
 }
