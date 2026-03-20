@@ -3,7 +3,7 @@ import { playersQueryOptions } from "../../hooks/useGetPlayers"
 import { Card, CardContent } from "../../components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../components/ui/table"
 import useModalStore from "../../store/useModalStore"
-import { DeletePlayer } from "./DeletePlayer"
+
 
 export const ListPlayers = () => {
     const { data } = useSuspenseQuery(playersQueryOptions)
@@ -38,7 +38,7 @@ export const ListPlayers = () => {
                                         >
                                             Edit
                                         </button>
-                                        <DeletePlayer id={player.id} teamId={player.teamId} />
+                                     
                                     </TableCell>
                                 </TableRow>
                             ))}

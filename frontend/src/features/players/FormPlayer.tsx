@@ -4,14 +4,21 @@ import { useForm } from "react-hook-form";
 import { orderSchema, type OrderDataPlayer } from "./playerSchema";
 import { FormInput } from "../../components/FormInput";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
+import useModalStore from "@/store/useModalStore";
+import { ConfirmDeletion } from "@/components/ConfirmDeletion";
+import { useNotificationStore } from "@/store/useNotificationStore";
 
 type PropsPlayer = {
    onSubmit: (data: OrderDataPlayer) => void
    defaultValues?: OrderDataPlayer
+   handleDeletePlayer: () => void;
    onCancel: () => void
 }
 
-export const FormPlayer = ({onSubmit, defaultValues, onCancel}: PropsPlayer) => {
+export const FormPlayer = ({onSubmit, defaultValues, onCancel,handleDeletePlayer}: PropsPlayer) => {
+      const idEditPlayer = useModalStore((state => state.idEditPlayer))
+     const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
     const {register, handleSubmit, formState: {errors}} = useForm<OrderDataPlayer>({
         resolver: yupResolver(orderSchema),
         defaultValues: defaultValues || {
@@ -21,7 +28,14 @@ export const FormPlayer = ({onSubmit, defaultValues, onCancel}: PropsPlayer) => 
         }
     })
     const { data: teams = []} = useSuspenseQuery(teamsQueryOptions)
-
+const showNotification = useNotificationStore(state => state.showNotification)
+const handleDeleteClick = () => {
+    if(defaultValues?.teamId){
+         showNotification("You must first delete a player from the team to remove them from the database");
+    }else{
+isConfirmedDeleleComp(true)
+    }
+}
     return (
         
        <div className="max-w-2xl mx-auto mt-6 p-6 sm:p-8 bg-white border border-gray-300 rounded-lg shadow-sm">
@@ -50,6 +64,17 @@ export const FormPlayer = ({onSubmit, defaultValues, onCancel}: PropsPlayer) => 
                         Save Player
                     </button>
                 </div>
+                   {idEditPlayer && (
+                                    <div className="mt-4 pt-4 border-t border-gray-300">
+                                        <button type="button" name="button" onClick={handleDeleteClick} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded transition-colors">
+                                            Delete Player
+                                        </button>
+                                    </div>
+                                )}
+                
+                                {(confirmedDeleleComp && defaultValues) && (
+                                    <ConfirmDeletion message="Do you want to delete this Player?" handleDelete={handleDeletePlayer} onClose={() =>isConfirmedDeleleComp(false)} />
+                                )}
             </form>
         </div>
     )

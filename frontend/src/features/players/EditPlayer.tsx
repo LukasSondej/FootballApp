@@ -5,12 +5,14 @@ import useModalStore from "../../store/useModalStore"
 import {useSuspenseQuery } from "@tanstack/react-query"
 import { playersQueryOptions } from "../../hooks/useGetPlayers"
 import { useNotificationStore } from "../../store/useNotificationStore"
+import { useDeletePlayerMutation } from "@/mutations/useDeletePlayerMutation"
 
 
 type PropsPlayer =  {
     id: string;
 }
 export const EditPlayer = ({id}: PropsPlayer) => {
+    const {mutate: deletePlayer} = useDeletePlayerMutation()
     const showNotification = useNotificationStore(state => state.showNotification)
     const setIdEditPlayer = useModalStore((state) => state.setIdEditPlayer)
   const {data: allPlayers} = useSuspenseQuery(playersQueryOptions);
@@ -36,8 +38,19 @@ const onSubmit = (data: OrderDataPlayer)=> {
     
 
 }
+    const handleDeletePlayer = () => {
+       deletePlayer(id, {
+                    onSuccess: () => {
+                        setIdEditPlayer(null)
+                        showNotification("The player has been permanently removed!");
+                    }
+                });
+        }
+    
+   
+    
 return (
-    <FormPlayer onSubmit={onSubmit} onCancel={ () => setIdEditPlayer(null)} defaultValues={{name: player.name, lastName: player.lastName, teamId: player.teamId}}/>
+    <FormPlayer handleDeletePlayer={handleDeletePlayer} onSubmit={onSubmit} onCancel={ () => setIdEditPlayer(null)} defaultValues={{name: player.name, lastName: player.lastName, teamId: player.teamId}}/>
     
 )
 }
