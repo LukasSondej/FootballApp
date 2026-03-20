@@ -8,13 +8,23 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 import { Link } from "@tanstack/react-router"
-import { Trophy, Shield, Users } from "lucide-react"
+import { Trophy, Shield, Users, Medal, Crown } from "lucide-react"
  
 export const AppSidebar = () => {
   return (
     <Sidebar>
       <SidebarHeader className="p-4 border-b border-gray-200">
-        <h1 className="text-xl font-black text-gray-800 tracking-tight">Football App</h1>
+        <div className="flex items-center gap-3">
+
+           
+          <h1 className="text-xl font-black text-gray-800 tracking-tight">
+            Football App
+          </h1>
+            <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-xl shadow-inner text-gray-900">
+            <Crown className="w-6 h-6" /> 
+          </div>
+        </div>
+   
       </SidebarHeader>
 
       <SidebarContent>
