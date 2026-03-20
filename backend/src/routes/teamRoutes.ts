@@ -3,9 +3,10 @@ import { addTeam, deletedTeam, getTeams, updatedTeam } from "../controllers/team
 import { validateRequestBody } from "zod-express-middleware";
 import { teamSchema } from "../schemas/index.js";
 
+
 const router = express.Router();
 router.get('/',getTeams)
-router.post('/',addTeam)
+router.post('/', validateRequestBody(teamSchema), addTeam)
 router.patch('/:id',validateRequestBody(teamSchema),updatedTeam)
-router.delete('/:id',validateRequestBody(teamSchema),deletedTeam)
+router.delete('/:id',deletedTeam)
 export default router

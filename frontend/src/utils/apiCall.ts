@@ -10,6 +10,10 @@ export const apiCall = async<R, P = {}>(url: string, config?: apiConfig<P>) => {
        headers: config?.body ? { 'Content-Type': 'application/json' } : undefined,
          body: config?.body ? JSON.stringify(config.body) : undefined
     })
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Error API');
+    }
     return response.json() as Promise<R>
 
 }

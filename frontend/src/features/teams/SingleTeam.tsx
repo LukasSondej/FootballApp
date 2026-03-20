@@ -1,4 +1,3 @@
-// ZMIANA: Usunięto import styled-components, ponieważ przechodzimy w 100% na Tailwind CSS.
 import type { Team } from "../../types"
 import useModalStore from "../../store/useModalStore";
 
@@ -13,10 +12,15 @@ export const SingleTeam = ({team}: PropsTeam) => {
     
         <div className="flex justify-between items-center p-4 bg-white border border-gray-200 rounded shadow-sm hover:shadow-md transition-shadow"> 
            
-            <p className="text-lg font-semibold text-gray-800">
-               {team.name} 
-            </p>
-
+          <div>
+                <p className="text-lg font-semibold text-gray-800">
+                   {team.name} 
+                </p>
+            
+                <p className="text-sm text-gray-500">
+                   Year: {team.yearEstablished} | Location: {team.location}
+                </p>
+            </div>
             <button 
                 type="button" 
                 onClick={() => setIdEditTeam(team.id)}

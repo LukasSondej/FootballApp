@@ -4,7 +4,7 @@ import { matchSchema } from '../schemas/index.js'
 import { validateRequestBody } from 'zod-express-middleware'
 const router = express.Router()
 router.get('/', getMatches)
-router.post('/', addMatch)
-router.patch('/id',validateRequestBody(matchSchema), updatedMatch)
-router.delete('/:id',validateRequestBody(matchSchema), deleteMatch)
+router.post('/',validateRequestBody(matchSchema), addMatch)
+router.patch('/:id',validateRequestBody(matchSchema), updatedMatch)
+router.delete('/:id', deleteMatch)
 export default router

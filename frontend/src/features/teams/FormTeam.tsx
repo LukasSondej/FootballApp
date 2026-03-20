@@ -44,7 +44,7 @@ export const FormTeam = ({allPlayers= [], handleDeleteTeam, onSubmit, onCancel, 
             
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                 <FormInput label="Team Name" type="text" error={errors.name?.message} {...register("name")}/>
-                <FormInput label="Year Established" type="number" error={errors.yearEstablished?.message} {...register("yearEstablished")}/>
+                <FormInput label="Year Established" type="number" error={errors.yearEstablished?.message} {...register("yearEstablished", {valueAsNumber: true})}/>
                 <FormInput label="Location" type="text" error={errors.location?.message} {...register("location")}/>
                 
                 <div>
