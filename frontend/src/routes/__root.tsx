@@ -10,22 +10,7 @@ import { AppSidebar } from "@/components/AppSidebar"
 type MyRouterContext = {
     queryClient: QueryClient
 }
-const Page = styled.div`
-min-height: 100vh;
-min-width: 100vw;
-background: ${props => props.theme.colors.background};
-color: ${props => props.theme.colors.textPrimary};
-padding: 16px;
 
-`
-const light = {
-  colors: {
-    primary: "#2563EB",      
-    background: "#F7F7FA",   
-    textPrimary: "#0F172A",  
-    textBackground: "#FFFFFF"
-  }
-}
 export const Route = createRootRouteWithContext< MyRouterContext>()({
   component: RootComponent,
 })
@@ -35,22 +20,27 @@ return (
   <SidebarProvider>
     <AppSidebar/>
     
-    <ThemeProvider theme={light}>
-      <Page >
-      
+  
+     <main className="flex-1 w-full p-4 md:p-8">
+
+     
          <div className="mb-6">
             <SidebarTrigger className="p-4 border shadow-lg rounded-sm bg-gray-100 hover:bg-gray-200" />
           </div>
         <Suspense fallback={<h2>Loading</h2>}>
-         <Outlet />
+        <div className="mt-4">
+            <Outlet />
         
+        </div>
+       
         </Suspense>
         <Notification/>
          <Toaster position='top-right'/>
             
        
-      </Page>
-    </ThemeProvider>
+     
+   </main>
+      
     </SidebarProvider>
   )
 }

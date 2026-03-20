@@ -6,7 +6,7 @@ export const useGetSingleTeam = (teamId: string) => {
      const {data, isLoading, error} = useQuery<Team>({
         queryKey: ["singleTeam", teamId],
         queryFn: async() => {
-            return apiCall<Team>(`teams/${teamId}`)
+            return apiCall<Team>(`teams/${teamId}`, {method: "GET"})
 
         }
 

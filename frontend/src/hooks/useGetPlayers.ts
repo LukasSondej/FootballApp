@@ -1,11 +1,9 @@
 import type { Player } from "../types";
+import { apiCall } from "../utils/apiCall";
 
 export const playersQueryOptions = {
     queryKey: ['players'],
-    queryFn: async() => {
-    const response = await fetch(`http://localhost:3000/players`)
-    return response.json() as Promise<Player[]>
+    queryFn: async () => {
+        return apiCall<Player[]>('players', {method: "GET"});
     }
-
-
 }

@@ -1,11 +1,13 @@
 
 import type { Match } from "../types"
+import { apiCall } from "../utils/apiCall"
+
 
 export const matchesQueryOptions = {
      queryKey: ["matches"],
      queryFn: async()=>{
-const response = await fetch(`http://localhost:3000/matches`)
-return response.json() as Promise<Match[]>
+return apiCall<Match[]>(`matches`, {method: "GET"})
+
      }
   
 }
