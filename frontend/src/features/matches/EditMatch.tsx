@@ -57,6 +57,6 @@ onSuccess: () => {
     
 }
 
-return <FormMatch isLoading={isPending} handleDeleteMatch={handleDeleteMatch} onCancel={() => setIdEditMatch(null)}  onSubmit={onSubmit} teams={teams} defaultValues={matchEdit}/>
+return <FormMatch isLoading={isPending} handleDeleteMatch={handleDeleteMatch} onCancel={() => setIdEditMatch(null)}  onSubmit={onSubmit} teams={teams} defaultValues={{...matchEdit, date: matchEdit.date ? matchEdit.date.split('T')[0] : " "}}/>
 
 }

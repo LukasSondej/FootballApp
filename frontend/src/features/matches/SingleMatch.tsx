@@ -28,7 +28,7 @@ export const SingleMatch = ({matchData, allTeams}: PropsMatch) => {
 
             <div className="flex justify-between items-center text-sm text-gray-600 bg-gray-50 p-2 rounded">
                 <span>⏱️ Duration: {matchData.duration} min</span>
-                <span>📍 {matchData.place}, {matchData.date}</span>
+                <span>📍 {matchData.place}, {matchData.date.split('T')[0]}</span>
             </div>
 
             <div className="flex justify-end mt-2">

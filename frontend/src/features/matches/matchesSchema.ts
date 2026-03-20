@@ -1,7 +1,9 @@
 import { z } from "zod";
 
 export const orderSchema = z.object({
-    date: z.string().min(1, "Date is required"),
+   date: z.string()
+        .min(1, "Date is required")
+        .transform((val) => new Date(val).toISOString()),
         
     place: z.string().min(1, "Place is required"),
         
