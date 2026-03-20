@@ -19,6 +19,11 @@ export const orderSchema = z.object({
         
     team2Score: z.number({ invalid_type_error: "Score must be a valid number" })
         .min(0, "Score cannot be negative")
+
+    
+}).refine((data) => data.team1Id !== data.team2Id, {
+    message: "A team cannot play against itself!",
+    path: ["team2Id"] 
 });
 
 export type OrderDataMatches = z.infer<typeof orderSchema>;

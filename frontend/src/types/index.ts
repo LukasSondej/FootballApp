@@ -23,7 +23,7 @@ export type Team = {
 
 export type NewTeam = Omit<Team, 'id'>;
 
-export type EditTeamPayload = NewTeam & { playerIds: string[] };
+export type EditTeamPayload = NewTeam & { playerIds?: string[] };
 
 export type Match = {
     id: string,

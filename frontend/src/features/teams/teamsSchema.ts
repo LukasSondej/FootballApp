@@ -10,8 +10,7 @@ export const orderSchema = z.object({
     location: z.string()
         .min(1, "Location cannot be empty"),
         
-    playerIds: z.array(z.string())
-        .min(1, "Select at least one player!")
+    playerIds: z.array(z.string()).optional()
 });
 
 export type OrderDataTeam = z.infer<typeof orderSchema>;
