@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+# ⚽ Football Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Full-Stack application for managing football teams, players, and matches. Designed with a focus on modern UX, database query optimization, and full Type Safety.
 
-Currently, two official plugins are available:
+## 🔗 Live Demo
+**[Open Application - Live Demo]([INSERT_LINK_TO_APP_HERE])**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> **Note:** The application is connected to a test cloud database. Feel free to add, edit, and delete data to test the system's functionality.
 
-## React Compiler
+---
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## 🛠 Tech Stack
 
-## Expanding the ESLint configuration
+The project was built using modern technologies, strictly separating the visual layer (Frontend) from the business logic (Backend).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Frontend:**
+* **React 19** + **Vite**
+* **TypeScript**
+* **TanStack Router** – modern, file-based routing.
+* **TanStack Query** – data fetching, mutations, and asynchronous state management.
+* **Zustand** – lightweight global state management (e.g., notifications, modals).
+* **React Hook Form** + **Zod** – form handling and strict validation.
+* **Tailwind CSS** + **shadcn/ui** – modern user interface.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+**Backend:**
+* **Node.js** + **Express**
+* **Prisma ORM** – secure and type-safe database communication.
+* **PostgreSQL** – relational database.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ✨ Key Features & Technical Solutions
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+* **Query Optimization (Overfetching prevention):** Utilizing Prisma relations to include related data (e.g., fetching matches along with team names in a single query), which offloads the frontend from making additional redundant requests.
+* **Advanced Validation (Zod):** Implemented strict business rules, e.g., form blocking (`.refine`) when a user attempts to schedule a match for a team against itself.
+* **Elegant Error Handling:** API errors (e.g., preventing the deletion of a team because it has existing matches in the database) are seamlessly caught by TanStack Query and displayed to the user as friendly Toast Notifications.
+* **Consistent UX:** Intuitive sidebar navigation, dynamic confirmation modals for destructive actions (like deletion), and a fully responsive layout built with CSS Grid/Flexbox.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📸 Screenshots
