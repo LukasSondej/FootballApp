@@ -22,7 +22,7 @@ const player = allPlayers.find(p => p.id === id);
 
 if (!player) return <p>Player not found</p>;
 
- const {mutate }= useEditPlayerMutation();
+ const {mutate, isPending }= useEditPlayerMutation();
 const onSubmit = (data: OrderDataPlayer)=> {
     mutate({
        id: id,
@@ -50,7 +50,7 @@ const onSubmit = (data: OrderDataPlayer)=> {
    
     
 return (
-    <FormPlayer handleDeletePlayer={handleDeletePlayer} onSubmit={onSubmit} onCancel={ () => setIdEditPlayer(null)} defaultValues={{name: player.name, lastName: player.lastName, teamId: player.teamId}}/>
+    <FormPlayer isLoading={isPending} handleDeletePlayer={handleDeletePlayer} onSubmit={onSubmit} onCancel={ () => setIdEditPlayer(null)} defaultValues={{name: player.name, lastName: player.lastName, teamId: player.teamId}}/>
     
 )
 }

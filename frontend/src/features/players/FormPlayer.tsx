@@ -8,15 +8,17 @@ import { useState } from "react";
 import useModalStore from "@/store/useModalStore";
 import { ConfirmDeletion } from "@/components/ConfirmDeletion";
 import { useNotificationStore } from "@/store/useNotificationStore";
+import { Loader2 } from "lucide-react";
 
 type PropsPlayer = {
    onSubmit: (data: OrderDataPlayer) => void
    defaultValues?: OrderDataPlayer
-   handleDeletePlayer: () => void;
+   handleDeletePlayer?: () => void;
    onCancel: () => void
+    isLoading?: boolean;
 }
 
-export const FormPlayer = ({onSubmit, defaultValues, onCancel,handleDeletePlayer}: PropsPlayer) => {
+export const FormPlayer = ({onSubmit, defaultValues, onCancel,handleDeletePlayer, isLoading}: PropsPlayer) => {
       const idEditPlayer = useModalStore((state => state.idEditPlayer))
      const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
     const {register, handleSubmit, formState: {errors}} = useForm<OrderDataPlayer>({
@@ -57,17 +59,24 @@ isConfirmedDeleleComp(true)
 
                 <div className="flex gap-4 mt-4">
                     
-                    <button type="button" onClick={onCancel} className="w-full bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 rounded transition-colors">
+                    <button disabled={isLoading} type="button" onClick={onCancel} className="w-full bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 rounded transition-colors">
                         Cancel
                     </button>
-                    <button type="submit" name="button" className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 rounded transition-colors">
-                        Save Player
+                    <button disabled={isLoading}  type="submit" name="button" className="w-full inline-flex items-center justify-center bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 rounded transition-colors disabled:opacity-70">
+                                                       {
+                                        isLoading ? (<>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Saving...
+                                        </>): (
+"Save"
+                            )   
+                                    }
                     </button>
                 </div>
                    {idEditPlayer && (
                                     <div className="mt-4 pt-4 border-t border-gray-300">
-                                        <button type="button" name="button" onClick={handleDeleteClick} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded transition-colors">
-                                            Delete Player
+                                        <button disabled={isLoading} type="button" name="button" onClick={handleDeleteClick} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded transition-colors">
+   Delete Player
                                         </button>
                                     </div>
                                 )}

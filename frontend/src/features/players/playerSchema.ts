@@ -1,9 +1,18 @@
 import { object, string, type InferType } from "yup";
 
 export const orderSchema = object({
-name: string().required("Name is required").min(3),
-lastName: string().required("Last name is required").min(3),
-teamId: string().nullable().defined().transform((value ) => (value==="" ? null : value))
+    name: string()
+        .min(3, "Name must be at least 3 characters long")
+        .required("Name is required"),
+        
+    lastName: string()
+        .min(3, "Last name must be at least 3 characters long")
+        .required("Last name is required"),
+        
+    teamId: string()
+        .nullable()
+        .defined()
+        .transform((value) => (value === "" ? null : value))
+});
 
-})
-export type OrderDataPlayer = InferType<typeof orderSchema>
+export type OrderDataPlayer = InferType<typeof orderSchema>;

@@ -7,7 +7,7 @@ import useModalStore from "../../store/useModalStore";
 import { useNotificationStore } from "../../store/useNotificationStore";
 
 export const AddMatch = () => {
-const {mutate} = useAddMatchMutation()
+const {mutate, isPending} = useAddMatchMutation()
 const {data: teams} = useSuspenseQuery(teamsQueryOptions)
 const setIsAddingMatch = useModalStore(state => state.setIsAddingMatch)
 const showNotification = useNotificationStore(state => state.showNotification);
@@ -28,6 +28,6 @@ const onSubmit = (data: OrderDataMatches) => {
 
 }
 return (
-    <FormMatch teams={teams} onCancel={() => setIsAddingMatch(false)}  onSubmit={onSubmit}/>
+    <FormMatch isLoading={isPending} teams={teams} onCancel={() => setIsAddingMatch(false)}  onSubmit={onSubmit}/>
 )
 }

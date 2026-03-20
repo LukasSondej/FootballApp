@@ -7,7 +7,7 @@ import { FormTeam } from "./FormTeam";
 import { playersQueryOptions } from "../../hooks/useGetPlayers";
 
 export const AddTeam = () => {
-const {mutate} = useAddTeamMutation();
+const {mutate, isPending} = useAddTeamMutation();
 const setIsAddingTeam = useModalStore(state => state.setIsAddingTeam);
 const showNotification = useNotificationStore(state => state.showNotification);
 const { data: allPlayers } = useSuspenseQuery(playersQueryOptions);
@@ -26,7 +26,7 @@ const onSubmit = (data: EditTeamPayload) => {
     })
 }
 return(
-<FormTeam allPlayers={allPlayers} onSubmit={onSubmit} onCancel={() => setIsAddingTeam(false)}/>
+<FormTeam isLoading={isPending} allPlayers={allPlayers} onSubmit={onSubmit} onCancel={() => setIsAddingTeam(false)}/>
 )
 
 }

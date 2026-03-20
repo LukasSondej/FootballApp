@@ -18,7 +18,7 @@ export const EditMatch = ({matchId}: Props) => {
 
     const showNotification = useNotificationStore(state => state.showNotification) 
 const setIdEditMatch = useModalStore(state => state.setIdEditMatch)
-    const {mutate} = useEditMatchMutation(matchId)
+    const {mutate, isPending} = useEditMatchMutation(matchId)
    const {mutate: deleteMatch} = useDeleteMatchMutation()
     const {data: allMatches} = useSuspenseQuery(matchesQueryOptions)
     const {data: teams=[]} = useSuspenseQuery(teamsQueryOptions)
@@ -57,6 +57,6 @@ onSuccess: () => {
     
 }
 
-return <FormMatch handleDeleteMatch={handleDeleteMatch} onCancel={() => setIdEditMatch(null)}  onSubmit={onSubmit} teams={teams} defaultValues={matchEdit}/>
+return <FormMatch isLoading={isPending} handleDeleteMatch={handleDeleteMatch} onCancel={() => setIdEditMatch(null)}  onSubmit={onSubmit} teams={teams} defaultValues={matchEdit}/>
 
 }

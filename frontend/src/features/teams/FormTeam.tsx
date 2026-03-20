@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import type { EditTeamPayload, Player } from "../../types";
 import { ConfirmDeletion } from "../../components/ConfirmDeletion";
 import useModalStore from "../../store/useModalStore";
+import { Loader2 } from "lucide-react";
 
 type PropsTeam = {
    onSubmit: (data: EditTeamPayload) => void;
@@ -14,6 +15,7 @@ type PropsTeam = {
    handleDeleteTeam?: () => void;
    onCancel: () => void;
    defaultValues?: Partial<EditTeamPayload>;
+   isLoading?: boolean;
 }
 
 type PlayerOption = {
@@ -21,7 +23,7 @@ type PlayerOption = {
     label: string
 }
 
-export const FormTeam = ({allPlayers= [], handleDeleteTeam, onSubmit, onCancel, defaultValues}: PropsTeam) =>{
+export const FormTeam = ({allPlayers= [], handleDeleteTeam, onSubmit, onCancel, defaultValues, isLoading}: PropsTeam) =>{
     const idEditTeam = useModalStore((state => state.idEditTeam))
     const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
     
@@ -66,20 +68,34 @@ export const FormTeam = ({allPlayers= [], handleDeleteTeam, onSubmit, onCancel, 
                             />
                         )}
                     />
+                    {errors.playerIds && (
+    <p className="text-red-500 text-xs mt-1">{errors.playerIds.message}</p>
+)}
                 </div>
                 
                 <div className="flex gap-4 mt-4">
-                    <button type="button" onClick={onCancel} className="w-full bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 rounded transition-colors">
+                    <button  disabled={isLoading} type="button" onClick={onCancel} className="w-full bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 rounded transition-colors">
                         Cancel
                     </button>
-                    <button type="submit" name="button" className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 rounded transition-colors">
-                        Save Team
+                    <button disabled={isLoading} type="submit" name="button" className="w-full inline-flex items-center justify-center bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 rounded transition-colors disabled:opacity-70">
+                       
+                        {
+                            isLoading ? (
+                                <>
+                               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                               Saving...
+                                </>
+                            ) : (
+"Save"
+                            )   
+                         
+                        }
                     </button>
                 </div>
 
                 {idEditTeam && (
                     <div className="mt-4 pt-4 border-t border-gray-300">
-                        <button type="button" name="button" onClick={() => isConfirmedDeleleComp(true)} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded transition-colors">
+                        <button  disabled={isLoading} type="button" name="button" onClick={() => isConfirmedDeleleComp(true)} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded transition-colors">
                             Delete Team
                         </button>
                     </div>

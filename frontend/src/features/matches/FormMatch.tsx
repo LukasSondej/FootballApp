@@ -6,16 +6,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import useModalStore from "@/store/useModalStore";
 import { useState } from "react";
 import { ConfirmDeletion } from "@/components/ConfirmDeletion";
+import { Loader2 } from "lucide-react";
 
 type PropsMatch = {
     onSubmit: (data: OrderDataMatches)=> void
     teams: Team[]
     defaultValues?: Partial<OrderDataMatches>
     handleDeleteMatch?: () => void;
-    onCancel: () => void
+    onCancel: () => void;
+  isLoading?: boolean;
 }
 
-export const FormMatch = ({ onSubmit, teams, defaultValues, onCancel,handleDeleteMatch}: PropsMatch) => {
+export const FormMatch = ({ onSubmit, teams, defaultValues, onCancel,handleDeleteMatch, isLoading}: PropsMatch) => {
     const idEditMatch = useModalStore((state => state.idEditMatch))
         const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
     const {register, handleSubmit, formState: {errors}} = useForm<OrderDataMatches>({
@@ -72,6 +74,7 @@ export const FormMatch = ({ onSubmit, teams, defaultValues, onCancel,handleDelet
                 <div className="flex gap-4 mt-4">
                     <button 
                         type="button" 
+                            disabled={isLoading}
                         onClick={onCancel}
                     
                         className="w-full bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 rounded transition-colors"
@@ -81,23 +84,32 @@ export const FormMatch = ({ onSubmit, teams, defaultValues, onCancel,handleDelet
 
                     <button 
                         type="submit"
-                      
-                        className="w-full bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 rounded transition-colors"
+                      disabled={isLoading}
+                       className="w-full inline-flex items-center justify-center bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 rounded transition-colors disabled:opacity-70"
                     >
-                        Save Match
+                        {isLoading ? (
+                            <>
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                               Saving...
+                            </>
+                        ):
+                        "Save"
+                        }
+
+                        
                     </button>
                 </div>
                 {
                     idEditMatch && (
                          <div className="mt-4 pt-4 border-t border-gray-300">
-                        <button type="button" name="button" onClick={() => isConfirmedDeleleComp(true)} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded transition-colors">
+                        <button disabled={isLoading} type="button" name="button" onClick={() => isConfirmedDeleleComp(true)} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded transition-colors">
                             Delete Match
                         </button>
                     </div>
                     )
                 }
  {confirmedDeleleComp && (
-                    <ConfirmDeletion message="Do you want to delete this team?" handleDelete={handleDeleteMatch} onClose={() =>isConfirmedDeleleComp(false)} />
+                <ConfirmDeletion message="Do you want to delete this match?" handleDelete={handleDeleteMatch} onClose={() =>isConfirmedDeleleComp(false)} />
                 )}
             </form>
         </div>

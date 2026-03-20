@@ -18,7 +18,7 @@ export const EditTeam = ({idEditTeam}: Props) => {
     const {data: allPlayers} = useSuspenseQuery(playersQueryOptions)
     const {data: allTeams} = useSuspenseQuery(teamsQueryOptions)
 
-    const {mutate} = useEditTeamMutation(idEditTeam)
+    const {mutate, isPending} = useEditTeamMutation(idEditTeam)
     const {mutate: teamDelete} = useDeleteTeamMutation()
 
 const teamToEdit  = allTeams.find(el => el.id === idEditTeam)
@@ -64,7 +64,7 @@ const handleDeleteTeam = () => {
   
 }
 return(
-<FormTeam defaultValues={defaultValues} handleDeleteTeam={handleDeleteTeam} allPlayers={allPlayers}  onSubmit={onSubmit} onCancel={() => setIdEditTeam(null)}/>
+<FormTeam isLoading={isPending} defaultValues={defaultValues} handleDeleteTeam={handleDeleteTeam} allPlayers={allPlayers}  onSubmit={onSubmit} onCancel={() => setIdEditTeam(null)}/>
 )
 
 }

@@ -30,7 +30,7 @@ mutate({
 
  
  <>
- <FormPlayer onCancel={() => setIsAddingPlayer(false)} onSubmit={onSubmit}/>
+ <FormPlayer isLoading={isPending} onCancel={() => setIsAddingPlayer(false)} onSubmit={onSubmit}/>
  </>
  )
 

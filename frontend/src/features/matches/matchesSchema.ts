@@ -1,12 +1,32 @@
 import { number, object, string, type InferType } from "yup";
 
 export const orderSchema = object({
-    date: string().required("date is required"),
-    place: string().required("place is required"),
-    duration:number().typeError("Time must be a number").required("Time is required").positive("Time cannot be negative "),
-    team1Id: string().required("Select team 1"),
-    team1Score: number().required("team1Score is required").min(0, "The Score cannot be negative"),
-    team2Id: string().required("Select team 2"),
-    team2Score: number().required("team2Score is required").min(0, "The Score cannot be negative")
+    date: string()
+        .required("Date is required"),
+        
+    place: string()
+        .required("Place is required"),
+        
+    duration: number()
+        .typeError("Duration must be a valid number")
+        .positive("Duration must be a positive number")
+        .required("Duration is required"),
+        
+    team1Id: string()
+        .required("Select team 1"),
+        
+    team1Score: number()
+        .typeError("Score must be a valid number")
+        .min(0, "Score cannot be negative")
+        .required("Team 1 score is required"),
+        
+    team2Id: string()
+        .required("Select team 2"),
+        
+    team2Score: number()
+        .typeError("Score must be a valid number")
+        .min(0, "Score cannot be negative")
+        .required("Team 2 score is required")
 });
-export type OrderDataMatches = InferType<typeof orderSchema>
+
+export type OrderDataMatches = InferType<typeof orderSchema>;
