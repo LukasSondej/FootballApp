@@ -8,16 +8,18 @@ import { useSuspenseQuery } from "@tanstack/react-query"
 import type { OrderDataMatches } from "./matchesSchema"
 import useModalStore from "../../store/useModalStore"
 import { useNotificationStore } from "../../store/useNotificationStore"
-
+import { useDeleteMatchMutation } from "@/mutations/useDeleteMatchMutation"
 
 
 type Props = {
     matchId: string
 }
 export const EditMatch = ({matchId}: Props) => {
-    const showNotification = useNotificationStore(state => state.showNotification) // DODANE
+
+    const showNotification = useNotificationStore(state => state.showNotification) 
 const setIdEditMatch = useModalStore(state => state.setIdEditMatch)
-    const {mutate, isPending, error} = useEditMatchMutation(matchId)
+    const {mutate} = useEditMatchMutation(matchId)
+   const {mutate: deleteMatch} = useDeleteMatchMutation()
     const {data: allMatches} = useSuspenseQuery(matchesQueryOptions)
     const {data: teams=[]} = useSuspenseQuery(teamsQueryOptions)
     const matchEdit = allMatches?.find(e=> e.id == matchId);
@@ -44,6 +46,17 @@ date: data.date,
     })
 
 }
-return <FormMatch onCancel={() => setIdEditMatch(null)}  onSubmit={onSubmit} teams={teams} defaultValues={matchEdit}/>
+const handleDeleteMatch = () => {
+ 
+       deleteMatch(matchId,{
+onSuccess: () => {
+    setIdEditMatch(null); 
+            showNotification("Match permanently deleted!");
+}
+    })
+    
+}
+
+return <FormMatch handleDeleteMatch={handleDeleteMatch} onCancel={() => setIdEditMatch(null)}  onSubmit={onSubmit} teams={teams} defaultValues={matchEdit}/>
 
 }

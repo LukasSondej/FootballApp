@@ -43,7 +43,7 @@ const onSubmit = (data: EditTeamPayload) => {
     }, {
          onSuccess: () => {
                 setIdEditTeam(null);
-                showNotification("Team details updated successfully!"); // DODANE
+                showNotification("Team details updated successfully!"); 
             }
             }
 );

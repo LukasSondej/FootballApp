@@ -1,11 +1,11 @@
 // ZMIANA: Usunięto styled-components
 type PropsNoti = {
-    handleDeleteTeam?: () => void;
+    handleDelete?: () => void;
     onClose: () => void;
     message: string;
 }
 
-export const ConfirmDeletion = ({onClose, message, handleDeleteTeam}: PropsNoti) => {
+export const ConfirmDeletion = ({onClose, message, handleDelete}: PropsNoti) => {
     return (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex justify-center items-center p-4">
 
@@ -23,7 +23,7 @@ export const ConfirmDeletion = ({onClose, message, handleDeleteTeam}: PropsNoti)
                         Cancel
                     </button>
                     <button 
-                        onClick={handleDeleteTeam}
+                        onClick={handleDelete}
                         className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition-colors"
                     >
                         Confirm

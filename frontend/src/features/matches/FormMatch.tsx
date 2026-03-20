@@ -3,15 +3,21 @@ import type { Team } from "../../types"
 import { orderSchema, type OrderDataMatches } from "./matchesSchema";
 import { FormInput } from "../../components/FormInput";
 import { yupResolver } from "@hookform/resolvers/yup";
+import useModalStore from "@/store/useModalStore";
+import { useState } from "react";
+import { ConfirmDeletion } from "@/components/ConfirmDeletion";
 
 type PropsMatch = {
     onSubmit: (data: OrderDataMatches)=> void
     teams: Team[]
     defaultValues?: Partial<OrderDataMatches>
+    handleDeleteMatch?: () => void;
     onCancel: () => void
 }
 
-export const FormMatch = ({ onSubmit, teams, defaultValues, onCancel}: PropsMatch) => {
+export const FormMatch = ({ onSubmit, teams, defaultValues, onCancel,handleDeleteMatch}: PropsMatch) => {
+    const idEditMatch = useModalStore((state => state.idEditMatch))
+        const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
     const {register, handleSubmit, formState: {errors}} = useForm<OrderDataMatches>({
         resolver: yupResolver(orderSchema), 
         defaultValues: defaultValues
@@ -81,7 +87,18 @@ export const FormMatch = ({ onSubmit, teams, defaultValues, onCancel}: PropsMatc
                         Save Match
                     </button>
                 </div>
-
+                {
+                    idEditMatch && (
+                         <div className="mt-4 pt-4 border-t border-gray-300">
+                        <button type="button" name="button" onClick={() => isConfirmedDeleleComp(true)} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded transition-colors">
+                            Delete Match
+                        </button>
+                    </div>
+                    )
+                }
+ {confirmedDeleleComp && (
+                    <ConfirmDeletion message="Do you want to delete this team?" handleDelete={handleDeleteMatch} onClose={() =>isConfirmedDeleleComp(false)} />
+                )}
             </form>
         </div>
     )
