@@ -1,12 +1,10 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { matchesQueryOptions} from "../../hooks/useGetMatches"
-import { teamsQueryOptions} from "../../hooks/useGetTeams";
 import { SingleMatch } from "./SingleMatch";
     
 export const ListMatches = () => {
 const {data} = useSuspenseQuery(matchesQueryOptions)
-const{data: teams} = useSuspenseQuery(teamsQueryOptions);
-    if(!data || !teams) {
+    if(!data) {
         return <p>Loading...</p>
     }
     return(
@@ -14,7 +12,7 @@ const{data: teams} = useSuspenseQuery(teamsQueryOptions);
          <ul>
             {data.map(el => 
             <li key={el.id} style={{listStyleType: "none"}}>
-                 <SingleMatch  matchData={el} allTeams= {teams}/>
+                 <SingleMatch  matchData={el}/>
                  
             </li>
            )}

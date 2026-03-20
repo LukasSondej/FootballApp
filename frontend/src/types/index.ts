@@ -33,7 +33,20 @@ export type Match = {
     team1Id: string,
     team2Id: string,
     team1Score: number,
-    team2Score: number
+    team2Score: number,
+
+    team1: Team,
+    team2: Team
+
 }
 
-export type NewMatch = Omit<Match, 'id'>;
+export type NewMatch = {
+  
+    date: string,
+    place: string,
+    duration: number,
+    team1Id: string,
+    team2Id: string,
+    team1Score: number,
+    team2Score: number,
+}

@@ -3,7 +3,12 @@ import prisma from "../db.js";
 
 export const getMatches = async(req: Request, res: Response,next: NextFunction) => {
     try{
-  const matches = await prisma.match.findMany()
+  const matches = await prisma.match.findMany({
+    include: {
+        team1: true,
+        team2: true
+    }
+  })
     res.json(matches)
 
     }catch(error){
