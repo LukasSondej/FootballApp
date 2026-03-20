@@ -19,7 +19,7 @@ export const SingleMatch = ({matchData}: PropsMatch) => {
                 </h2>
             </div>
 
-            <div className="flex justify-between items-center text-sm text-gray-600 bg-gray-50 p-2 rounded">
+            <div className="flex flex-wrap gap-2 justify-between items-center text-sm text-gray-600 bg-gray-50 p-2 rounded">
                 <span>⏱️ Duration: {matchData.duration} min</span>
                 <span>📍 {matchData.place}, {matchData.date.split('T')[0]}</span>
             </div>
