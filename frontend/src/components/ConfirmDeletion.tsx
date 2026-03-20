@@ -1,4 +1,3 @@
-// ZMIANA: Usunięto styled-components
 type PropsNoti = {
     handleDelete?: () => void;
     onClose: () => void;
@@ -17,12 +16,14 @@ export const ConfirmDeletion = ({onClose, message, handleDelete}: PropsNoti) => 
 
                 <div className="flex justify-center gap-4">
                     <button 
+                       type="button"
                         onClick={onClose}
                         className="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-6 rounded transition-colors"
                     >
                         Cancel
                     </button>
                     <button 
+                    type="button"
                         onClick={handleDelete}
                         className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition-colors"
                     >

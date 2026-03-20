@@ -23,7 +23,7 @@ export const addMatch = async(req: Request, res: Response, next: NextFunction) =
    }
  
 }
-export const updatedMatch = async(req: Request, res: Response, next: NextFunction) => {
+export const updateMatch = async(req: Request, res: Response, next: NextFunction) => {
     try{
    const matchId = req.params.id as string;
   const updatedData = req.body

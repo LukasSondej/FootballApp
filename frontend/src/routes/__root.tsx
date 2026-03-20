@@ -1,6 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { Link, Outlet, createRootRoute, createRootRouteWithContext } from '@tanstack/react-router'
-import styled, { ThemeProvider } from 'styled-components'
+import { Link, Outlet,createRootRouteWithContext } from '@tanstack/react-router'
+
 import type { QueryClient } from '@tanstack/react-query'
 import { Suspense } from 'react'
 import { Toaster } from 'react-hot-toast'

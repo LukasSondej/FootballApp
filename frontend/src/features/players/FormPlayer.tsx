@@ -3,7 +3,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { orderSchema, type OrderDataPlayer } from "./playerSchema";
 import { FormInput } from "../../components/FormInput";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import useModalStore from "@/store/useModalStore";
 import { ConfirmDeletion } from "@/components/ConfirmDeletion";
@@ -22,7 +22,7 @@ export const FormPlayer = ({onSubmit, defaultValues, onCancel,handleDeletePlayer
       const idEditPlayer = useModalStore((state => state.idEditPlayer))
      const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
     const {register, handleSubmit, formState: {errors}} = useForm<OrderDataPlayer>({
-        resolver: yupResolver(orderSchema),
+      resolver: zodResolver(orderSchema),
         defaultValues: defaultValues || {
             name: "",
             lastName: "",
@@ -81,10 +81,12 @@ isConfirmedDeleleComp(true)
                                     </div>
                                 )}
                 
-                                {(confirmedDeleleComp && defaultValues) && (
+                            
+            </form>
+
+                {(confirmedDeleleComp && defaultValues) && (
                                     <ConfirmDeletion message="Do you want to delete this Player?" handleDelete={handleDeletePlayer} onClose={() =>isConfirmedDeleleComp(false)} />
                                 )}
-            </form>
         </div>
     )
 }

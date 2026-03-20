@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FormInput } from "../../components/FormInput";
 import { Controller, useForm } from "react-hook-form";
 import { orderSchema} from "./teamsSchema";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { zodResolver } from "@hookform/resolvers/zod";
 import type { EditTeamPayload, Player } from "../../types";
 import { ConfirmDeletion } from "../../components/ConfirmDeletion";
 import useModalStore from "../../store/useModalStore";
@@ -33,7 +33,7 @@ export const FormTeam = ({allPlayers= [], handleDeleteTeam, onSubmit, onCancel, 
     }));
 
     const {register, handleSubmit, formState: {errors}, control} = useForm<EditTeamPayload>({
-        resolver: yupResolver(orderSchema),
+      resolver: zodResolver(orderSchema),
         defaultValues: defaultValues
     })
 

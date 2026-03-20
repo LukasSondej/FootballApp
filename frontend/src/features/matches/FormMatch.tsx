@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import type { Team } from "../../types"
 import { orderSchema, type OrderDataMatches } from "./matchesSchema";
 import { FormInput } from "../../components/FormInput";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { zodResolver } from "@hookform/resolvers/zod";
 import useModalStore from "@/store/useModalStore";
 import { useState } from "react";
 import { ConfirmDeletion } from "@/components/ConfirmDeletion";
@@ -21,7 +21,7 @@ export const FormMatch = ({ onSubmit, teams, defaultValues, onCancel,handleDelet
     const idEditMatch = useModalStore((state => state.idEditMatch))
         const [confirmedDeleleComp, isConfirmedDeleleComp] = useState<boolean>(false);
     const {register, handleSubmit, formState: {errors}} = useForm<OrderDataMatches>({
-        resolver: yupResolver(orderSchema), 
+        resolver: zodResolver(orderSchema),
         defaultValues: defaultValues
     })
 

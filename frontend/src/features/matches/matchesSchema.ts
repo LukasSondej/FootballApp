@@ -1,32 +1,22 @@
-import { number, object, string, type InferType } from "yup";
+import { z } from "zod";
 
-export const orderSchema = object({
-    date: string()
-        .required("Date is required"),
+export const orderSchema = z.object({
+    date: z.string().min(1, "Date is required"),
         
-    place: string()
-        .required("Place is required"),
+    place: z.string().min(1, "Place is required"),
         
-    duration: number()
-        .typeError("Duration must be a valid number")
-        .positive("Duration must be a positive number")
-        .required("Duration is required"),
+    duration: z.number({ invalid_type_error: "Duration must be a valid number" })
+        .positive("Duration must be a positive number"),
         
-    team1Id: string()
-        .required("Select team 1"),
+    team1Id: z.string().min(1, "Select team 1"),
         
-    team1Score: number()
-        .typeError("Score must be a valid number")
+    team1Score: z.number({ invalid_type_error: "Score must be a valid number" })
+        .min(0, "Score cannot be negative"),
+        
+    team2Id: z.string().min(1, "Select team 2"),
+        
+    team2Score: z.number({ invalid_type_error: "Score must be a valid number" })
         .min(0, "Score cannot be negative")
-        .required("Team 1 score is required"),
-        
-    team2Id: string()
-        .required("Select team 2"),
-        
-    team2Score: number()
-        .typeError("Score must be a valid number")
-        .min(0, "Score cannot be negative")
-        .required("Team 2 score is required")
 });
 
-export type OrderDataMatches = InferType<typeof orderSchema>;
+export type OrderDataMatches = z.infer<typeof orderSchema>;
