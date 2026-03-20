@@ -102,7 +102,13 @@ export const FormTeam = ({allPlayers= [], handleDeleteTeam, onSubmit, onCancel, 
                 )}
 
                 {confirmedDeleleComp && (
-                    <ConfirmDeletion message="Do you want to delete this team?" handleDelete={handleDeleteTeam} onClose={() =>isConfirmedDeleleComp(false)} />
+                    <ConfirmDeletion message="Do you want to delete this team?" 
+                    handleDelete={() => {
+                        if(handleDeleteTeam) handleDeleteTeam();
+                        isConfirmedDeleleComp(false)
+ 
+                    }}
+                     onClose={() =>isConfirmedDeleleComp(false)} />
                 )}
             </form>
         </div>

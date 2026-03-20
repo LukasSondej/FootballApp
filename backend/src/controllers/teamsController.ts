@@ -33,7 +33,7 @@ next(error)
 
 }
     
-export const updatedTeam = async(req: Request, res: Response, next: NextFunction) => {
+export const updateTeam = async(req: Request, res: Response, next: NextFunction) => {
     try{
     const {playerIds,  ...teamData} = req.body
     const teamId = req.params.id as string
@@ -52,7 +52,7 @@ export const updatedTeam = async(req: Request, res: Response, next: NextFunction
     next(error)
 }
 }
-export const deletedTeam = async(req: Request, res: Response, next: NextFunction) => {
+export const deleteTeam = async(req: Request, res: Response, next: NextFunction) => {
     try{
     const teamId = req.params.id as string
     const team = await prisma.team.delete({

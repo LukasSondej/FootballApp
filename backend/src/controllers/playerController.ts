@@ -1,6 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
 import prisma from "../db.js";
-import { ca, tr } from "zod/locales";
 
 export const getPlayers = async(req: Request, res: Response, next: NextFunction) => {
    try{
@@ -29,7 +28,7 @@ res.status(201).json(newPlayer)
 
 
 }
-export const updatedPlayer = async(req: Request, res: Response, next: NextFunction) => {
+export const updatePlayer = async(req: Request, res: Response, next: NextFunction) => {
    try{
 
    const playerId = req.params.id as string;
