@@ -15,20 +15,20 @@ export const ConfirmDeletion = ({onClose, message, handleDelete}: PropsNoti) => 
                 </p>
 
                 <div className="flex justify-center gap-4">
-                    <button 
-                       type="button"
-                        onClick={onClose}
-                        className="bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-6 rounded transition-colors"
-                    >
-                        Cancel
-                    </button>
-                    <button 
-                    type="button"
-                        onClick={handleDelete}
-                        className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition-colors"
-                    >
-                        Confirm
-                    </button>
+      <button 
+   type="button"
+    onClick={onClose}
+    className="bg-transparent border border-gray-300 hover:bg-gray-100 text-gray-700 font-semibold py-2 px-6 rounded transition-colors"
+>
+    Cancel
+</button>
+    <button 
+    type="button"
+    onClick={handleDelete}
+    className="border border-transparent bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition-colors cursor-pointer"
+>
+    Confirm
+</button>
                 </div>
             </div>
         </div>

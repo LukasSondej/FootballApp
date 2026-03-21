@@ -39,7 +39,7 @@ export const FormTeam = ({allPlayers= [], handleDeleteTeam, onSubmit, onCancel, 
 
     return (
 
-        <div className="max-w-lg mx-auto mt-4 p-4 bg-white border border-gray-300 rounded shadow-sm">
+      <div className="max-w-2xl mx-auto mt-6 p-6 sm:p-8 bg-white border border-gray-300 rounded-lg shadow-sm">
             <h2 className="text-xl font-bold text-center mb-4">
                 {idEditTeam ? "Edit Team" : "Add New Team"}
             </h2>
@@ -74,23 +74,19 @@ export const FormTeam = ({allPlayers= [], handleDeleteTeam, onSubmit, onCancel, 
                 </div>
                 
                 <div className="flex gap-4 mt-4">
-                    <button  disabled={isLoading} type="button" onClick={onCancel} className="w-full bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 rounded transition-colors">
-                        Cancel
-                    </button>
-                    <button disabled={isLoading} type="submit" name="button" className="w-full inline-flex items-center justify-center bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 rounded transition-colors disabled:opacity-70">
-                       
-                        {
-                            isLoading ? (
-                                <>
-                               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                               Saving...
-                                </>
-                            ) : (
-"Save"
-                            )   
-                         
-                        }
-                    </button>
+                    <button disabled={isLoading} type="button" onClick={onCancel} className="w-full bg-transparent border border-gray-300 hover:bg-gray-100 text-gray-700 font-semibold py-2 rounded transition-colors">
+    Cancel
+</button>
+<button disabled={isLoading} type="submit" name="button" className="w-full inline-flex items-center justify-center border border-transparent bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 rounded transition-colors disabled:opacity-70 cursor-pointer disabled:cursor-not-allowed">
+    {isLoading ? (
+        <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Saving...
+        </>
+    ) : (
+        "Save"
+    )}
+</button>
                 </div>
 
                 {idEditTeam && (

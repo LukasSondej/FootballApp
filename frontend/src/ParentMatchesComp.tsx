@@ -31,7 +31,7 @@ export const ParentMatchesComp = () => {
                     <button 
                         type="button" 
                         onClick={toggleIsAddingMatch}
-                        className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded transition-colors shadow-sm text-sm"
+                        className="mt-4 sm:mt-0 bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-lg shadow-sm transition-all"
                     >
                         + Add Match
                     </button>

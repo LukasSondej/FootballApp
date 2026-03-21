@@ -12,15 +12,15 @@ export const FormInput = forwardRef<HTMLInputElement, PropsInputMatch & UseFormR
     ({label, type, error, ...register}, ref) => {
         return (
        
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
             
-                <label className="font-bold text-sm text-gray-700">
+                <label className="font-medium text-sm text-gray-800">
                     {label}
                 </label>
                 
-                <Input type={type} ref={ref} {...register} className="bg-white" />
+               <Input type={type} ref={ref} {...register} className="bg-white" />
 
-                {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+                {error && <p className="text-red-500 text-xs font-medium mt-0.5">{error}</p>}
             </div>
         )
     }

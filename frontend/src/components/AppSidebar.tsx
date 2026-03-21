@@ -32,44 +32,43 @@ export const AppSidebar = () => {
          <SidebarMenu className="gap-2 mt-4 px-2">
 
          <SidebarMenuItem>
- 
-           <SidebarMenuButton asChild className="h-auto p-0">
+           <SidebarMenuButton asChild className="h-auto p-0 cursor-pointer">
                   <Link 
                     to="/" 
-                    activeProps={{ className: "bg-gray-200 text-gray-900 font-bold shadow-sm" }}
-                    inactiveProps={{ className: "text-gray-600 hover:bg-gray-100" }}
-                    className="flex items-center gap-3 py-4 px-4 w-full rounded-md transition-all"
+                    activeProps={{ className: "bg-white border border-gray-200 text-gray-900 font-bold shadow-sm" }}
+                    inactiveProps={{ className: "text-gray-600 hover:bg-gray-200 hover:text-gray-900 border border-transparent" }}
+                    className="flex items-center gap-3 py-3 px-4 w-full rounded-md transition-all"
                   >
                      <Trophy className="w-5 h-5" />
-                     <span className="text-lg">Matches</span>
+                     <span className="text-base font-medium">Matches</span>
                   </Link>
            </SidebarMenuButton>
         </SidebarMenuItem>
 
          <SidebarMenuItem>
-           <SidebarMenuButton asChild className="h-auto p-0">
+           <SidebarMenuButton asChild className="h-auto p-0 cursor-pointer">
                   <Link 
                     to="/teams" 
-                    activeProps={{ className: "bg-gray-200 text-gray-900 font-bold shadow-sm" }}
-                    inactiveProps={{ className: "text-gray-600 hover:bg-gray-100" }}
-                    className="flex items-center gap-3 py-4 px-4 w-full rounded-md transition-all"
+                    activeProps={{ className: "bg-white border border-gray-200 text-gray-900 font-bold shadow-sm" }}
+                    inactiveProps={{ className: "text-gray-600 hover:bg-gray-200 hover:text-gray-900 border border-transparent" }}
+                    className="flex items-center gap-3 py-3 px-4 w-full rounded-md transition-all"
                   >
                      <Shield className="w-5 h-5" />
-                     <span className="text-lg">Teams</span>
+                     <span className="text-base font-medium">Teams</span>
                   </Link>
            </SidebarMenuButton>
         </SidebarMenuItem>
 
          <SidebarMenuItem>
-           <SidebarMenuButton asChild className="h-auto p-0">
+           <SidebarMenuButton asChild className="h-auto p-0 cursor-pointer">
                   <Link 
                     to="/players" 
-                    activeProps={{ className: "bg-gray-200 text-gray-900 font-bold shadow-sm" }}
-                    inactiveProps={{ className: "text-gray-600 hover:bg-gray-100" }}
-                    className="flex items-center gap-3 py-4 px-4 w-full rounded-md transition-all"
+                    activeProps={{ className: "bg-white border border-gray-200 text-gray-900 font-bold shadow-sm" }}
+                    inactiveProps={{ className: "text-gray-600 hover:bg-gray-200 hover:text-gray-900 border border-transparent" }}
+                    className="flex items-center gap-3 py-3 px-4 w-full rounded-md transition-all"
                   >
                      <Users className="w-5 h-5" />
-                     <span className="text-lg">Players</span>
+                     <span className="text-base font-medium">Players</span>
                   </Link>
            </SidebarMenuButton>
         </SidebarMenuItem>

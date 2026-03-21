@@ -9,15 +9,11 @@ const {data} = useSuspenseQuery(matchesQueryOptions)
     }
     return(
         <>
-         <ul>
-            {data.map(el => 
-            <li key={el.id} style={{listStyleType: "none"}}>
-                 <SingleMatch  matchData={el}/>
-                 
-            </li>
-           )}
-
-        </ul>
+     <div className="p-4 w-full max-w-4xl mx-auto flex flex-col gap-4">
+    {data.map(el => (
+        <SingleMatch key={el.id} matchData={el}/>
+    ))}
+</div>
         </>
        
     )

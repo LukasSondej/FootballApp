@@ -32,12 +32,11 @@ export const ListPlayers = () => {
                                         {player.team?.name || "-- No team --"}
                                     </TableCell>
                                     <TableCell className="text-right flex justify-end gap-2">
-                                        <button
-                                            className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-1 px-3 rounded text-sm transition-colors"
-                                            onClick={() => setIdEditPlayer(player.id)}
-                                        >
-                                            Edit
-                                        </button>
+                                     <button
+                                     className="bg-transparent border border-gray-300 text-gray-800 hover:bg-gray-100 font-medium py-1 px-3 rounded text-sm transition-colors"
+                                     onClick={() => setIdEditPlayer(player.id)}>
+                                      Edit
+                                     </button>
                                      
                                     </TableCell>
                                 </TableRow>

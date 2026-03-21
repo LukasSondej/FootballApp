@@ -26,7 +26,7 @@ export const ParentPlayerComp = () => {
                 </h1>
 
                 {!isAddingPlayer && (
-                    <button onClick={toggleIsAddingPlayer} className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded transition-colors shadow-sm text-sm">
+                    <button onClick={toggleIsAddingPlayer} className="mt-4 sm:mt-0 bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-lg shadow-sm transition-all">
                         + Add Player
                     </button>
                 )}
