@@ -54,10 +54,12 @@ export const FormTeam = ({allPlayers= [], handleDeleteTeam, onSubmit, onCancel, 
                     <Controller
                         name="playerIds"
                         control={control}
+                        
                         render={({ field: { onChange, value} }) => (
                             <Select
                                 isMulti
                                 options={options}
+                                isSearchable={false}
                                 hideSelectedOptions={true}
                                 closeMenuOnSelect={false}
                                 value={options.filter((c) => value?.includes(c.value))}
