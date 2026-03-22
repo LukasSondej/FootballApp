@@ -15,6 +15,7 @@ Built as a portfolio project to demonstrate end-to-end development skills with m
 - **Smart Validation** – Prevents invalid actions (e.g., a team cannot play against itself) using **Zod**.
 - **Error Handling** – Clear, user-friendly toast notifications for all error scenarios.
 - **Responsive UI** – Fully responsive design that works seamlessly on desktop and mobile.
+- **Unit Testing** – Core business logic and form validation schemas are covered by unit tests using **Vitest**.
 
 ---
 
@@ -50,6 +51,7 @@ Toast notification when attempting to delete a team that still has matches assig
 - **Tailwind CSS** & **shadcn/ui**
 - **Zustand** (state management)
 - **React Hook Form** + **Zod** (form handling & validation)
+- **Vitest** (unit testing)
 
 ### Backend
 - **Node.js** & **Express**
