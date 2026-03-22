@@ -4,6 +4,8 @@ import useModalStore from "./store/useModalStore"
 import { useShallow } from "zustand/react/shallow"
 import { EditPlayer } from "./features/players/EditPlayer"
 import { Users } from "lucide-react"
+import { Suspense } from "react"
+import { LoadingSpinner } from "./components/LoadingSpinner"
 
 export const ParentPlayerComp = () => {
    const { idEditPlayer, isAddingPlayer, toggleIsAddingPlayer } = useModalStore(
@@ -32,7 +34,10 @@ export const ParentPlayerComp = () => {
                 )}
             </div>
             {isAddingPlayer && <AddPlayer/>}
-            <ListPlayers/>
+            <Suspense fallback={<LoadingSpinner message="Loading players..." />}>
+          <ListPlayers/>
+      </Suspense>
+            
         </div>
     )
 }

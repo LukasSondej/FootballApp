@@ -5,6 +5,8 @@ import useModalStore from "./store/useModalStore"
 import { useShallow } from "zustand/react/shallow"
 import { EditMatch } from "./features/matches/EditMatch"
 import { Trophy } from "lucide-react"
+import { Suspense } from "react"
+import { LoadingSpinner } from "./components/LoadingSpinner"
 
 export const ParentMatchesComp = () => {
     const {isAddingMatch, toggleIsAddingMatch, idEditMatch} = useModalStore(
@@ -39,12 +41,17 @@ export const ParentMatchesComp = () => {
             </div>
             {isAddingMatch && <AddMatch/>}
             
-            <div className="flex flex-col md:flex-row gap-6 items-start">
+       <div className="flex flex-col md:flex-row gap-6 items-start">
                 <div className="w-full md:w-2/3">
-                    <ListMatches/> 
+                    <Suspense fallback={<LoadingSpinner message="Loading matches..." />}>
+                        <ListMatches/> 
+                    </Suspense>
                 </div>
                 <div className="w-full md:w-1/3">
-                    <StatsMatches/>
+                    <Suspense fallback={<LoadingSpinner message="
+Loading statistics..." />}>
+                        <StatsMatches/>
+                    </Suspense>
                 </div>
             </div>
         </div>

@@ -4,6 +4,8 @@ import { AddTeam } from "./features/teams/AddTeam"
 import useModalStore from "./store/useModalStore"
 import { useShallow } from "zustand/react/shallow"
 import { Shield } from "lucide-react"
+import { Suspense } from "react"
+import { LoadingSpinner } from "./components/LoadingSpinner"
 
 export const ParentTeamsComp = () => {
     const { idEditTeam, isAddingTeam, setIsAddingTeam } = useModalStore(
@@ -36,7 +38,9 @@ export const ParentTeamsComp = () => {
                 )}
             </div>
             {isAddingTeam && <AddTeam/>}
-            <ListTeams/>
+          <Suspense fallback={<LoadingSpinner message="Loading teams..." />}>
+          <ListTeams/>
+      </Suspense>
         </div>
     )
 }
