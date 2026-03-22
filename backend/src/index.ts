@@ -6,7 +6,15 @@ import teamRoutes from './routes/teamRoutes.js';
 import matchRoutes from './routes/matchRoutes.js';
 
 const app = express();
-app.use(cors()); 
+
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://dynamic-pie-266080.netlify.app' 
+  ],
+  credentials: true
+})); 
+
 app.use(express.json()); 
 
 app.use('/players', playerRoutes);
@@ -20,6 +28,6 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(Number(PORT), '0.0.0.0', () => {
   console.log(`The server runs on port ${PORT} 🚀`);
 });
