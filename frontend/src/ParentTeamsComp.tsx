@@ -29,7 +29,7 @@ export const ParentTeamsComp = () => {
                 {!isAddingTeam && (
                     <button 
                         onClick={() => setIsAddingTeam(true)} 
-                        className="mt-4 sm:mt-0 bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-lg shadow-sm transition-all"
+                        className="mt-4 sm:mt-0 bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-lg shadow-sm transition-all cursor-pointer"
                     >
                         + Add Team
                     </button>
