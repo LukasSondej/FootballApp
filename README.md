@@ -3,7 +3,7 @@
 A full-stack web application for managing football teams, players, and matches.
 Built as a portfolio project to demonstrate end-to-end development skills with modern web technologies.
 
-**🌐 Live Demo:** *coming soon*
+**🌐 Live Demo:** [https://football-app-sondej.netlify.app](https://football-app-sondej.netlify.app/)
 
 ---
 
