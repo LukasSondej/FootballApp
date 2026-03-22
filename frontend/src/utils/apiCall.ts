@@ -1,3 +1,4 @@
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 type apiConfig<P = {}> = {
 method: 'GET' | "PUT" | 'DELETE'| 'PATCH' | 'POST';
 body?: P;
