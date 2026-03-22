@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://dynamic-pie-266080.netlify.app' 
+    'https://football-app-sondej.netlify.app'
   ],
   credentials: true
 })); 
