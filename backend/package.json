@@ -5,7 +5,6 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@prisma/adapter-pg": "^7.4.2",
     "@prisma/client": "^7.4.2",
     "@prisma/config": "^7.4.2",
     "cors": "^2.8.6",
