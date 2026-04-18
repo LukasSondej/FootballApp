@@ -5,7 +5,7 @@ body?: P;
 }
 
 export const apiCall = async<R, P = {}>(url: string, config?: apiConfig<P>) => {
-   const URL = import.meta.env.VITE_API_URL || "https://footballapp-production-e476.up.railway.app";
+   const URL = import.meta.env.VITE_API_URL || "https://footballapp.fly.dev";
     const response = await fetch(`${URL}/${url}`, {
         method: config?.method || 'GET',
        headers: config?.body ? { 'Content-Type': 'application/json' } : undefined,
