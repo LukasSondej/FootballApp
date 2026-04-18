@@ -27,7 +27,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   res.status(status).json({ error: err.message || "something broke" });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.listen(Number(PORT), '0.0.0.0', () => {
   console.log(`The server runs on port ${PORT} 🚀`);
 });

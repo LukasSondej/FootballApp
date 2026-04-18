@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build": "prisma generate",
+    "postinstall": "prisma generate",
     "start": "tsx src/index.ts"
   }
 }
