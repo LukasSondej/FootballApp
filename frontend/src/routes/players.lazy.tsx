@@ -4,4 +4,3 @@ import { ParentPlayerComp } from '../ParentPlayerComp'
 export const Route = createLazyFileRoute('/players')({
   component: ParentPlayerComp,
 })
-

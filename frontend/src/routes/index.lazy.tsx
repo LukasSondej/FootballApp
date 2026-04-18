@@ -4,5 +4,3 @@ import { ParentMatchesComp } from '../ParentMatchesComp'
 export const Route = createLazyFileRoute('/')({
   component: ParentMatchesComp,
 })
-
-
